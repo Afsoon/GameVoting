@@ -24,7 +24,7 @@ var countdown = 100;
 
 setInterval(function(){
     countdown--;
-    io.sockets.emit('time', countdown/100);
+    io.sockets.emit('time', countdown);
 
     if(countdown == 0 || finDeVotaciones()){
         timeout = true;
