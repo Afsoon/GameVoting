@@ -2,7 +2,7 @@
  * Created by jose on 27/10/15.
  */
 
-var Shake = require('shake.js'); // require shake
+//var Shake = require('shake.js'); // require shake
 
 var myShakeEvent = new Shake({
     threshold: 15 // optional shake strength threshold
