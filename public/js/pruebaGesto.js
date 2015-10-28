@@ -64,9 +64,9 @@ window.addEventListener("devicemotion", function(event){
     document.getElementById("agz").innerHTML= event.accelerationIncludingGravity.z;
     document.getElementById("ra").innerHTML= event.rotationRate.alpha;
     document.getElementById("rb").innerHTML= event.rotationRate.beta;
-    document.getElementById("rg").innerHTML=event.rotationRate.gamma;
+    document.getElementById("rg").innerHTML =  event.rotationRate.gamma;
     //bevent.interval;
-}, true);
+}, false);
 //function to call when shake occurs
 /*
 function shakeEventDidOccur () {
