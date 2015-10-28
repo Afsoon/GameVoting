@@ -33,7 +33,7 @@ var args = {
     // If set to true it will return screen adjusted values.
 };
 
-var gn = new Gyronorm();
+var gn = new GyroNorm();
 
 /*
 var myShakeEvent = new Shake({
