@@ -23,6 +23,7 @@ function shakeEventDidOccur () {
         alert('shake!');
     } else {
         navigator.vibrate(2000);
+        navigator.vibrate([]);
     }
 
 }
