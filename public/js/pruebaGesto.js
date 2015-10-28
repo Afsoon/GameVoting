@@ -19,7 +19,7 @@ window.addEventListener('shake', shakeEventDidOccur, false);
 function shakeEventDidOccur () {
 
     document.body.style.backgroundColor = "#FF2323";
-    if (supporsVibrate) {
+    if (!supporsVibrate) {
         alert('shake!');
     } else {
         navigator.vibrate(2000);
