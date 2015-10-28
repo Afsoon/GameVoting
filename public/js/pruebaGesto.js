@@ -4,6 +4,8 @@
 
 //var Shake = require('shake.js'); // require shake
 
+var supporsVibrate = "vibrate" in navigator;
+
 var myShakeEvent = new Shake({
     threshold: 15 // optional shake strength threshold
     //timeout: 1000 // optional, determines the frequency of event generation
@@ -17,6 +19,10 @@ window.addEventListener('shake', shakeEventDidOccur, false);
 function shakeEventDidOccur () {
 
     document.body.style.backgroundColor = "#FF2323";
+    if (supporsVibrate) {
+        alert('shake!');
+    } else {
+        navigator.vibrate(2000);
+    }
 
-    alert('shake!');
 }

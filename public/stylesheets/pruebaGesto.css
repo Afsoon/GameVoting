@@ -1,3 +1,41 @@
+@import url(https://fonts.googleapis.com/css?family=Bangers);
+
 body {
-    background-color: black;
+    background-color: #008800;
+    background-image: url("../images/tennis-pitch.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+h1 {
+    text-align: center;
+    font-size: 10rem;
+    color: antiquewhite;
+    font-family: 'Bangers', cursive;
+}
+
+h3 {
+    text-align: center;
+    font-size: 2rem ;
+    color: antiquewhite;
+    font-family: Consolas, Menlo, Monaco, monospace;
+}
+
+#leftButton{
+    margin-left: 20%;
+    float: left;
+    margin-top: 15rem;
+}
+
+#rightButton{
+    margin-right: 20%;
+    float: right;
+    margin-top: 15rem;
+}
+
+.voteButton {
+    display: block;
+    width: 15rem;
+    height: 15rem;
+    background-size: 100px 82px;
 }
