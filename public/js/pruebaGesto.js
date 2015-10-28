@@ -47,7 +47,9 @@ window.addEventListener('shake', shakeEventDidOccur, false);
 */
 
 gn.init(args).then(function(){
+    gn.start(function(data){
 
+    });
 }).catch(function(e){
     // DeviceOrientation or DeviceMotion is not supported by the browser
     alert('Your browser does not support device motion!');
