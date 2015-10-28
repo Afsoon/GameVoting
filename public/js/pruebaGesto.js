@@ -23,13 +23,13 @@ var args = {
      with respect to the actual north direction of the world.
      */
 
-    decimalCount: 2,
+    decimalCount: 1,
     // How many digits after the decimal point will there be in the return values
 
     logger: null,
     // Function to be called to log messages from Gyronorm.js
 
-    screenAdjusted: false
+    screenAdjusted: true
     // If set to true it will return screen adjusted values.
 };
 
