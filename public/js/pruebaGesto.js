@@ -18,12 +18,12 @@ window.addEventListener('shake', shakeEventDidOccur, false);
 //function to call when shake occurs
 function shakeEventDidOccur () {
 
-    document.body.style.backgroundColor = "#FF2323";
     if (!supporsVibrate) {
-        alert('shake!');
+        alert('Vibracion no soportada');
     } else {
         navigator.vibrate(2000);
-        alert('HA VIBRADO?');
     }
+
+    document.body.style.backgroundColor = "#FF2323";
 
 }
