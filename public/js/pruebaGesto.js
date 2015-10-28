@@ -6,34 +6,7 @@
 
 var supporsVibrate = "vibrate" in navigator;
 
-var args = {
-    frequency: 50,
-    /*
-     How often the callback function of the
-     gn.start() method is called - milliseconds
-     */
-
-    gravityNormalized: true,
-    // true - if the gravity related values are to be normalized
-
-    orientationBase: GyroNorm.GAME,
-    /*
-     GyroNorm.GAME for orientation values with respect to the head
-     direction of the device, or GyroNorm.WORLD for orientation values
-     with respect to the actual north direction of the world.
-     */
-
-    decimalCount: 1,
-    // How many digits after the decimal point will there be in the return values
-
-    logger: null,
-    // Function to be called to log messages from Gyronorm.js
-
-    screenAdjusted: true
-    // If set to true it will return screen adjusted values.
-};
-
-var gn = new GyroNorm();
+init()
 
 /*
 var myShakeEvent = new Shake({
@@ -46,27 +19,7 @@ myShakeEvent.start();
 window.addEventListener('shake', shakeEventDidOccur, false);
 */
 
-gn.init(args).then(function(){
-    gn.start(function(data){
 
-    });
-}).catch(function(e){
-    // DeviceOrientation or DeviceMotion is not supported by the browser
-    alert('Your browser does not support device motion!');
-});
-
-window.addEventListener("devicemotion", function(event){
-    document.getElementById("ax").innerHTML= event.acceleration.x;
-    document.getElementById("ay").innerHTML= event.acceleration.y;
-    document.getElementById("az").innerHTML= event.acceleration.z;
-    document.getElementById("agx").innerHTML= event.accelerationIncludingGravity.x
-    document.getElementById("agy").innerHTML= event.accelerationIncludingGravity.y;
-    document.getElementById("agz").innerHTML= event.accelerationIncludingGravity.z;
-    document.getElementById("ra").innerHTML= event.rotationRate.alpha;
-    document.getElementById("rb").innerHTML= event.rotationRate.beta;
-    document.getElementById("rg").innerHTML =  event.rotationRate.gamma;
-    //bevent.interval;
-}, false);
 //function to call when shake occurs
 /*
 function shakeEventDidOccur () {
@@ -80,3 +33,44 @@ function shakeEventDidOccur () {
     document.body.style.backgroundColor = "#FF2323";
 
 }*/
+
+function init() {
+    if ((window.DeviceMotionEvent) || ('listenForDeviceMovement' in window)) {
+        window.addEventListener('devicemotion', deviceMotionHandler, false);
+    } else {
+        document.getElementById("dmEvent").innerHTML = "Not supported on your device or browser.  Sorry."
+    }
+}
+
+function deviceMotionHandler(eventData) {
+    var info, xyz = "[X, Y, Z]";
+
+    // Grab the acceleration including gravity from the results
+    var acceleration = eventData.acceleration;
+    info = xyz.replace("X", round(acceleration.x));
+    info = info.replace("Y", round(acceleration.y));
+    info = info.replace("Z", round(acceleration.z));
+    document.getElementById("moAccel").innerHTML = info;
+
+    // Grab the acceleration including gravity from the results
+    acceleration = eventData.accelerationIncludingGravity;
+    info = xyz.replace("X", round(acceleration.x));
+    info = info.replace("Y", round(acceleration.y));
+    info = info.replace("Z", round(acceleration.z));
+    document.getElementById("moAccelGrav").innerHTML = info;
+
+    // Grab the acceleration including gravity from the results
+    var rotation = eventData.rotationRate;
+    info = xyz.replace("X", round(rotation.alpha));
+    info = info.replace("Y", round(rotation.beta));
+    info = info.replace("Z", round(rotation.gamma));
+    document.getElementById("moRotation").innerHTML = info;
+
+    info = eventData.interval;
+    document.getElementById("moInterval").innerHTML = info;
+}
+
+function round(val) {
+    var amt = 10;
+    return Math.round(val * amt) /  amt;
+}
