@@ -32,19 +32,19 @@ function init() {
 }
 
 function deviceMotionHandler(eventData) {
-    // var info, xyz = "[X, Y, Z]";
-    var firstPostion = false;
+    var info, xyz = "[X, Y, Z]";
+    var firstPosition = false;
     var acceleration;
 
     if (isGameOn) {
-        while (!firstPostion){
+        while (!firstPosition){
             acceleration = eventData.accelerationIncludingGravity;        
             if ((round(acceleration.x) >= 0 && round(acceleration.x) <= 1) &&
                 (round(acceleration.y) >= 9 && round(acceleration.y) <= 10) &&
                 (round(acceleration.z) <= 0 && round(acceleration.z) >= -2)){
                 navigator.vibrate(2000);
                 alert("PRIMERA POSICION");
-                firstPostion = true;
+                firstPosition = true;
             }
         }
     }
