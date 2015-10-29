@@ -1,7 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Bangers);
 
 body {
-    background-color: #008800;
+    background-color: antiquewhite;
     /* background-image: url("../images/tennis-pitch.jpg"); */
     background-repeat: no-repeat;
     background-size: cover;
@@ -10,14 +10,14 @@ body {
 h1 {
     text-align: center;
     font-size: 10rem;
-    color: antiquewhite;
+    color: #000000;
     font-family: 'Bangers', cursive;
 }
 
-h3 {
+p {
     text-align: center;
     font-size: 2rem ;
-    color: antiquewhite;
+    color: #000000;
     font-family: Consolas, Menlo, Monaco, monospace;
 }
 

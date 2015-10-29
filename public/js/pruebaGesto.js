@@ -2,23 +2,12 @@
  * Created by jose on 27/10/15.
  */
 
-//var Shake = require('shake.js'); // require shake
+var isGameOn = true; // Will be enabled by the admin
 
-var supporsVibrate = "vibrate" in navigator;
+//var supporsVibrate = "vibrate" in navigator; // does not matter if it can vibrate
+
 
 init()
-
-/*
-var myShakeEvent = new Shake({
-    threshold: 15 // optional shake strength threshold
-    //timeout: 1000 // optional, determines the frequency of event generation
-});
-
-myShakeEvent.start();
-
-window.addEventListener('shake', shakeEventDidOccur, false);
-*/
-
 
 //function to call when shake occurs
 /*
@@ -38,36 +27,50 @@ function init() {
     if ((window.DeviceMotionEvent) || ('listenForDeviceMovement' in window)) {
         window.addEventListener('devicemotion', deviceMotionHandler, false);
     } else {
-        document.getElementById("dmEvent").innerHTML = "Not supported on your device or browser.  Sorry."
+        document.getElementById("dmEvent").innerHTML = "Tu navegador no detecta el acelerometro... :("
     }
 }
 
 function deviceMotionHandler(eventData) {
-    var info, xyz = "[X, Y, Z]";
+    // var info, xyz = "[X, Y, Z]";
+    var firstPostion = false;
+    var acceleration;
 
-    // Grab the acceleration including gravity from the results
+    if (isGameOn) {
+        while (!firstPostion){
+            acceleration = eventData.accelerationIncludingGravity;        
+            if ((round(acceleration.x) >= 0 && round(acceleration.x) <= 1) &&
+                (round(acceleration.y) >= 9 && round(acceleration.y) <= 10) &&
+                (round(acceleration.z) <= 0 && round(acceleration.z) >= -2)){
+                navigator.vibrate(2000);
+                alert("PRIMERA POSICION");
+                firstPostion = true;
+            }
+        }
+    }
+    /* Grab the acceleration including gravity from the results. NOT USED
     var acceleration = eventData.acceleration;
     info = xyz.replace("X", round(acceleration.x));
     info = info.replace("Y", round(acceleration.y));
     info = info.replace("Z", round(acceleration.z));
-    document.getElementById("moAccel").innerHTML = info;
+    document.getElementById("moAccel").innerHTML = info; */
 
-    // Grab the acceleration including gravity from the results
+    /* Grab the acceleration including gravity from the results
     acceleration = eventData.accelerationIncludingGravity;
     info = xyz.replace("X", round(acceleration.x));
     info = info.replace("Y", round(acceleration.y));
     info = info.replace("Z", round(acceleration.z));
-    document.getElementById("moAccelGrav").innerHTML = info;
+    document.getElementById("moAccelGrav").innerHTML = info; */
 
-    // Grab the acceleration including gravity from the results
+    /* Grab the acceleration including gravity from the results. NOT USED
     var rotation = eventData.rotationRate;
     info = xyz.replace("X", round(rotation.alpha));
     info = info.replace("Y", round(rotation.beta));
     info = info.replace("Z", round(rotation.gamma));
-    document.getElementById("moRotation").innerHTML = info;
+    document.getElementById("moRotation").innerHTML = info; */
 
-    info = eventData.interval;
-    document.getElementById("moInterval").innerHTML = info;
+    /* info = eventData.interval; NOT USED
+    document.getElementById("moInterval").innerHTML = info; */
 }
 
 function round(val) {
