@@ -2,55 +2,35 @@
  * Created by jose on 27/10/15.
  */
 
-var isGameOn = true; // Will be enabled by the admin
+init();
 
-//var supporsVibrate = "vibrate" in navigator; // does not matter if it can vibrate
-
-
-init()
-
-//function to call when shake occurs
-/*
-function shakeEventDidOccur () {
-
-    if (!supporsVibrate) {
-        alert('Vibracion no soportada');
-    } else {
-        navigator.vibrate(2000);
-    }
-
-    document.body.style.backgroundColor = "#FF2323";
-
-}*/
 
 function init() {
     if ((window.DeviceMotionEvent) || ('listenForDeviceMovement' in window)) {
         window.addEventListener('devicemotion', deviceMotionHandler, false);
     } else {
-        document.getElementById("dmEvent").innerHTML = "Tu navegador no detecta el acelerometro... :("
+        document.getElementById("dmEvent").innerHTML = "Not supported on your device or browser.  Sorry."
     }
 }
 
 function deviceMotionHandler(eventData) {
     var info, xyz = "[X, Y, Z]";
-    var firstPosition = false;
 
-
-    // Grab the acceleration including gravity from the results. NOT USED
+    // Grab the acceleration including gravity from the results
     var acceleration = eventData.acceleration;
     info = xyz.replace("X", round(acceleration.x));
     info = info.replace("Y", round(acceleration.y));
     info = info.replace("Z", round(acceleration.z));
     document.getElementById("moAccel").innerHTML = info;
 
-    //Grab the acceleration including gravity from the results...
+    // Grab the acceleration including gravity from the results
     acceleration = eventData.accelerationIncludingGravity;
     info = xyz.replace("X", round(acceleration.x));
     info = info.replace("Y", round(acceleration.y));
     info = info.replace("Z", round(acceleration.z));
     document.getElementById("moAccelGrav").innerHTML = info;
 
-    // Grab the acceleration including gravity from the results. NOT USED
+    // Grab the acceleration including gravity from the results
     var rotation = eventData.rotationRate;
     info = xyz.replace("X", round(rotation.alpha));
     info = info.replace("Y", round(rotation.beta));
