@@ -36,9 +36,10 @@ function deviceMotionHandler(eventData) {
     var firstPosition = false;
     var acceleration;
 
+    acceleration = eventData.accelerationIncludingGravity;
     if (isGameOn) {
         while (!firstPosition){
-            acceleration = eventData.accelerationIncludingGravity;        
+            //acceleration = eventData.accelerationIncludingGravity;
             if ((round(acceleration.x) >= 0 && round(acceleration.x) <= 1) &&
                 (round(acceleration.y) >= 9 && round(acceleration.y) <= 10) &&
                 (round(acceleration.z) <= 0 && round(acceleration.z) >= -2)){
