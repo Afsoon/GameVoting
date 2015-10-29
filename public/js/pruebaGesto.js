@@ -29,6 +29,7 @@ function deviceMotionHandler(eventData) {
     info = info.replace("Y", round(acceleration.y));
     info = info.replace("Z", round(acceleration.z));
     document.getElementById("moAccelGrav").innerHTML = info;
+    if (round(acceleration.y)>9){ navigator.vibrate(2000);}
 
     // Grab the acceleration including gravity from the results
     var rotation = eventData.rotationRate;
