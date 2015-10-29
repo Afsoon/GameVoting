@@ -55,7 +55,7 @@ function deviceMotionHandler(eventData) {
     info = info.replace("Z", round(acceleration.z));
     document.getElementById("moAccel").innerHTML = info; */
 
-    //Grab the acceleration including gravity from the results
+    //Grab the acceleration including gravity from the results...
     acceleration = eventData.accelerationIncludingGravity;
     info = xyz.replace("X", round(acceleration.x));
     info = info.replace("Y", round(acceleration.y));
