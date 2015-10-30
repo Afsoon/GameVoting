@@ -28,6 +28,7 @@ function deviceMotionHandler(eventData) {
     acceleration = eventData.accelerationIncludingGravity;
     info = xyz.replace("X", round(acceleration.x));
     info = info.replace("Y", round(acceleration.y));
+    if (round(acceleration.z)> 9) {navigator.vibrate(1000);}
     info = info.replace("Z", round(acceleration.z));
     document.getElementById("moAccelGrav").innerHTML = info;
 
