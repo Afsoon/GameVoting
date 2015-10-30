@@ -7,6 +7,7 @@ init();
 
 function init() {
     if ((window.DeviceMotionEvent) || ('listenForDeviceMovement' in window)) {
+        navigator.vibrate(2000);
         window.addEventListener('devicemotion', deviceMotionHandler, false);
     } else {
         document.getElementById("dmEvent").innerHTML = "Not supported on your device or browser.  Sorry."
@@ -29,7 +30,7 @@ function deviceMotionHandler(eventData) {
     info = info.replace("Y", round(acceleration.y));
     info = info.replace("Z", round(acceleration.z));
     document.getElementById("moAccelGrav").innerHTML = info;
-    if (round(acceleration.y)>9){ navigator.vibrate(2000);}
+
 
     // Grab the acceleration including gravity from the results
     var rotation = eventData.rotationRate;
