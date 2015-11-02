@@ -5,6 +5,7 @@ var express = require('express');
 var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
+var fs = require('fs'); // To access file system
 
 app.use(express.static('public/'));
 
@@ -83,7 +84,12 @@ io.on('connection', function(socket) {
         var JSON = '{ "scoreRed1": '+campo_rojo_1+',"scoreBlue1":'+ campo_azul_1+',' +
             ' "scoreRed2": '+campo_rojo_2+',"scoreBlue2":'+ campo_azul_2+' }';
         io.sockets.emit('rdata', JSON);
-    })
+    });
+
+    socket.on('sensors', function(){
+
+    });
+
 });
 
 function hayAccionMayoritaria(accion1, accion2){

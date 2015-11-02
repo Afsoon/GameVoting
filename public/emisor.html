@@ -2,10 +2,58 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Emisor</title>
+    <title>EMISOR</title>
+    <script src="/socket.io/socket.io.js"></script>
     <script src="js/pruebaGesto.js"></script>
+    <style type="text/css">
+        body {
+            font-family: sans-serif;
+            font-size: 2rem;
+        }
+
+        .main {
+            border: 1px solid black;
+            box-shadow: 10px 10px 5px #888;
+            border-radius: 12px;
+            padding: 20px;
+            background-color: #ddd;
+            margin: 25px;
+            width: 90%;
+            margin-left:auto;
+            margin-right:auto;
+        }
+
+        .logo {
+            width:275px;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            padding: 15px;
+        }
+
+        .container {
+            -webkit-perspective: 300;
+            perspective: 300;
+        }
+    </style>
 </head>
 <body>
-<h1>Tu dispositivo está enviando datos</h1>
+<div class="main">
+    <h2>Device Motion</h2>
+    <table>
+        <tr>
+            <td>Event Supported</td><td id="dmEvent"></td>
+        </tr>
+        <tr>
+            <td>acceleration</td><td id="moAccel"></td>
+        </tr>
+        <tr>
+            <td>accelerationIncludingGravity</td><td id="moAccelGrav"></td>
+        </tr>
+        <tr>
+            <td>rotationRate</td><td id="moRotation"></td>
+        </tr>
+    </table>
+</div>
 </body>
 </html>
