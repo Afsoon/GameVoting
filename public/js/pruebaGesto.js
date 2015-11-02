@@ -1,6 +1,5 @@
 var socket = io.connect('http://46.101.214.219', { 'forceNew': true });
 
-socket.emit('start');
 
 init();
     
@@ -27,6 +26,9 @@ function deviceMotionHandler(eventData) {
       accelerationg = eventData.accelerationIncludingGravity;
       info = xyz.replace("X", round(accelerationg.x));
       info = info.replace("Y", round(accelerationg.y));
+
+      if (round(accelerationg.y)>9) { socket.emit('start');}
+
       info = info.replace("Z", round(accelerationg.z));
       document.getElementById("moAccelGrav").innerHTML = info;
 
