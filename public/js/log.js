@@ -7,5 +7,5 @@ socket.on('started', function(){
 })
 
 socket.on('sensors', function(data){
-	console.log(data.accelX);
+	console.log(data);
 });

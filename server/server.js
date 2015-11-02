@@ -86,9 +86,13 @@ io.on('connection', function(socket) {
         io.sockets.emit('rdata', JSON);
     });
 
-    socket.on('start', function(data){
-        io.sockets.emit('started', data);
+    socket.on('start', function(){
+        io.sockets.emit('started');
     });
+
+    socket.on('sensors', function(data){
+        io.sockets.emi('sensors', data.accelX)
+    })
 
 });
 
