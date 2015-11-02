@@ -91,7 +91,7 @@ io.on('connection', function(socket) {
     });
 
     socket.on('sensors', function(data){
-        io.sockets.emi('sensors', data.accelX)
+        io.sockets.emi('sensores', data.accelX)
     })
 
 });

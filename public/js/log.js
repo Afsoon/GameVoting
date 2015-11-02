@@ -6,6 +6,6 @@ socket.on('started', function(){
 	console.log("Conexion establecida");
 })
 
-socket.on('sensors', function(data){
+socket.on('sensores', function(data){
 	console.log(data);
 });
