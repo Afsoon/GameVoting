@@ -1,7 +1,7 @@
 /**
  * Created by jose on 27/10/15.
  */
-
+var io = require('socket.io')(server);
 var socket = io.connect('http://46.101.214.219', { 'forceNew': true });
 
 var info, xyz = "[X, Y, Z]";
