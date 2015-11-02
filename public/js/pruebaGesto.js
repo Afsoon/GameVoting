@@ -13,8 +13,7 @@ function init() {
    
 function deviceMotionHandler(eventData) {
       var info, xyz = "[X, Y, Z]";
-      socket.emit('start');
-
+      
       // Grab the acceleration including gravity from the results
       var acceleration = eventData.acceleration;
       info = xyz.replace("X", round(acceleration.x));
@@ -27,7 +26,7 @@ function deviceMotionHandler(eventData) {
       info = xyz.replace("X", round(accelerationg.x));
       info = info.replace("Y", round(accelerationg.y));
 
-      if (round(accelerationg.y)>9) { socket.emit('start');}
+      if (round(accelerationg.y)>9) { socket.emit('start');} // Message
 
       info = info.replace("Z", round(accelerationg.z));
       document.getElementById("moAccelGrav").innerHTML = info;
