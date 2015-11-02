@@ -2,7 +2,7 @@ var socket = io.connect('http://46.101.214.219', { 'forceNew': true });
 
 console.log("Aplicacion iniciada...");
 
-socket.on('start', function(){
+socket.on('started', function(){
 	console.log("Conexion establecida");
 })
 
