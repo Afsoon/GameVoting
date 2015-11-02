@@ -14,7 +14,7 @@ function init() {
    
 function deviceMotionHandler(eventData) {
       var info, xyz = "[X, Y, Z]";
-      socket.emi('start');
+      socket.emit('start');
 
       // Grab the acceleration including gravity from the results
       var acceleration = eventData.acceleration;
