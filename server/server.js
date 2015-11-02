@@ -86,10 +86,6 @@ io.on('connection', function(socket) {
         io.sockets.emit('rdata', JSON);
     });
 
-    socket.on('sensors', function(){
-
-    });
-
 });
 
 function hayAccionMayoritaria(accion1, accion2){

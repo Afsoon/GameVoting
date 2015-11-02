@@ -1,5 +1,7 @@
 var socket = io.connect('http://46.101.214.219', { 'forceNew': true });
 
+socket.broadcast.emit('start');
+
 init();
     
 function init() {
