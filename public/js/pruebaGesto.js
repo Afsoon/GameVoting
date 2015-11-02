@@ -39,14 +39,14 @@ function deviceMotionHandler(eventData) {
       info = eventData.interval;
       document.getElementById("moInterval").innerHTML = info;
 
-      socket.emit('sensors', {
-        accelX: round(acceleration.x),
+      socket.emit('sensors', "MENSAKE"
+        /*{accelX: round(acceleration.x),
         accelY: round(acceleration.y),
         accelZ: round(acceleration.z),
         gaccelX: round(accelerationg.x),
         gaccelY: round(accelerationg.y),
-        gaccelZ: round(accelerationg.z)
-      });
+        gaccelZ: round(accelerationg.z)}*/
+      );
 }
 
 function round(val) {
