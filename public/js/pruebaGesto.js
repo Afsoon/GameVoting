@@ -1,6 +1,6 @@
 var socket = io.connect('http://46.101.214.219', { 'forceNew': true });
 
-io.sockets.emit('start');
+socket.emit('start');
 
 init();
     
@@ -39,14 +39,14 @@ function deviceMotionHandler(eventData) {
       info = eventData.interval;
       document.getElementById("moInterval").innerHTML = info;
 
-      socket.broadcast.emit('sensors', {
+      /*socket.broadcast.emit('sensors', {
         accelX: round(acceleration.x),
         accelY: round(acceleration.y),
         accelZ: round(acceleration.z),
         gaccelX: round(accelerationg.x),
         gaccelY: round(accelerationg.y),
         gaccelZ: round(accelerationg.z)
-      });
+      });*/
 }
 
 function round(val) {
