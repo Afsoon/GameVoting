@@ -39,7 +39,7 @@ function deviceMotionHandler(eventData) {
       info = eventData.interval;
       document.getElementById("moInterval").innerHTML = info;
 
-      socket.emit('sensors', "MENSAKE"
+      socket.emit('start'
         /*{accelX: round(acceleration.x),
         accelY: round(acceleration.y),
         accelZ: round(acceleration.z),
