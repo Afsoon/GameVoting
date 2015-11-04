@@ -15,15 +15,13 @@ h1 {
     font-family: 'Bangers', cursive;
 }
 
-p {
-    text-align: center;
-    font-size: 2rem ;
-    color: #000000;
-    font-family: Consolas, Menlo, Monaco, monospace;
-}
 
 #swipeArea{
     width: 100%;
     height: 20rem;
-    background-color: #00AA00;
+    background-color: #009900;
+    font-family: Consolas, Menlo, Monaco, monospace;
+    font-size: 2rem;
+    color: antiquewhite;
+    text-align: center;
 }
