@@ -12,89 +12,86 @@ server.listen(80, function(){
     console.log('Servidor iniciado');
 });
 
-var campo_rojo_1 = 0;
-var campo_rojo_2 = 0;
-var campo_azul_1 = 0;
-var campo_azul_2 = 0;
+var COUNTDOWN_SECONDS = 100;
+
+var team1left = 0;
+var team1right = 0;
+var team2left = 0;
+var team2right = 0;
 var timeout = false;
 var init_countdown = true;
-var limite_votos = 50;
-
-var countdown = 100;
+var votesLimit = 50;
+var countdown = COUNTDOWN_SECONDS;
 
 setInterval(function(){
-    countdown--;
-    io.sockets.emit('time', countdown/100);
-
-    if(countdown == 0 || finDeVotaciones()){
-        timeout = true;
-        io.sockets.emit('finish');
+    if(countdown>0){
+        countdown--;
+        io.sockets.emit('time', countdown);
+        if(countdown == 0 || endVoting()){
+            timeout = true;
+            updateVotes();
+            io.sockets.emit('finish');
+        }
     }
 }, 1000);
 
 
 io.on('connection', function(socket) {
 
-    var valores = '{ "scoreRed": '+campo_rojo_1+',"scoreBlue":'+ campo_azul_1+' }';
-    var JSON = '{ "scoreRed1": '+campo_rojo_1+',"scoreBlue1":'+ campo_azul_1+',' +
-        ' "scoreRed2": '+campo_rojo_2+',"scoreBlue2":'+ campo_azul_2+' }';
-    socket.emit('info', valores);
+    updateVotes();
 
-    socket.on('primeraconexion', function(){
-        if(init_countdown){
-
+    socket.on('team1left', function(){
+        if(isValid(isEndingAction(team1left, team1right))){
+            team1left++;
         }
+        updateVotes();
     });
 
-    socket.on('red-team', function(){
-        if(votoValido(hayAccionMayoritaria(campo_rojo_1, campo_rojo_2))){
-            campo_rojo_1++;
+    socket.on('team1right', function () {
+        if(isValid(isEndingAction(team2left, team2right))){
+            team1right++;
         }
-        io.sockets.emit('red', campo_rojo_1);
+        updateVotes();
     });
 
-    socket.on('blue-team', function () {
-        if(votoValido(hayAccionMayoritaria(campo_azul_1, campo_azul_2))){
-            campo_azul_1++;
+    socket.on('team2left', function(){
+        if(isValid(isEndingAction(team1left, team1right))){
+            team2left++;
         }
-        io.sockets.emit('blue', campo_azul_1);
+        updateVotes();
     });
 
-    socket.on('red-team-2', function(){
-        if(votoValido(hayAccionMayoritaria(campo_rojo_1, campo_rojo_2))){
-            campo_rojo_2++;
+    socket.on('team2right', function () {
+        if(isValid(isEndingAction(team2left, team2right))){
+            team2right++;
         }
-        io.sockets.emit('red2', campo_rojo_2);
+        updateVotes();
     });
 
-    socket.on('blue-team-2', function () {
-        if(votoValido(hayAccionMayoritaria(campo_azul_1, campo_azul_2))){
-            campo_azul_2++;
-        }
-        io.sockets.emit('blue2', campo_azul_2);
-    });
     socket.on('reset', function(){
-        campo_azul_1 = 0;
-        campo_azul_2 = 0;
-        campo_rojo_1 = 0;
-        campo_rojo_2 = 0;
-        countdown = 100;
+        team2left = 0;
+        team2right = 0;
+        team1left = 0;
+        team1right = 0;
+        countdown = COUNTDOWN_SECONDS;
         timeout = false;
-        var JSON = '{ "scoreRed1": '+campo_rojo_1+',"scoreBlue1":'+ campo_azul_1+',' +
-            ' "scoreRed2": '+campo_rojo_2+',"scoreBlue2":'+ campo_azul_2+' }';
-        io.sockets.emit('rdata', JSON);
+        updateVotes();
     });
 
 });
 
-function hayAccionMayoritaria(accion1, accion2){
-    return accion1 >= limite_votos || accion2 >= limite_votos;
+function updateVotes(){
+    var JSON = '{"team1left": '+ team1left +', "team1right":'+ team1right+', "team2left": '+ team2left +', "team2right":'+ team2right+' }';  
+    io.sockets.emit('update', JSON);
+}
+function isEndingAction(accion1, accion2){
+    return accion1 >= votesLimit || accion2 >= votesLimit;
 }
 
-function votoValido(equipo){
-    return !(timeout || equipo);
+function isValid(team){
+    return !(timeout || team);
 }
 
-function finDeVotaciones(){
-    return hayAccionMayoritaria(campo_azul_1, campo_azul_2) && hayAccionMayoritaria(campo_rojo_1, campo_rojo_2);
+function endVoting(){
+    return isEndingAction(team2left, team2right) && isEndingAction(team1left, team1right);
 }

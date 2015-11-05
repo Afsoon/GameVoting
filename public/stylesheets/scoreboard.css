@@ -1,0 +1,50 @@
+@import url(https://fonts.googleapis.com/css?family=Bangers);
+
+body {
+    background-color: #FFFFFF;
+    /* background-image: url("../images/tennis-pitch.jpg"); */
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+h1 {
+    width: 100%;
+    text-align: center;
+    font-size: 7em;
+    color: #000000;
+    font-family: 'Bangers', cursive;
+}
+
+h3 {
+    text-align: center;
+    font-size: 4rem;
+    color: #000000;
+    font-family: 'Bangers', cursive;   
+}
+
+#clock {
+    margin: auto;
+    text-align: center;
+    width: 70%;
+    background-color: #DDDDDD;
+    color: #111111;
+    font-size: 3rem;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+}
+
+#team1, #team2 {
+    text-align: center;
+    font-size: 5rem;
+}
+
+#team1 {
+    float: left;
+    margin-left: 20%;
+}
+
+#team2 {
+    float: right;
+    margin-right: 20%;
+}

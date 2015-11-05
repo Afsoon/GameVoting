@@ -41,6 +41,7 @@ window.onload = function(){
       voted = true;
       side = 1;
     }
+            
   },
   threshold: 75       
   });
@@ -52,10 +53,10 @@ function vote (){
   var socket = io.connect('http://46.101.214.219', { 'forceNew': true });
 
   if (side == 0){
-        socket.emit('team1left');
+        socket.emit('team2left');
       }
   else if (side == 1){
-        socket.emit('team1right');
+        socket.emit('team2right');
       }
   $("#swipeArea").swipe("destroy");
     window.removeEventListener('shake', shakeEventDidOccur, false);
