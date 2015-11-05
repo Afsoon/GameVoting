@@ -10,10 +10,13 @@ GameVoting is an oper source web app made for the use case of a break in a tenni
 
 To run the application, just run node server/server.js and access the different html files:
 
-· inputTeam1.html: controller for team 1
-· inputTeam2.html: controller for team 2
-· scoreboard.html: the scoreboard that can be showed up in a big, big screen!
-· controlPanel.html: a simple control panel to reset the scoreboard and then start again.
+      · inputTeam1.html: controller for team 1
+      
+      · inputTeam2.html: controller for team 2
+      
+      · scoreboard.html: the scoreboard that can be showed up in a big, big screen!
+
+      · controlPanel.html: a simple control panel to reset the scoreboard and then start again.
 
 # Scaffolding
 
