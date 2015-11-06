@@ -29,18 +29,20 @@ socket.on('finish', function(){
     	team1leftPct = 0;
     	team1rigthPct = 0;
     } else {
-    	team1leftPct = team1left / team1votes;
-    	team1rigthPct = team1right / team1votes;
+    	team1leftPct = (team1left / team1votes)*100;
+    	team1rigthPct = (team1right / team1votes)*100;
     }
 
     if (team2votes == 0){
     	team2leftPct = 0;
     	team2rigthPct = 0;
     } else {
-    	team2leftPct = team2left / team2votes;
-    	team2rigthPct = team2right / team2votes;
+    	team2leftPct = (team2left / team2votes)*100;
+    	team2rigthPct = (team2right / team2votes)*100;
     }
+
     audioBell.play();
+    
     $(".team").fadeOut(1500);
 	$("#clock").text("¡Se acabó el tiempo!").fadeIn(500);
 
@@ -48,7 +50,8 @@ socket.on('finish', function(){
 		$("#clock").text("Y el ganador es...")
 		audioFemale.play();
 	},4000);
-	setTimeout(function() {
+	
+    setTimeout(function() {
 
 		$("#clock").fadeOut("slow");
 
@@ -62,22 +65,24 @@ socket.on('finish', function(){
 					.text("LA HUMANIDAD").fadeIn(2000)
 			.hide();
 	}, 8500);
-	setTimeout(function() {
+	
+    setTimeout(function() {
 		$("#clock").slideDown(500);
 	},10000);
-	setTimeout(function(){
+	
+    setTimeout(function(){
 		$("#team1 h3").text("Equipo 1");
     	$("#team2 h3").text("Equipo 2");
     	$("#team1, #team2 div").css("font-size", "2rem");
     	$("#team1votes")
     		.text(
-      		"Izquierda: " + (team1leftPct).toString() +
-          		"% - Derecha: " + (team1rigthPct).toString() + " %"
+      		"Izquierda: " + (Math.round(team1leftPct)).toString() +
+          		"% - Derecha: " + (Math.round(team1rigthPct)).toString() + " %"
     	);
     	$("#team2votes")
     		.text(
-        	"Izquierda: " + (team2leftPct).toString() +
-        		"% - Derecha: " + (team2rigthPct).toString() + " %"
+        	"Izquierda: " + (Math.round(team2leftPct)).toString() +
+        		"% - Derecha: " + (Math.round(team2rigthPct)).toString() + " %"
     	);
     	$(".team").fadeIn(1500);
 	},11000);
