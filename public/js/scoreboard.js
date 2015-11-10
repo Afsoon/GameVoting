@@ -120,3 +120,8 @@ socket.on('finish', function(){
 socket.on('voted', function(){
     console.log("Alguien ha votado...");
 });
+
+socket.on('restart', function(){
+    console.log("Restarting...");
+    window.location.reload();
+});

@@ -7,7 +7,7 @@ window.onload = function(){
 
   //create a new instance of shake.js.
   var myShakeEvent = new Shake({
-       threshold: 10
+       threshold: 15
   });
 
   // start listening to device motion
@@ -37,11 +37,7 @@ window.onload = function(){
 
   function vote (){
   
-    var socket = io.connect('http://46.101.214.219:80', { 'forceNew': true });
-    
-    socket.io.on('connect_error', function(err) {
-      alert(err);
-    });
+    var socket = io.connect('http://46.101.214.219', { 'forceNew': true });
 
     alert("SOCKET CONECTADO --> " + socket.connected);
 
@@ -63,7 +59,6 @@ window.onload = function(){
       if(supportsVibrate) {navigator.vibrate(1000);}
       $("#swipeArea").html("¡HAS VOTADO!<br><br>GRACIAS");
       $("#swipeArea").css('background-color', '#DD0000');
-
       vote();   
     }
   }
