@@ -13,7 +13,7 @@ var publics = ['public/**/*.html',
     'public/**/*.js',
     'public/**/*.css',
     'public/**/*.wav'];
-var server = ['server/*.js'];
+var server = ['server/serverDev.js'];
 var routes = ['routes/*.js'];
 var pack = ['package.json', 'ecosystem.json', 'app.js'];
 var test = ['spec/**.js'];
@@ -34,10 +34,10 @@ gulp.task('deploy', ['test'], function(){
         //.pipe(gulpsftp(generatePath('public')));
     gulp.src(server)
         .pipe(gulpsftp(generatePath('server')));
-    gulp.src(pack)
-        .pipe(gulpsftp(generatePath('')));
-    gulp.src(routes)
-        .pipe(gulpsftp(generatePath('routes')));
+    //gulp.src(pack)
+    //    .pipe(gulpsftp(generatePath('')));
+    //gulp.src(routes)
+    //   .pipe(gulpsftp(generatePath('routes')));
 
 });
 

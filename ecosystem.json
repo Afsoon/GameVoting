@@ -21,6 +21,12 @@
     {
       "name"      : "WEB",
       "script"    : "./server/server.js"
+    },
+    
+    //Development
+    {
+      "name"      : "DEV",
+      "script"    : "./server/serverDev.js"
     }
   ],
 
