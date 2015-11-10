@@ -21,10 +21,11 @@ socket.on('update', function(data){
 
 socket.on('finish', function(){
     var team1leftPct, team1rigthPct, team2leftPct, team2rigthPct;
-	var audioFemale = new Audio("../sounds/female.wav");
+	var team1Side, team2Side, winner;
+    var audioFemale = new Audio("../sounds/female.wav");
     var audioBell = new Audio("../sounds/bell.wav");
-   
-
+    
+    // Calculate percentages
     if (team1votes == 0){
     	team1leftPct = 0;
     	team1rigthPct = 0;
@@ -57,12 +58,31 @@ socket.on('finish', function(){
 
 	},8000);
 
+    // Decide the winner
+    if (max(team1leftPct, team1rigthPct) === team1leftPct){
+        team1Side = "left";
+    } else {
+        team1Side = "right";
+    }
+
+    if (max(team2leftPct, team2rigthPct) === team2leftPct){
+        team2Side = "left";
+    } else {
+        team2Side = "right";
+    }
+
+    if (team1Side === team2Side) {
+        winner = "EQUIPO 2";
+    } else {
+        winner = "EQUIPO 1";
+    }
+
 	setTimeout(function() {
     
 	$("#clock").css("width", "90%")
 					.css("font-size", "10rem")
 					.css("background-color", "#AA0000")
-					.text("LA HUMANIDAD").fadeIn(2000)
+					.text(winner).fadeIn(2000)
 			.hide();
 	}, 8500);
 	
