@@ -1,15 +1,13 @@
 var socket = io.connect('http://46.101.214.219', { 'forceNew': true });
+var team1left, team2left, team1right, team2right, team1votes, team2votes;
 
 socket.emit('start');
-
-var team1left, team2left, team1right, team2right, team1votes, team2votes;
 
 socket.on('time', function(time){
 	$("#clock").text("Quedan " + time.toString() + " segundos...");
 });
 
 socket.on('update', function(data){
-    console.log("UPDATE VOTES");
     var results = JSON.parse(data);
     team1left = results.team1left;
     team2left = results.team2left;
@@ -84,7 +82,7 @@ socket.on('finish', function(){
     if (Math.max(team1leftPct, team1rigthPct) === Math.max(team2leftPct, team2rigthPct)){
         winner = "¡EMPATE!"
     }
-    
+
 	setTimeout(function() {
     
 	$("#clock").css("width", "90%")
@@ -117,4 +115,8 @@ socket.on('finish', function(){
 	},11000);
 	
 
+});
+
+socket.on('voted', function(){
+    console.log("Alguien ha votado...");
 });

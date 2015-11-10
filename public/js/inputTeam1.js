@@ -1,5 +1,5 @@
 var side; //0 for left, 1 for right
-var supportsVibrate = "vibrate" in navigator
+var supportsVibrate = "vibrate" in navigator;
 
 window.onload = function(){
   
@@ -7,7 +7,7 @@ window.onload = function(){
 
   //create a new instance of shake.js.
   var myShakeEvent = new Shake({
-       threshold: 5
+       threshold: 10
   });
 
   // start listening to device motion
@@ -37,8 +37,14 @@ window.onload = function(){
 
   function vote (){
   
-    var socket = io.connect('http://46.101.214.219', { 'forceNew': true });
-    alert(socket.connected);
+    var socket = io.connect('http://46.101.214.219:80', { 'forceNew': true });
+    
+    socket.io.on('connect_error', function(err) {
+      alert(err);
+    });
+
+    alert("SOCKET CONECTADO --> " + socket.connected);
+
     if (side == 0){
           socket.emit('team1left');
         }
@@ -58,6 +64,7 @@ window.onload = function(){
       if(supportsVibrate) {navigator.vibrate(1000);}
       $("#swipeArea").html("¡HAS VOTADO!<br><br>GRACIAS");
       $("#swipeArea").css('background-color', '#DD0000');
+
       vote();   
     }
   }
