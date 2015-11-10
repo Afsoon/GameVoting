@@ -17,7 +17,7 @@ socket.on('update', function(data){
     team2votes = team2left + team2right;
 	$("#team1votes").text( (team1votes).toString());
 	$("#team2votes").text( (team2votes).toString());
-
+    console.log("UPDATED VOTES");
 });
 
 socket.on('finish', function(){

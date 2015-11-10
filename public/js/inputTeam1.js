@@ -56,7 +56,6 @@ window.onload = function(){
     myShakeEvent.stop();    
     $("#swipeArea").swipe("destroy");
     socket.disconnect();
-    alert('VOTO ENVIADO');
   }
 
   function shakeEventCallback () {
