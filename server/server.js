@@ -79,7 +79,7 @@ io.on('connection', function(socket) {
         countdown = COUNTDOWN_SECONDS;
         timeout = false;
         updateVotes();
-        io.socket.emit('restart');
+        io.sockets.emit('restart');
     });
 
 });
