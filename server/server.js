@@ -43,7 +43,6 @@ io.on('connection', function(socket) {
     });
 
     socket.on('team1left', function(){
-        io.sockets.emit('voted');
         if(isValid(isEndingAction(team1left, team1right))){
             team1left++;
         }

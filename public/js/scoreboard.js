@@ -60,6 +60,8 @@ socket.on('finish', function(){
 	},8000);
 
     // Decide the winner
+    team1Side = team2Side = "none";
+
     if (Math.max(team1leftPct, team1rigthPct) === team1leftPct){
         team1Side = "left";
     } else {
@@ -72,14 +74,15 @@ socket.on('finish', function(){
         team2Side = "right";
     }
 
-    if (team1Side === team2Side) {
+    if (team1Side === team2Side || (team1Side === "none" && team2Side != "none")) {
         winner = "EQUIPO 2";
     } else {
         winner = "EQUIPO 1";
     }
 
     // DRAW case
-    if (Math.max(team1leftPct, team1rigthPct) === Math.max(team2leftPct, team2rigthPct)){
+    if (Math.max(team1leftPct, team1rigthPct) === Math.max(team2leftPct, team2rigthPct) || 
+        (team1Side === "none" && team2Side === "none")){
         winner = "¡EMPATE!"
     }
 

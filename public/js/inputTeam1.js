@@ -1,5 +1,6 @@
-var side; //0 for left, 1 for right
+var side;
 var supportsVibrate = "vibrate" in navigator;
+var socket = io.connect('http://46.101.214.219', { 'forceNew': true });
 
 window.onload = function(){
   
@@ -24,12 +25,12 @@ window.onload = function(){
     if(direction == "left"){
       $(this).html("Saque a la izquierda" + shakeMsg);
       voted = true;
-      side = 0;
+      side = direction;
     }
     if(direction == "right"){
       $(this).html("Saque a la derecha" + shakeMsg);
       voted = true;
-      side = 1;
+      side = direction;
     }
   },
   threshold: 75       
@@ -37,17 +38,10 @@ window.onload = function(){
 
   function vote (){
   
-    var socket = io.connect('http://46.101.214.219', { 'forceNew': true });
+    // alert("SOCKET CONECTADO --> " + socket.connected);
 
-    alert("SOCKET CONECTADO --> " + socket.connected);
-
-    if (side == 0){
-          socket.emit('team1left');
-        }
-    else if (side == 1){
-          socket.emit('team1right');
-        }
-    
+    socket.emit('team1' + side);
+        
     window.removeEventListener('shake', shakeEventCallback, false);
     myShakeEvent.stop();    
     $("#swipeArea").swipe("destroy");
