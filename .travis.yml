@@ -1,0 +1,23 @@
+language: node_js
+node_js:
+- 4.1.2
+env:
+  global:
+  - secure: EuWwiJUKMl+CuHWXFkwbA1jnrjACbquHWDNUmtApX8fjMGkDi3EYkuDevgrFlQ/+qdtOjPKWh1W3XQ3yeBU1g07cTEY7cCmLvluct/MQhiU1ucvnypFT0AVr+usoleI2/wgLVF/Z9fIqJnVdfaVA10YH41tmWPNFxuJMPG+grDdaf+YH+PTV87PHDBGowm6BSZxelhpEy84DN4RlZzk1pFMflPe4QC1szncPGtYdqC4Mkd6fbEKGwNwWZs6A2+LGWeF/dJIafWtILRUtVxktqYUZzvnubxw/4Eiv8B5GIg3k+5UNIE/WfvXagwzgf6pHHyKvHZvNsxlUisYs/rDjwPjqdICJvJzWo7H3kTrKN48lk4k9Gg949ralTkuuEyxOBdOLXl31Es6BgLINWQ5B1JSy0DPfqTH7HuX5vXpeWDEwgPMFPj5+RdqUvFsjNbklNUTjrj5XLSM5F+L3JOIBcggA3ixt08vaRrJVJK1EqorqLaCY1CPFHLzfeu0a6klcc9ROiu+rGOR3um0ood7GsGq7ePZAbUy3vAEzVHnGgf0ggozShJ01jnzsaeRJUw2t6m0bwoe0eH8HjMQl4v+gLB6yKNuoPOHnMM9yUxUCQB3LPSxBDpTyxaQsU6tduC+oem4+ELi+onXNDIfe08smSb2PSvHuj2M+87qqbTHGtLc=
+  - secure: MHI4joXqemVhgxA5DixCOkBDl1aeG7wbcGAIQhy5uHDHVkpnePk4l0yxwPyaj7sI/sQ5QzV9n+f13SduCTbaITH/p0IPS/vkLJFvYOTjPf27bTa61W6ztLDFuN2B4K03oAByjE72OCMJoCUdkEX3g5phuuHF6sjVBmTYTkFkY3+4kt+T5+EgJh/42QChMsxQ/0rrtay706kbhkS0Tp8S3TmM0OrO2LyaFcMs1NaTbUoX9alvuISY+VBxNwR763Zl8gI/l711wpYBxmW1+OZungrtM1JxaQnSDcUrss7utGshMVL/oLloZLVW2RHKDv5Exsmv03TsaNrEoQjY4JqMU639AuBOyyqUdydCed99iS2iyHGB5Au+p+xbmxsh4ucLgpulIw8/FNR+v2BUcxLYNFVvTrIUNiIUXzqvGSsuuGgnrV7x7ylvrtgB0ho8u7F4PirOdENaepa3DzFDZ58uKJkv0jwegkDhROwxbDOU/yIQAIZybzU0kKwFtM9jGXm0yGGDE1RPyyYC5dTN8jbPGwLrQS9GVkgFPqvDvoGyzKTyQe9l0w9A59Y7blIr3govceohN5NlRi7yklNY3D9NIILAYaLyzQNkF+oJ2ftOx+u2er0jX6MQkqy4+ajPZ3BEWyjQ8j4I5/Zt6M2g/Az4O5jhEmuzJ25HgDk2zTQx79s=
+addons:
+  apt:
+    packages:
+    - sshpass
+    - ssh
+  ssh_known_hosts: 46.101.214.219
+before_script:
+- npm install --unsafe-perm gulp --save-dev
+- npm install --unsafe-perm minimist --save-dev
+- npm install --unsafe-perm gulp-sftp --save-dev
+- npm install --unsafe-perm gulp-jasmine --save-dev
+script:
+- gulp --user $USER --password $PASSWORD
+after_success:
+  - export SSHPASS=$FTP_PASSWORD
+  - sshpass -e ssh $FTP_USER@46.101.214.219 'cd deploy/; npm install; pm2 startOrRestart ecosystem.json --env production; pm2 save'
