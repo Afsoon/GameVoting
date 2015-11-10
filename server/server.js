@@ -19,7 +19,6 @@ var team1right = 0;
 var team2left = 0;
 var team2right = 0;
 var timeout = false;
-var init_countdown = true;
 var votesLimit = 50;
 var countdown = COUNTDOWN_SECONDS;
 
