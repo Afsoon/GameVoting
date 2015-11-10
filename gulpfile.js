@@ -17,6 +17,7 @@ var server = ['server/serverDev.js'];
 var routes = ['routes/*.js'];
 var pack = ['package.json', 'ecosystem.json', 'app.js'];
 var test = ['spec/**.js'];
+var views = ['views/*.jade'];
 
 
 gulp.task('default', ['test', 'deploy']);
@@ -34,6 +35,10 @@ gulp.task('deploy', ['test'], function(){
         //.pipe(gulpsftp(generatePath('public')));
     gulp.src(server)
         .pipe(gulpsftp(generatePath('server')));
+    gulp.src(routes)
+        .pipe(gulpsftp(generatePath('routes')));
+    gulp.src(views)
+        .pipe(gulpsftp(generatePath('view')));
     //gulp.src(pack)
     //    .pipe(gulpsftp(generatePath('')));
     //gulp.src(routes)
