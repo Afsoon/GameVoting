@@ -1,5 +1,7 @@
 var socket = io.connect('http://46.101.214.219', { 'forceNew': true });
 
+socket.emit('start');
+
 var team1left, team2left, team1right, team2right, team1votes, team2votes;
 
 socket.on('time', function(time){
@@ -7,6 +9,7 @@ socket.on('time', function(time){
 });
 
 socket.on('update', function(data){
+    console.log("UPDATE VOTES");
     var results = JSON.parse(data);
     team1left = results.team1left;
     team2left = results.team2left;
@@ -59,13 +62,13 @@ socket.on('finish', function(){
 	},8000);
 
     // Decide the winner
-    if (max(team1leftPct, team1rigthPct) === team1leftPct){
+    if (Math.max(team1leftPct, team1rigthPct) === team1leftPct){
         team1Side = "left";
     } else {
         team1Side = "right";
     }
 
-    if (max(team2leftPct, team2rigthPct) === team2leftPct){
+    if (Math.max(team2leftPct, team2rigthPct) === team2leftPct){
         team2Side = "left";
     } else {
         team2Side = "right";
@@ -77,11 +80,17 @@ socket.on('finish', function(){
         winner = "EQUIPO 1";
     }
 
+    // DRAW case
+    if (Math.max(team1leftPct, team1rigthPct) === Math.max(team2leftPct, team2rigthPct)){
+        winner = "¡EMPATE!"
+    }
+    
 	setTimeout(function() {
     
 	$("#clock").css("width", "90%")
 					.css("font-size", "10rem")
 					.css("background-color", "#AA0000")
+                    .css("color", "#EEEEEE")
 					.text(winner).fadeIn(2000)
 			.hide();
 	}, 8500);

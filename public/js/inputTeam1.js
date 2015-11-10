@@ -38,7 +38,7 @@ window.onload = function(){
   function vote (){
   
     var socket = io.connect('http://46.101.214.219', { 'forceNew': true });
-
+    alert(socket.connected);
     if (side == 0){
           socket.emit('team1left');
         }
@@ -50,6 +50,7 @@ window.onload = function(){
     myShakeEvent.stop();    
     $("#swipeArea").swipe("destroy");
     socket.disconnect();
+    alert('VOTO ENVIADO');
   }
 
   function shakeEventCallback () {

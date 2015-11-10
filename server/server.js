@@ -38,7 +38,9 @@ setInterval(function(){
 
 io.on('connection', function(socket) {
 
-    updateVotes();
+    socket.on('start', function(){
+        updateVotes();
+    });
 
     socket.on('team1left', function(){
         console.log("VOTED");
@@ -82,6 +84,7 @@ io.on('connection', function(socket) {
 });
 
 function updateVotes(){
+    console.log("UPDATE VOTES");
     var JSON = '{"team1left": '+ team1left +', "team1right":'+ team1right+', "team2left": '+ team2left +', "team2right":'+ team2right+' }';  
     io.sockets.emit('update', JSON);
 }
