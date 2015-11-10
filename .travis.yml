@@ -19,5 +19,5 @@ before_script:
 script:
 - gulp --user $USER --password $PASSWORD
 after_success:
-  - export SSHPASS=$FTP_PASSWORD
-  - sshpass -e ssh $FTP_USER@46.101.214.219 'cd deploy/; npm install; pm2 startOrRestart ecosystem.json --env production; pm2 save'
+  - export SSHPASS=$PASSWORD
+  - sshpass -e ssh $USER@46.101.214.219 'cd deploy/; npm install; pm2 startOrRestart ecosystem.json --env production; pm2 save'
