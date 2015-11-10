@@ -30,8 +30,8 @@ gulp.task('test', function(){
 //Si la tarea de la que depende sale con error, no se ejecuta
 
 gulp.task('deploy', ['test'], function(){
-    gulp.src(publics)
-        .pipe(gulpsftp(generatePath('public')));
+    //gulp.src(publics)
+        //.pipe(gulpsftp(generatePath('public')));
     gulp.src(server)
         .pipe(gulpsftp(generatePath('server')));
     gulp.src(pack)
