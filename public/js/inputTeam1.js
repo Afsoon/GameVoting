@@ -1,62 +1,61 @@
-var side;
+var side, message;
 var supportsVibrate = "vibrate" in navigator;
 var socket = io.connect('http://46.101.214.219', { 'forceNew': true });
+var voted = false;
 
-window.onload = function(){
-  
-  var voted = false;
-
-  //create a new instance of shake.js.
-  var myShakeEvent = new Shake({
+var myShakeEvent = new Shake({
        threshold: 15
   });
-
-  // start listening to device motion
-  myShakeEvent.start();
-
-  // register a shake event
-  window.addEventListener('shake', shakeEventCallback, false);
-
-  var shakeMsg = "<br><br>Agita el movil en alto para votar";
- 
-  //Enable swiping...
-  $("#swipeArea").swipe( {
-  swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
-    if(direction == "left"){
-      $(this).html("Saque a la izquierda" + shakeMsg);
-      voted = true;
-      side = direction;
-    }
-    if(direction == "right"){
-      $(this).html("Saque a la derecha" + shakeMsg);
-      voted = true;
-      side = direction;
-    }
-  },
-  threshold: 75       
+  
+$.getScript("../config/strings.json")
+  .done(function(data){
+    message = JSON.parse(data);
+    console.log("Mensaje: " + textStatus);
+  })
+  .fail(function(jqxhr, settings, exception){
+    console.log("EXCEPCION --> " + jqxhr + " -- " + settings + " -- " + exception);
   });
 
-  function vote (){
-  
-    // alert("SOCKET CONECTADO --> " + socket.connected);
+alert('Mensaje cargado: ' + message.initMsg);
 
-    socket.emit('team1' + side);
-        
-    window.removeEventListener('shake', shakeEventCallback, false);
-    myShakeEvent.stop();    
-    $("#swipeArea").swipe("destroy");
-    socket.disconnect();
-  }
+$("#swipeArea").html(message.initMsg);
 
-  function shakeEventCallback () {
-    if (voted){
-      if(supportsVibrate) {navigator.vibrate(1000);}
-      $("#swipeArea").html("¡HAS VOTADO!<br><br>GRACIAS");
-      $("#swipeArea").css('background-color', '#DD0000');
-      vote();   
+myShakeEvent.start();
+window.addEventListener('shake', shakeEventCallback, false);
+ 
+//Enable swiping...
+$("#swipeArea").swipe( {
+  swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+    if(direction == "left"){
+      $(this).html(message.throwMsgLeft + "<br><br>" + message.shakeMsg);
+      voted = true;
+      side = direction;
+    } else if(direction == "right"){
+      $(this).html(message.throwMsgRight + "<br><br>" + message.shakeMsg);
+      voted = true;
+      side = direction;
     }
+  },threshold: 75       
+});
+
+function vote(){
+  socket.emit('team1' + side);
+      
+  window.removeEventListener('shake', shakeEventCallback, false);
+  myShakeEvent.stop();    
+  $("#swipeArea").swipe("destroy");
+  socket.disconnect();
+}
+
+function shakeEventCallback() {
+  if (voted){
+    if(supportsVibrate) { navigator.vibrate(1000); }
+    $("#swipeArea").html(message.votedMsg + "<br><br>" + message.thanksMsg);
+    $("#swipeArea").css('background-color', '#DD0000');
+    vote();   
   }
 }
+
 
 
 

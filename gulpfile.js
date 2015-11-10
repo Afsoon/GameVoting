@@ -12,11 +12,13 @@ var gulpsftp = require('gulp-sftp');
 var publics = ['public/**/*.html',
     'public/**/*.js',
     'public/**/*.css',
+    'public/**/*.json',
     'public/**/*.wav'];
 var server = ['server/*.js'];
 var routes = ['routes/*.js'];
 var pack = ['ecosystem.json', 'app.js'];
 var test = ['spec/**.js'];
+
 
 gulp.task('default', ['test', 'deploy']);
 

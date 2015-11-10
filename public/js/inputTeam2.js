@@ -1,5 +1,6 @@
-var side; //0 for left, 1 for right
-var supportsVibrate = "vibrate" in navigator
+var side;
+var supportsVibrate = "vibrate" in navigator;
+var socket = io.connect('http://46.101.214.219', { 'forceNew': true });
 
 window.onload = function(){
   
@@ -7,7 +8,7 @@ window.onload = function(){
 
   //create a new instance of shake.js.
   var myShakeEvent = new Shake({
-       threshold: 5
+       threshold: 15
   });
 
   // start listening to device motion
@@ -16,20 +17,20 @@ window.onload = function(){
   // register a shake event
   window.addEventListener('shake', shakeEventCallback, false);
 
-  var shakeMsg = "<br><br>Agita el movil en alto para votar";
+  var shakeMsg = "<br><br>Agita el movil en alto para votar"; 
  
   //Enable swiping...
   $("#swipeArea").swipe( {
   swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
     if(direction == "left"){
-      $(this).html("Recepcion a la izquierda" + shakeMsg);
+      $(this).html("Saque a la izquierda" + shakeMsg);
       voted = true;
-      side = 0;
+      side = direction;
     }
     if(direction == "right"){
-      $(this).html("Recepcion a la derecha" + shakeMsg);
+      $(this).html("Saque a la derecha" + shakeMsg);
       voted = true;
-      side = 1;
+      side = direction;
     }
   },
   threshold: 75       
@@ -37,15 +38,10 @@ window.onload = function(){
 
   function vote (){
   
-    var socket = io.connect('http://46.101.214.219', { 'forceNew': true });
+    // alert("SOCKET CONECTADO --> " + socket.connected);
 
-    if (side == 0){
-          socket.emit('team2left');
-        }
-    else if (side == 1){
-          socket.emit('team2right');
-        }
-    
+    socket.emit('team2' + side);
+        
     window.removeEventListener('shake', shakeEventCallback, false);
     myShakeEvent.stop();    
     $("#swipeArea").swipe("destroy");

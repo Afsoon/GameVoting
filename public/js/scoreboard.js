@@ -17,11 +17,10 @@ socket.on('update', function(data){
     team2votes = team2left + team2right;
 	$("#team1votes").text( (team1votes).toString());
 	$("#team2votes").text( (team2votes).toString());
-    console.log("UPDATED VOTES");
 });
 
 socket.on('finish', function(){
-    var team1leftPct, team1rigthPct, team2leftPct, team2rigthPct;
+    var team1leftPct, team1rightPct, team2leftPct, team2rightPct;
 	var team1Side, team2Side, winner;
     var audioFemale = new Audio("../sounds/female.wav");
     var audioBell = new Audio("../sounds/bell.wav");
@@ -29,18 +28,18 @@ socket.on('finish', function(){
     // Calculate percentages
     if (team1votes == 0){
     	team1leftPct = 0;
-    	team1rigthPct = 0;
+    	team1rightPct = 0;
     } else {
     	team1leftPct = (team1left / team1votes)*100;
-    	team1rigthPct = (team1right / team1votes)*100;
+    	team1rightPct = (team1right / team1votes)*100;
     }
 
     if (team2votes == 0){
     	team2leftPct = 0;
-    	team2rigthPct = 0;
+    	team2rightPct = 0;
     } else {
     	team2leftPct = (team2left / team2votes)*100;
-    	team2rigthPct = (team2right / team2votes)*100;
+    	team2rightPct = (team2right / team2votes)*100;
     }
 
     audioBell.play();
@@ -60,19 +59,20 @@ socket.on('finish', function(){
 	},8000);
 
     // Decide the winner
-    team1Side = team2Side = "none";
-
-    if (Math.max(team1leftPct, team1rigthPct) === team1leftPct){
+    if (Math.max(team1leftPct, team1rightPct) === team1leftPct){
         team1Side = "left";
     } else {
         team1Side = "right";
     }
 
-    if (Math.max(team2leftPct, team2rigthPct) === team2leftPct){
+    if (Math.max(team2leftPct, team2rightPct) === team2leftPct){
         team2Side = "left";
     } else {
         team2Side = "right";
     }
+
+    if (team1votes === 0) { team1Side = "none"; }
+    if (team2votes === 0) { team2Side = "none"; }
 
     if (team1Side === team2Side || (team1Side === "none" && team2Side != "none")) {
         winner = "EQUIPO 2";
@@ -81,10 +81,18 @@ socket.on('finish', function(){
     }
 
     // DRAW case
-    if (Math.max(team1leftPct, team1rigthPct) === Math.max(team2leftPct, team2rigthPct) || 
-        (team1Side === "none" && team2Side === "none")){
+    if (team1Side === "none" && team2Side === "none"){
         winner = "¡EMPATE!"
     }
+
+    console.log (
+        "team1leftPct: " + team1leftPct + " - " +
+        "team1rightPct: " + team1rightPct + " - " +
+        "team2leftPct: " + team2leftPct + " - " +
+        "team2rightPct: " + team2rightPct + " - " +
+        "team1Side: " + team1Side + " - " +
+        "team2Side: " + team2Side
+        );
 
 	setTimeout(function() {
     
@@ -106,13 +114,13 @@ socket.on('finish', function(){
     	$("#team1, #team2 div").css("font-size", "2rem");
     	$("#team1votes")
     		.text(
-      		"Izquierda: " + (Math.round(team1leftPct)).toString() +
-          		"% - Derecha: " + (Math.round(team1rigthPct)).toString() + " %"
+      		"Izquierda: " + (Math.round(team1leftPct * 100) / 100).toString() +
+          		"% - Derecha: " + (Math.round(team1rightPct * 100) / 100).toString() + " %"
     	);
     	$("#team2votes")
     		.text(
-        	"Izquierda: " + (Math.round(team2leftPct)).toString() +
-        		"% - Derecha: " + (Math.round(team2rigthPct)).toString() + " %"
+        	"Izquierda: " + (Math.round(team2leftPct * 100) / 100).toString() +
+        		"% - Derecha: " + (Math.round(team2rightPct * 100) / 100).toString() + " %"
     	);
     	$(".team").fadeIn(1500);
 	},11000);
