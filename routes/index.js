@@ -8,7 +8,7 @@ var root = {root: pathPublic};
 router.use(express.static(pathPublic));
 
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.sendFile('index.html',root);
 });
 
 router.get('/team1', function(req, res){
