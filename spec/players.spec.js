@@ -4,7 +4,7 @@
 
 var Players = require('./../modules/players');
 
-describe('2 teams games', function(){
+describe('Use case: 2 teams', function(){
     var players;
     beforeEach(function(){
         players = new Players(2, ['1', '2']);
@@ -21,7 +21,7 @@ describe('2 teams games', function(){
     });
     
     it('should be playing 1 player', function (){
-        var player = players.addPlayer();
+        players.addPlayer();
         var numberPlayers = players.getNumberPlayersPlaying();
         expect(numberPlayers).toBe(1);
     });
@@ -41,10 +41,9 @@ describe('2 teams games', function(){
 
     it('should be an array with 5 elements [1,2,1,2,1] being routes', function (){
         var routes =  [];
-        for(var i = 0; i < 4; i++){
+        for(var i = 0; i < 5; i++){
             routes[i] = players.addPlayer();
         }
-        routes[4] = players.addPlayer();
         expect(routes).toEqual(['1', '2', '1', '2', '1']);
     });
     
