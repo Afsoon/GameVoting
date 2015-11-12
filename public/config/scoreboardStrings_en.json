@@ -1,0 +1,12 @@
+{
+	"timeLeftMsg":	"Remaining time: ",
+	"timeUnit":		"seconds",
+	"endTimeMsg":	"Time over!",
+	"winningMsg":	"And the winner is...",
+	"team1":		"TEAM 1",
+	"team2":		"TEAM 2",
+	"draw":			"It's a draw!",
+	"leftResults":	"Left: ",
+	"rightResults":	"Right: ",
+	"votes":		"Votes"
+}

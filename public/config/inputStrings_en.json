@@ -1,0 +1,11 @@
+{
+ "initMsg1": "Swipe here to select side to throw",
+ "initMsg2": "Swipe here to select side to receive",
+ "shakeMsg": "Shake the device to send your vote",
+ "throwMsgLeft": "Throwing to the left!",
+ "throwMsgRight": "Throwing to the right!",
+ "receiveMsgLeft": "Receiving on the left!",
+ "receiveMsgRight": "Receiveing on the right!",
+ "votedMsg": "You've voted!",
+ "thanksMsg": "THANK YOU"
+}

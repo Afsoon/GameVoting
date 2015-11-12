@@ -9,7 +9,7 @@ var myShakeEvent = new Shake({
   
 $.getJSON("../config/inputStrings_es.json", function(message){
 
-  $("#swipeArea").text(message.initMsg);
+  $("#swipeArea").text(message.initMsg2);
 
   myShakeEvent.start();
   window.addEventListener('shake', shakeEventCallback, false);

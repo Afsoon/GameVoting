@@ -1,5 +1,6 @@
 {
- "initMsg": "Haz el gesto aqui para seleccionar saque",
+ "initMsg1": "Haz el gesto aqui para seleccionar saque",
+ "initMsg2": "Haz el gesto aqui para seleccionar recepcion",
  "shakeMsg": "Agita el movil en alto para votar",
  "throwMsgLeft": "¡Saque a la izquierda!",
  "throwMsgRight": "¡Saque a la derecha!",
