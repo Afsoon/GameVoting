@@ -10,7 +10,7 @@ body {
 h1 {
     width: 100%;
     text-align: center;
-    font-size: 7em;
+    font-size: 3rem;
     color: #000000;
     font-family: 'Bangers', cursive;
 }
@@ -18,10 +18,20 @@ h1 {
 
 #swipeArea{
     width: 100%;
-    height: 40rem;
+    height: 20rem;
     background-color: #009900;
     font-family: Consolas, Menlo, Monaco, monospace;
-    font-size: 2rem;
+    font-size: 1rem;
     color: antiquewhite;
     text-align: center;
+}
+
+#content {
+    display: none;
+}
+
+#loading {
+    height: 100%;
+    width: 100%;
+    background-color: red;
 }
