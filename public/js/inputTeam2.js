@@ -1,63 +1,51 @@
-var side; //0 for left, 1 for right
-var supportsVibrate = "vibrate" in navigator
+var side, message;
+var supportsVibrate = "vibrate" in navigator;
+var socket = io.connect('http://46.101.214.219', { 'forceNew': true });
+var voted = false;
 
-window.onload = function(){
-  
-  var voted = false;
-
-  //create a new instance of shake.js.
-  var myShakeEvent = new Shake({
-       threshold: 5
+var myShakeEvent = new Shake({
+       threshold: 15
   });
+  
+$.getJSON("../config/inputStrings_es.json", function(message){
 
-  // start listening to device motion
+  $("#swipeArea").text(message.initMsg2);
+
   myShakeEvent.start();
-
-  // register a shake event
   window.addEventListener('shake', shakeEventCallback, false);
-
-  var shakeMsg = "<br><br>Agita el movil en alto para votar";
- 
+   
   //Enable swiping...
   $("#swipeArea").swipe( {
-  swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
-    if(direction == "left"){
-      $(this).html("Recepcion a la izquierda" + shakeMsg);
-      voted = true;
-      side = 0;
-    }
-    if(direction == "right"){
-      $(this).html("Recepcion a la derecha" + shakeMsg);
-      voted = true;
-      side = 1;
-    }
-  },
-  threshold: 75       
+    swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+      if(direction == "left"){
+        $(this).html(message.receiveMsgLeft + "<br><br>" + message.shakeMsg);
+        voted = true;
+        side = direction;
+      } else if(direction == "right"){
+        $(this).html(message.receiveMsgRight + "<br><br>" + message.shakeMsg);
+        voted = true;
+        side = direction;
+      }
+    },threshold: 75       
   });
 
-  function vote (){
-  
-    var socket = io.connect('http://46.101.214.219', { 'forceNew': true });
-
-    if (side == 0){
-          socket.emit('team2left');
-        }
-    else if (side == 1){
-          socket.emit('team2right');
-        }
-    
+  function vote(){
+    socket.emit('team2' + side);
+        
     window.removeEventListener('shake', shakeEventCallback, false);
     myShakeEvent.stop();    
     $("#swipeArea").swipe("destroy");
     socket.disconnect();
   }
 
-  function shakeEventCallback () {
+  function shakeEventCallback() {
     if (voted){
-      if(supportsVibrate) {navigator.vibrate(1000);}
-      $("#swipeArea").html("¡HAS VOTADO!<br><br>GRACIAS");
+      if(supportsVibrate) { navigator.vibrate(1000); }
+      $("#swipeArea").html(message.votedMsg + "<br><br>" + message.thanksMsg);
       $("#swipeArea").css('background-color', '#DD0000');
       vote();   
     }
   }
-}
+
+});
+

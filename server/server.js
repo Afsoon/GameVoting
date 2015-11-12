@@ -38,7 +38,9 @@ setInterval(function(){
 
 io.on('connection', function(socket) {
 
-    updateVotes();
+    socket.on('start', function(){
+        updateVotes();
+    });
 
     socket.on('team1left', function(){
         if(isValid(isEndingAction(team1left, team1right))){
@@ -76,6 +78,7 @@ io.on('connection', function(socket) {
         countdown = COUNTDOWN_SECONDS;
         timeout = false;
         updateVotes();
+        io.sockets.emit('restart');
     });
 
 });
