@@ -64,27 +64,3 @@ describe('Who are playing?', function () {
         expect(votes).toBe(2);
     });
 });
-
-describe('Who is winning?', function () {
-    var game;
-    beforeEach(function () {
-        game = new Game(2, players);
-    });
-    it('is a draw 0-0', function () {
-        var team = game.getWinner();
-        expect(team).toBe('A draw');
-    });
-    
-    it('Team 1 won win', function () {
-        game.addVote(0,0);
-        var team = game.getWinner();
-        expect(team).toBe('Team 1');
-    });
-    
-    it('is a draw 1-1', function () {
-        game.addVote(0,1);
-        game.addVote(1,1);
-        var team = game.getWinner();
-        expect(team).toBe('A draw');
-    });
-});

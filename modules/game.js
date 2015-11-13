@@ -49,6 +49,14 @@ function getNumberVotesofATeam(teamNumber){
     return votes;
 }
 
+Game.prototype.getNumberOptions = function () {
+    return options;  
+};
+
+Game.prototype.getNumberTeamsPlaying = function () {
+    return players.getNumberTeams();   
+};
+
 Game.prototype.getTotalNumberOfVotes = function(){
     var numberTeams = players.getNumberTeams();
     var votes = 0;
@@ -99,7 +107,7 @@ Game.prototype.getWinner = function () {
     return message;  
 };
 
-Game.prototype.getMatixGame = function () {
+Game.prototype.getMatrixGame = function () {
   return optionsMatrix;  
 };
 
