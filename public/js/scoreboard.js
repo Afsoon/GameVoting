@@ -2,14 +2,19 @@ $(function(){
 
     var socket = io.connect('http://46.101.214.219', { 'forceNew': true });
     var team1left, team2left, team1right, team2right, team1votes, team2votes, message;
+    var language = navigator.language || navigator.userLanguage;
     var GAMEVOTING;
     GAMEVOTING = {};
 
-    $.getJSON("../config/scoreboardStrings_es.json")
-        .done(function(data){
-            GAMEVOTING = data;
-            app();
-        });
+    if ( language != "es" || language != "en") {
+        language = "en";
+    }
+    console.log(language);
+    
+    $.getJSON("../config/scoreboardStrings_" + language + ".json", function(data){
+        GAMEVOTING = data;
+        app();
+    });
 
     function app(){
         socket.emit('start');

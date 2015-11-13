@@ -11,6 +11,17 @@
 </head>
 <body>
 	<h1>GameVoting Control Panel </h1>
+    
+	<hr>
+	<p>Select a config file for language:
+	<select lang="en" onchange="loadConfig(this.value)">
+		
+	    <option selected="selected" disabled="true">click here</option>
+	    <option value="en">English</option>
+	    <option value="es">Español</option>
+	</select>
+	<br><br>
+	<button onclick="start()">Start</button>
     <button onclick="reset()">Reset</button>
 </body>
 </html>
