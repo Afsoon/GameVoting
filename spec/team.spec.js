@@ -12,8 +12,8 @@ describe('Team', function () {
     
     it('add 1 vote to left action', function () {
         team.addVote('left');
-        var json = team.getActionMajority();
-        expect(json).toEqual({'left' : 1});
+        var action = team.getActionMajority();
+        expect(action).toBe('left');
     });
     
     it('add invalid vote because no exist', function () {
@@ -24,14 +24,19 @@ describe('Team', function () {
         team.addVote('right');
         team.addVote('left');
         team.addVote('left');
-        var json = team.getActionMajority();
-        expect(json).toEqual({'left' : 2});
+        var action = team.getActionMajority();
+        expect(action).toBe('left');
     });
     
     it('add 2 votes, 1 to right and 1 to left. right to be Majority', function (){
         team.addVote('right');
         team.addVote('left');
-        var json = team.getActionMajority();
-        expect(json).toEqual({'right' : 1});
+        var action = team.getActionMajority();
+        expect(action).toBe('right');
+    });
+    
+    it('No one vote, none', function () {
+        var action = team.getActionMajority();
+        expect(action).toBe('none');
     });
 });

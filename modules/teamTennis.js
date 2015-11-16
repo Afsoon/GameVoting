@@ -12,13 +12,12 @@ function TeamTennis(actions){
     }
 
     numberVotesActionMajority = 0;
+    actionMajority = 'none';
     actionsMap = actions;
 }
 
 TeamTennis.prototype.getActionMajority = function () {
-    var jsonReturn = {};
-    jsonReturn[actionMajority] = actionsMap[actionMajority];
-    return jsonReturn;
+    return actionMajority;
 };
 
 TeamTennis.prototype.addVote = function(action){
