@@ -6,10 +6,12 @@ $(function(){
     var GAMEVOTING;
     GAMEVOTING = {};
 
-    if ( language != "es" || language != "en") {
+    console.log("Lenguaje antes --> " +language);
+    if ( language !== "es" || language !== "en") {
         language = "en";
+
     }
-    console.log(language);
+    console.log("Lenguaje despues --> " +language);
     
     $.getJSON("../config/scoreboardStrings_" + language + ".json", function(data){
         GAMEVOTING = data;
