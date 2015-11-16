@@ -1,29 +1,34 @@
 /**
  * Created by saidatrahouchecharrouti on 12/11/15.
  */
-var matrixOption;
-var game;
+var TeamTennis = require('./teamTennis');
+var teamMap = {};
 
-function TenisGame(gameInstance){
+
+function TenisGame(numberTeams, actions){
     if(!(this instanceof TenisGame)){
-        return new TenisGame(gameInstance);
+        return new TenisGame(numberTeams, actions);
     }
     
-    game = gameInstance;
-    matrixOption = game.getMatrixGame();
+    for(var i = 0; i < numberTeams; i++){
+        teamMap['team' + (i+1)] = new TeamTennis(actions);
+    }
 }
 
-function getTeamActionMajority(teamNumber){
-    var vote = 0;
-    var max = 0;
-    var actions = new Array(1);
-    var options = game.getNumberOptions();
-    for(var j = 0; j < options; j++){
-        
+function getTeamActionMajority(team){
+    if(!(team in teamMap)){
+        throw new Error('Invalid Team');
     }
 
-    return votes;
+    return teamMap[team].getActionMajority();
 }
+
+TenisGame.prototype.addVote  = function (team, action) {
+    if(!(team in teamMap)){
+        throw new Error('Invalid Team');
+    }
+    teamMap[team].addVote(action);  
+};
 
 TenisGame.prototype.getWinner = function () {
     var message;
@@ -31,7 +36,7 @@ TenisGame.prototype.getWinner = function () {
     var votesPerTeam = 0;
     var votesWinning = 0;
     for(var i = 0; i < numberTeams; i++){
-        votesPerTeam = getNumberVotesofATeam(i);
+        votesPerTeam = getTeamActionMajority(i);
         if(votesPerTeam != votesWinning && votesPerTeam > votesWinning){
             message = 'Team ' + (i+1);
             votesWinning = votesPerTeam;
