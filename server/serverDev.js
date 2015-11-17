@@ -30,7 +30,7 @@ setInterval(function(){
             timeout = true;
             started = false;
             generateUpdateJSON();
-            io.sockets.emit('finishedTime');
+            io.sockets.emit('finishedTime', gameInstance.getGameInformationJSON());
         }
     }
 }, 1000);
