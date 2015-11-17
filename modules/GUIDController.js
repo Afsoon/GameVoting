@@ -15,8 +15,6 @@ GUIDController.prototype.addToken = function (tokenID) {
         throw new Error('Invalid Token: it exist');
     }
     this.GUIDMap[tokenID] = false;
-    console.log(this.GUIDMap);
-    console.log('tokenID = ' + this.GUIDMap[tokenID]);
 };
 
 GUIDController.prototype.getStatusToken = function (tokenID) {
@@ -29,8 +27,6 @@ GUIDController.prototype.getStatusToken = function (tokenID) {
 GUIDController.prototype.validTokenVote = function (tokenID) {
     if(!this.getStatusToken(tokenID)){
             this.GUIDMap[tokenID] = true;
-            console.log(this.GUIDMap);
-            console.log('tokenID = ' + this.GUIDMap[tokenID]);
             return true;
     }
     return false;

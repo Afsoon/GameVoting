@@ -32,6 +32,7 @@ setInterval(function(){
             guid.cleanHashMap();
             generateUpdateJSON();
             io.sockets.emit('finishedTime', JSON.stringify(gameInstance.getGameInformationJSON()));
+            console.log('enviado');
             gameInstance = new Game(2, {'left': 0, 'right': 0});
         }
     }

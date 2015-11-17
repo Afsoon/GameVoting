@@ -8,6 +8,6 @@ describe('variables de diferentes instancias', function () {
         var tenisGameInstance2 = new TenisGame(2, {'left':0, 'right': 0});
         tenisGameInstance.addVote('team1', 'left');
         var message = tenisGameInstance2.getWinner();
-        expect(message).toBe('A draw');
+        expect(message).toBe('draw');
     });
 });

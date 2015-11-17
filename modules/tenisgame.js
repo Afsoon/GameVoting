@@ -32,11 +32,11 @@ TenisGame.prototype.getWinner = function () {
     var team2Action = this.teamMap['team2'].getActionMajority();
     
     if (team1Action === 'none' && team2Action === 'none'){
-        return 'A draw';
+        return 'draw';
     }else if(team2Action === team1Action || (team1Action === 'none' && team2Action !== 'none')){
-        return 'Team 2';
+        return 'team2';
     }else{
-        return 'Team 1';
+        return 'team1';
     }
     
 };
@@ -46,7 +46,6 @@ TenisGame.prototype.getVotesGameJSON = function () {
     for(var x in this.teamMap){
         votesInformationJSON[x+'Votes'] = this.teamMap[x].getTotalVotes();
     }
-    console.log("JSON que envio " + votesInformationJSON);
     return votesInformationJSON;
 };
 
@@ -57,7 +56,7 @@ TenisGame.prototype.getGameInformationJSON = function () {
         gameInformationJSON[x+'Side'] = this.teamMap[x].getActionMajority();
         gameInformationJSON[x+'Pct'] = this.teamMap[x].getPercentageActionMajority();
     }
-    
+    console.log(gameInformationJSON);
     return gameInformationJSON;
 };
 
