@@ -36,15 +36,16 @@ gulp.task('deploy', ['test'], function(){
         //.pipe(gulpsftp(generatePath('public')));
     gulp.src(server)
         .pipe(gulpsftp(generatePath('server')));
-    gulp.src(routes)
+    gulp.src(modules)
+        .pipe(gulpsftp(generatePath('modules')));
+    /**gulp.src(routes)
         .pipe(gulpsftp(generatePath('routes')));
     gulp.src(views)
         .pipe(gulpsftp(generatePath('view')));
     gulp.src(pack)
         .pipe(gulpsftp(generatePath('')));
-    gulp.src(modules)
-        .pipe(gulpsftp(generatePath('modules')));
-    //gulp.src(routes)
+    
+    //gulp.src(routes)**/
     //   .pipe(gulpsftp(generatePath('routes')));
 
 });

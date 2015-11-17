@@ -44,9 +44,9 @@ TenisGame.prototype.getWinner = function () {
 TenisGame.prototype.getVotesGameJSON = function () {
     var votesInformationJSON = {};
     for(var x in this.teamMap){
-        votesInformationJSON[x] = this.teamMap[x].getTotalVotes();
+        votesInformationJSON[x+'Votes'] = this.teamMap[x].getTotalVotes();
     }
-    
+    console.log("JSON que envio " + votesInformationJSON);
     return votesInformationJSON;
 };
 

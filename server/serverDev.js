@@ -26,35 +26,37 @@ setInterval(function(){
     if(countdown>0 ){
         countdown--;
         io.sockets.emit('time', countdown);
-        if(countdown == 0 || endVoting()){
+        if(countdown == 0){
             timeout = true;
             started = false;
+            guid.cleanHashMap();
             generateUpdateJSON();
-            io.sockets.emit('finishedTime', gameInstance.getGameInformationJSON());
+            io.sockets.emit('finishedTime', JSON.stringify(gameInstance.getGameInformationJSON()));
+            gameInstance = new Game(2, {'left': 0, 'right': 0});
         }
     }
 }, 1000);
 
-server.listen(9000, function(){
-    console.log("Servidor iniciado");        
+server.listen(9000, function(){      
 });
 
 
 io.on('connection', function(socket){
+    
+    io.sockets.emit('side', playersInstance.addPlayer());
 
-    socket.emit('side', playersInstance.addPlayer());
-
-    socket.on('setupInstruction', function (language){
-       socket.emit('showInstructions', language); 
+    socket.on('setupInstructions', function (language){
+        io.sockets.emit('showInstructions', language); 
     });
     
     socket.on('start', function (data) {
-        guid.cleanHashMap();
         started = true;
+        timeout = false;
+        
         var informationScoreboard = getJSON(data);
         setCountdown(informationScoreboard['countdownSeconds']);
-        socket.emit('startScoreboard', informationScoreboard['language']);
-        socket.emit('startPlayer');
+        io.sockets.emit('startScoreboard', informationScoreboard['language']);
+        io.sockets.emit('startPlayer');
     });
 
     socket.on('team1', function (data){
@@ -63,13 +65,15 @@ io.on('connection', function(socket){
         
     });
 
-
     socket.on('team2', function (data) {
         addVote(data, 'team2');
         generateUpdateJSON();
     });
     
     socket.on('getStatus', function (data) {
+        try{
+            guid.addToken(data);
+        }catch(err){}
         generateStatus(socket);
     })
 });
@@ -90,7 +94,7 @@ function setCountdown(seconds){
     if(seconds === 'default'){
         countdown = COUNTDOWNDEFAULT;
     }else{
-        countdown = seconds;
+        countdown = parseInt(seconds);
     }
 }
 
@@ -98,7 +102,7 @@ function generateStatus(tokenID, socket){
     try{
         guid.addToken(tokenID);
     }catch(err){}
-    socket.emit('status', getStateGame(tokenID));
+    io.sockets.emit('status', getStateGame(tokenID));
 }
 
 function getStateGame(tokenID){
@@ -116,10 +120,11 @@ function getStateGame(tokenID){
 function addVote(data, team){
     var informationVote = getJSON(data);
     if(!guid.getStatusToken(getTokenID(informationVote))){
+        guid.validTokenVote(getTokenID(informationVote));
         gameInstance.addVote(team, getSideVoted(informationVote), timeout);
     }
 }
 
 function generateUpdateJSON(){
-    socket.emit('update', gameInstance.getVotesGameJSON());
+    io.sockets.emit('update', JSON.stringify(gameInstance.getVotesGameJSON()));
 }

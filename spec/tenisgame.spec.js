@@ -40,7 +40,7 @@ describe('Who is the winner?', function () {
         tenisGame.addVote('team2', 'right', false);
         tenisGame.addVote('team2', 'right', false);
         var information = tenisGame.getVotesGameJSON();
-        expect(information).toEqual({'team1': 2, 'team2': 2});
+        expect(information).toEqual({'team1Votes': 2, 'team2Votes': 2});
     });
 
     it('Give me JSON at the end with the game\'s information', function () {

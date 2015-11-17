@@ -25,9 +25,8 @@ describe('¿has votado?', function () {
     });
     
     it('token invalido', function () {
-       expect(function () {
-           guid.getStatusToken('1')
-       }).toThrow(new Error('Invalid Token: Doesn\'t exist'));
+        var voted = guid.getStatusToken('1');
+        expect(voted).toBe(false);
     });
     
     it('token invalido, ya existe', function () {
@@ -47,13 +46,12 @@ describe('¿has votado?', function () {
     });
     
     it('token invalido porque se ha empezado un nuevo juego', function () {
-        expect(function () {
-            guid.addToken('1');
-            guid.addToken('2');
-            guid.validTokenVote('1');
-            guid.cleanHashMap();
-            guid.getStatusToken('1')
-        }).toThrow(new Error('Invalid Token: Doesn\'t exist'));
+        guid.addToken('1');
+        guid.addToken('2');
+        guid.validTokenVote('1');
+        guid.cleanHashMap();
+        var voted = guid.getStatusToken('1');
+        expect(voted).toBe(false);
     });
     
 });
