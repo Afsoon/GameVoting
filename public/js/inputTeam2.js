@@ -67,7 +67,7 @@ $(function() {
 
   function setLanguage(){
     // Set English as default language if locale language not found.
-    if (language != "es" || language != "en") {
+    if (language != "es" && language != "en") {
       language === "en";
     }
   }

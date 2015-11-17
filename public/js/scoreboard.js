@@ -1,13 +1,13 @@
 $(function(){
 
-    var socket = io.connect('http://46.101.214.219', { 'forceNew': true });
+    var socket = io.connect('http://46.101.214.219:9000', { 'forceNew': true });
     var team1left, team2left, team1right, team2right, team1votes, team2votes, message;
     var language = navigator.language || navigator.userLanguage;
     var GAMEVOTING;
     GAMEVOTING = {};
 
     console.log("Lenguaje antes --> " +language);
-    if ( language !== "es" || language !== "en") {
+    if ( language !== "es" && language !== "en") {
         language = "en";
 
     }

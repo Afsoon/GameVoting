@@ -1,15 +1,18 @@
-var socket = io.connect('http://46.101.214.219', { 'forceNew': true });
-var language = "es";
+var socket = io.connect('http://46.101.214.219:9000', { 'forceNew': true });
+var language;
 
 function loadConfig(lang){
     language = lang;
 }
 
 function start(){
-	socket.emit('start', language);
-}
+	var seconds = $("#countdown").val();
+	if (seconds==="") {seconds="default";}
 
-function reset(){
-	socket.emit('reset', language);
+	language = $("select").val();
+	
+	var json = {'language': language, 'countdownSeconds': seconds};
+	
+	console.log(json);
+	socket.emit('start', json);
 }
-

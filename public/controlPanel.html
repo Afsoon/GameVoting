@@ -19,15 +19,20 @@
 		<div class="row">
 			<p>Select a config file for language:
 			<select lang="en" onchange="loadConfig(this.value)">
-			    <option selected="selected" disabled="true">click here</option>
-			    <option value="en">English</option>
+			    <option selected="selected" value="en">English</option>
 			    <option value="es">Español</option>
 			</select>
 		</div>
 		<br><br>
 		<div class="row">
-			<button onclick="start()" class="btn btn-success">Start</button>
-	    	<button onclick="reset()" class="btn btn-danger">Reset</button>
+			<div class="input-group">
+  				<span class="input-group-addon" id="basic-addon3">Countdown seconds</span>
+  				<input type="text" class="form-control" id="countdown" aria-describedby="basic-addon3">
+			</div>
+		</div>
+		<br><br>
+		<div class="row">
+			<button onclick="start()" class="btn btn-success btn-lg">Start</button>
 	    </div>
 	</div>
 </body>
