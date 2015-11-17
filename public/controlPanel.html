@@ -29,10 +29,12 @@
   				<span class="input-group-addon" id="basic-addon3">Countdown seconds</span>
   				<input type="text" class="form-control" id="countdown" aria-describedby="basic-addon3">
 			</div>
+			<br><small>If nothing, default 90 seconds countdown will be selected</small>
 		</div>
 		<br><br>
 		<div class="row">
-			<button onclick="start()" class="btn btn-success btn-lg">Start</button>
+			<button onclick="setup()" class="btn btn-primary btn-lg">Set language & show instructions</button>
+			<button onclick="start()" class="btn btn-success btn-lg" disabled id="startButton">Start</button>
 	    </div>
 	</div>
 </body>

@@ -3,10 +3,11 @@
 	"timeUnit":		"segundos",
 	"endTimeMsg":	"¡Se acabo el tiempo!",
 	"winningMsg":	"Y el ganador es...",
-	"team1":		"EQUIPO 1",
-	"team2":		"EQUIPO 2",
+	"team1":		"Equipo de saque",
+	"team2":		"Equipo receptor",
 	"draw":			"¡EMPATE!",
-	"leftResults":	"Izquierda: ",
-	"rightResults":	"Derecha: ",
+	"chose":		"Eligió"
+	"left":			"Izquierda: ",
+	"right":		"Derecha: ",
 	"votes":		"Votos"
 }

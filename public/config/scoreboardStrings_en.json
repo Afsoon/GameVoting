@@ -3,10 +3,10 @@
 	"timeUnit":		"seconds",
 	"endTimeMsg":	"Time over!",
 	"winningMsg":	"And the winner is...",
-	"team1":		"TEAM 1",
-	"team2":		"TEAM 2",
+	"team1":		"Throwing Team",
+	"team2":		"Receiving Team",
 	"draw":			"It's a draw!",
-	"leftResults":	"Left: ",
-	"rightResults":	"Right: ",
+	"left":			"Left",
+	"right":		"Right",
 	"votes":		"Votes"
 }

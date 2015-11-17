@@ -10,7 +10,8 @@ body {
 h1 {
     width: 100%;
     text-align: center;
-    font-size: 7em;
+    font-size: 20rem;
+    font-weight: 400;
     color: #000000;
     font-family: 'Bangers', cursive;
 }
@@ -20,6 +21,18 @@ h3 {
     font-size: 4rem;
     color: #000000;
     font-family: 'Bangers', cursive;   
+}
+
+#instructions {
+    margin: auto;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #FFFFFF;
+    color: #000000;
+    font-size: 2rem;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
 }
 
 #clock {
