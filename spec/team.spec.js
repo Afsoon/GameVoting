@@ -39,4 +39,23 @@ describe('Team', function () {
         var action = team.getActionMajority();
         expect(action).toBe('none');
     });
+    
+    it('Should have 5 votes. Because they get 8 votes but 3 invalid', function () {
+        team.addVote('left');
+        try{
+            team.addVote('up');
+        }catch(err){}
+        team.addVote('right');
+        team.addVote('left');
+        try{
+            team.addVote('down');
+        }catch(err){}
+        try{
+            team.addVote('QUIERO TRABAJO');
+        }catch(err){}
+        team.addVote('left');
+        team.addVote('right');
+        var totalVotes = team.getTotalVotes();
+        expect(totalVotes).toBe(5);
+    });
 });

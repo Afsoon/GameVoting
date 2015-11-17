@@ -1,33 +1,32 @@
 /**
  * Created by saidatrahouchecharrouti on 14/11/15.
  */
-var numberVotesActionMajority;
-var actionsMap;
-var actionMajority;
-
 
 function TeamTennis(actions){
-    if(!(this instanceof TeamTennis)){
-        return TeamTennis(actions);
-    }
 
-    numberVotesActionMajority = 0;
-    actionMajority = 'none';
-    actionsMap = actions;
+    this.numberVotesActionMajority = 0;
+    this.actionMajority = 'none';
+    this.actionsMap = actions;
+    this.totalVotes = 0;
 }
 
+TeamTennis.prototype.getTotalVotes = function () {
+    return this.totalVotes;  
+};
+
 TeamTennis.prototype.getActionMajority = function () {
-    return actionMajority;
+    return this.actionMajority;
 };
 
 TeamTennis.prototype.addVote = function(action){
-    if(!(action in actionsMap)){
+    if(!(action in this.actionsMap)){
         throw Error('Invalid vote');
     }
-    actionsMap[action] = actionsMap[action] + 1;
-    if(actionsMap[action] > numberVotesActionMajority){
-        actionMajority = action;
-        numberVotesActionMajority = actionsMap[action];
+    this.actionsMap[action] = this.actionsMap[action] + 1;
+    this.totalVotes++;
+    if(this.actionsMap[action] > this.numberVotesActionMajority){
+        this.actionMajority = action;
+        this.numberVotesActionMajority = this.actionsMap[action];
     }
 };
 

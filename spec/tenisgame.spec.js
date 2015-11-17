@@ -12,20 +12,50 @@ describe('Who is the winner?', function () {
     });
     
     it('Team 1 winner, 2 votes to left and team 2 with 2 votes to right', function () {
-        tenisGame.addVote('team1', 'left');
-        tenisGame.addVote('team1', 'left');
-        tenisGame.addVote('team2', 'right');
-        tenisGame.addVote('team2', 'right');
+        tenisGame.addVote('team1', 'left', false);
+        tenisGame.addVote('team1', 'left', false);
+        tenisGame.addVote('team2', 'right', false);
+        tenisGame.addVote('team2', 'right', false);
         var winner = tenisGame.getWinner();
         expect(winner).toBe('Team 1');
     });
-
+    
+    it('Draw. Please, play our game ;(', function () {
+        var winner = tenisGame.getWinner();
+        expect(winner).toBe('A draw', false);
+    });
+    
     it('Team 2 winner, 2 votes to left and team 2 with 2 votes to left', function () {
-        tenisGame.addVote('team1', 'left');
-        tenisGame.addVote('team1', 'left');
-        tenisGame.addVote('team2', 'right');
-        tenisGame.addVote('team2', 'right');
+        tenisGame.addVote('team1', 'left', false);
+        tenisGame.addVote('team1', 'left', false);
+        tenisGame.addVote('team2', 'left', false);
+        tenisGame.addVote('team2', 'left', false);
         var winner = tenisGame.getWinner();
         expect(winner).toBe('Team 2');
+    });
+});
+
+describe('Error during vote', function () {
+    var tenisGame;
+    beforeEach(function () {
+        tenisGame = new TenisGame(2, {'left' : 0, 'right': 0});
+    });
+    
+    it('because don\'t exist the team', function () {
+        expect(function () {
+            tenisGame.addVote('team3', 'left', false)
+        }).toThrow(new Error('Invalid Team'));
+    });
+    
+    it('because countdown is equal to 0', function(){
+        expect(function () {
+            tenisGame.addVote('team1', 'left', true)
+        }).toThrow(new Error('Timeout')); 
+    });
+    
+    it('because don\'t exist the action', function () {
+        expect(function () {
+            tenisGame.addVote('team1', 'up', false)
+        }).toThrow(new Error('Invalid vote')); 
     });
 });

@@ -2,6 +2,8 @@
  * Created by saidatrahouchecharrouti on 11/11/15.
  */
 
+var socket = io.connect('http://46.101.214.219', { 'forceNew': true });
+
 window.twttr = (function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0],
         t = window.twttr || {};
