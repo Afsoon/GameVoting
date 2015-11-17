@@ -58,4 +58,17 @@ describe('Team', function () {
         var totalVotes = team.getTotalVotes();
         expect(totalVotes).toBe(5);
     });
+    
+    it('Should be 100 (%) because everyone vote left action', function () {
+        team.addVote('left');
+        var percetange = team.getPercentageActionMajority();
+        expect(percetange).toBe('100');
+    });
+    
+    it('Should be 51 (%) because we have a draw, someone MUST win', function () {
+        team.addVote('left');
+        team.addVote('right');
+        var percetange = team.getPercentageActionMajority();
+        expect(percetange).toBe('51');
+    });
 });

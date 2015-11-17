@@ -30,4 +30,12 @@ TeamTennis.prototype.addVote = function(action){
     }
 };
 
+TeamTennis.prototype.getPercentageActionMajority = function () {
+    var percentage = ((Math.round((this.numberVotesActionMajority/this.totalVotes)*100) * 100) / 100).toString();
+    if(percentage === '50'){
+        return '51';
+    }
+    return percentage ;
+};
+
 module.exports = TeamTennis;

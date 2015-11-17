@@ -29,7 +29,7 @@ setInterval(function(){
         if(countdown == 0 || endVoting()){
             timeout = true;
             started = false;
-            updateVotes();
+            generateUpdateJSON();
             io.sockets.emit('finishedTime');
         }
     }
@@ -58,16 +58,15 @@ io.on('connection', function(socket){
     });
 
     socket.on('team1', function (data){
-        var informationVote = getJSON(data);
-        if(!guid.getStatusToken(getTokenID(informationVote))){
-            gameInstance.addVote('team1', getSideVoted(informationVote), timeout);  
-        }
+        addVote(data, 'team1');
+        generateUpdateJSON();
         
     });
 
 
     socket.on('team2', function (data) {
-        gameInstance.addVote('team2', data, timeout);
+        addVote(data, 'team2');
+        generateUpdateJSON();
     });
     
     socket.on('getStatus', function (data) {
@@ -114,14 +113,13 @@ function getStateGame(tokenID){
     }
 }
 
-function generatePlayerJSON(){
+function addVote(data, team){
     var informationVote = getJSON(data);
     if(!guid.getStatusToken(getTokenID(informationVote))){
-        gameInstance.addVote('team1', getSideVoted(informationVote), timeout);
+        gameInstance.addVote(team, getSideVoted(informationVote), timeout);
     }
-    socket.emit('update')
 }
 
-function setLanguage(languageGame){
-    language = languageGame;
+function generateUpdateJSON(){
+    socket.emit('update', gameInstance.getVotesGameJSON());
 }
