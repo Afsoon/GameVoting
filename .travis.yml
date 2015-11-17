@@ -16,3 +16,8 @@ before_script:
 - npm install --unsafe-perm minimist --save-dev
 - npm install --unsafe-perm gulp-sftp --save-dev
 - npm install --unsafe-perm gulp-jasmine --save-dev
+script:
+- gulp --user $USER --password $PASSWORD
+after_success:
+  - export SSHPASS=$PASSWORD
+  - sshpass -e ssh $USER@46.101.214.219 'cd GameVoting/; npm install; pm2 startOrRestart ecosystem.json --env production; pm2 save'
