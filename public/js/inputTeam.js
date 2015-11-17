@@ -23,7 +23,7 @@ $(function() {
       GAMEVOTING = data;
       socket.on('side', function(data){
         teamSide = data;
-        $("h2").text = GAMEVOTING[teamSide + "Name"];
+        $("h2").text(GAMEVOTING[teamSide + "Name"]);
       });
       socket.on('status', function(status){
         checkStatus(status);
@@ -79,9 +79,9 @@ $(function() {
 
       case "wait":
         showWait();
-        socket.on('starPlayer', function(){
+        socket.on('startPlayer', function(){
           initApp();
-        })
+        });
         break;
     }
   }
@@ -138,10 +138,10 @@ $(function() {
   }
 
   function sendVote(){
-    var json = {
+    var json = JSON.stringify({
       "votedSide": sideVote,
       "token": token
-    };
+    });
     socket.emit(teamSide, json );
     finish();
   }

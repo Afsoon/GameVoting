@@ -6,15 +6,20 @@ function loadConfig(lang) {
 }
 
 function setup() {
+	language = $("select").val();
 	socket.emit('setupInstructions' , language);
 	$("#startButton").prop("disabled", false);
+	
 }
 
 function start() {
 	var seconds = $("#countdown").val();
-	if (seconds==="") {seconds="default";}
+	if (seconds==="") {
+		seconds="default";
+	}
 	language = $("select").val();
-	var json = {'language': language, 'countdownSeconds': seconds};
+	var json = JSON.stringify({"language": language, "countdownSeconds": seconds});
 	socket.emit('start', json);
+	console.log(json);
 	$("#startButton").prop("disabled",true);
 }

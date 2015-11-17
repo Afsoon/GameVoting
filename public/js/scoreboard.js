@@ -2,18 +2,18 @@ $(function(){
 
     var socket = io.connect('http://46.101.214.219:9000', { 'forceNew': true });
     var language = navigator.language || navigator.userLanguage;
-    var GAMEVOTING;
-    GAMEVOTING = {};
+    var GAMEVOTING = {};
 
     setupApp();
 
     function setupApp() {
         socket.on('showInstructions', function(lang){
             setLanguage(lang);
-            $.getJSON("../config/scoreboardStrings_" + language + ".json", function(data){
+            var file = "../config/scoreboardStrings_" + language + ".json";
+            $.getJSON(file, function(data){
                 GAMEVOTING = data;
                 showInstructions();
-                socket.on('starScoreboard',function(data){
+                socket.on('startScoreboard',function(data){
                     initApp();
                 })
             });
@@ -31,12 +31,12 @@ $(function(){
         $("h1").css("font-size", "7rem");
         for(var i in GAMEVOTING){
             if(startsWith(i, "instruction")) {
-                $("#instructions").append("· " + GAMEVOTING[i] + "<br>");        
+                $("#instructions").append("· " + GAMEVOTING[i] + "<br><br>");        
             }
         }
     }
 
-    function stringStartsWith (string, prefix) {
+    function startsWith (string, prefix) {
         return string.slice(0, prefix.length) == prefix;
     }
 
@@ -59,9 +59,9 @@ $(function(){
             updateVotes(votes);
         });
 
-        socket.on('finish', function(data){
+        socket.on('finishedTime', function(data){
             var results = JSON.parse(data);
-
+            console.log("FINISH RECIBIDO -- RESULTS: " + results);
             var audioFemale = new Audio("../sounds/female.wav");
             var audioBell = new Audio("../sounds/bell.wav");
 
@@ -77,7 +77,7 @@ $(function(){
         	
             setTimeout(function() {
         		$("#clock").fadeOut("slow");
-        	},8000);
+        	},7000);
 
         	setTimeout(function() {
                 showWinner(results.winner);
@@ -97,8 +97,8 @@ $(function(){
     }
 
     function updateVotes(votes) {
-        $("#team1votes").text((votes.team1votes).toString());
-        $("#team2votes").text((votes.team2votes).toString());
+        $("#team1votes").text(votes.team1Votes);
+        $("#team2votes").text(votes.team2Votes);
     }
 
     function showWinner(winner){
@@ -106,8 +106,7 @@ $(function(){
                     .css("font-size", "10rem")
                     .css("background-color", "#AA0000")
                     .css("color", "#EEEEEE")
-                    .text(GAMEVOTING[winner]).fadeIn(2000)
-                    .hide();
+                    .text(GAMEVOTING[winner]).fadeIn(2000);
     }
 
     function showResults(team1Pct, team1Side, team2Pct, team2Side){
@@ -115,9 +114,9 @@ $(function(){
         $("#team2 h3").text(GAMEVOTING.team2);
         $("#team1, #team2 div").css("font-size", "2rem");
         $("#team1votes")
-           .text(GAMEVOTING.chose + team1Pct + "% " + GAMEVOTING[team1Side]);
+           .text(GAMEVOTING.chose +" "+ team1Pct + "% " + GAMEVOTING[team1Side]);
         $("#team2votes")
-           .text(GAMEVOTING.chose + team2Pct + "% " + GAMEVOTING[team2Side]);
+           .text(GAMEVOTING.chose +" "+ team2Pct + "% " + GAMEVOTING[team2Side]);
         $(".team").fadeIn(1500);
     }
 });
