@@ -3,10 +3,16 @@
 	"timeUnit":		"seconds",
 	"endTimeMsg":	"Time over!",
 	"winningMsg":	"And the winner is...",
-	"team1":		"TEAM 1",
-	"team2":		"TEAM 2",
+	"team1":		"Throwing Team",
+	"team2":		"Receiving Team",
 	"draw":			"It's a draw!",
-	"leftResults":	"Left: ",
-	"rightResults":	"Right: ",
-	"votes":		"Votes"
+	"chose":		"Chose",
+	"left":			"Left",
+	"right":		"Right",
+	"none":			"none",
+	"votes":		"Votes",
+	"instruction1":	"Enter <b>gamevoting.me</b> in your device web browser.",
+	"instruction2":	"You can vote when the countdown starts.",
+	"instruction3":	"Swipe your finger to chose a side.",
+	"instruction4":	"Follow the instructions shown in your device."
 }

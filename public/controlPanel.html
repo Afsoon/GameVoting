@@ -2,15 +2,40 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Panel de control</title>
-    
+    <title>*** GV Control Panel ***</title>
+    <link href="stylesheets/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="stylesheets/controlPanel.css">
     <script src="vendor/jquery-2.1.4.min.js"></script>
+    <script src="vendor/bootstrap.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="js/controlPanel.js"></script>
 </head>
 <body>
-	<h1>GameVoting Control Panel </h1>
-    <button onclick="reset()">Reset</button>
+	<h1>GameVoting Control Panel<br>
+    <small>Setup the application before starting</small>
+    </h1>
+	<hr>
+	<div class="container-fluid">
+		<div class="row">
+			<p>Select a config file for language:
+			<select lang="en" onchange="loadConfig(this.value)">
+			    <option selected="selected" value="en">English</option>
+			    <option value="es">Español</option>
+			</select>
+		</div>
+		<br><br>
+		<div class="row">
+			<div class="input-group">
+  				<span class="input-group-addon" id="basic-addon3">Countdown seconds</span>
+  				<input type="text" class="form-control" id="countdown" aria-describedby="basic-addon3">
+			</div>
+			<br><small>If nothing, default 90 seconds countdown will be selected</small>
+		</div>
+		<br><br>
+		<div class="row">
+			<button onclick="setup()" class="btn btn-primary btn-lg">Set language & show instructions</button>
+			<button onclick="start()" class="btn btn-success btn-lg" disabled id="startButton">Start</button>
+	    </div>
+	</div>
 </body>
 </html>

@@ -3,10 +3,16 @@
 	"timeUnit":		"segundos",
 	"endTimeMsg":	"¡Se acabo el tiempo!",
 	"winningMsg":	"Y el ganador es...",
-	"team1":		"EQUIPO 1",
-	"team2":		"EQUIPO 2",
+	"team1":		"Equipo de saque",
+	"team2":		"Equipo receptor",
 	"draw":			"¡EMPATE!",
-	"leftResults":	"Izquierda: ",
-	"rightResults":	"Derecha: ",
-	"votes":		"Votos"
+	"chose":		"Eligió",
+	"left":			"Izquierda",
+	"right":		"Derecha",
+	"none":			"ningun lado",
+	"votes":		"Votos",
+	"instruction1":	"Accede a <b>gamevoting.me</b> en el navegador de tu dispositivo.",
+	"instruction2":	"Cuando la cuenta atras comience, podras votar.",
+	"instruction3":	"En el area indicada, desliza el dedo hacia el lado que elijas.",
+	"instruction4":	"Sigue las instrucciones que te indique tu dispositivo."
 }

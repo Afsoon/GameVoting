@@ -1,7 +1,10 @@
 {
- "initMsg1": "Haz el gesto aqui para seleccionar saque",
- "initMsg2": "Haz el gesto aqui para seleccionar recepcion",
- "shakeMsg": "Agita el movil en alto para votar",
+ "team1Name": "Equipo de saque",
+ "team2Name": "Equipo receptor",
+ "team1InitMsg": "Haz el gesto aqui para seleccionar saque",
+ "team2InitMsg": "Haz el gesto aqui para seleccionar recepcion",
+ "shakeMsg": "Agita el movil para votar",
+ "waitMsg": "Sigue las instrucciones que se muestran en el marcador",
  "throwMsgLeft": "¡Saque a la izquierda!",
  "throwMsgRight": "¡Saque a la derecha!",
  "receiveMsgLeft": "¡Recepcion a la izquierda!",

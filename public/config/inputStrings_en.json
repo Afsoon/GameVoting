@@ -1,7 +1,10 @@
 {
- "initMsg1": "Swipe here to select side to throw",
- "initMsg2": "Swipe here to select side to receive",
+ "team1Name": "Throwing team",
+ "team2Name": "Receiving team",
+ "team1InitMsg": "Swipe here to select side of serve",
+ "team1InitMsg": "Swipe here to select the receiving side",
  "shakeMsg": "Shake the device to send your vote",
+ "waitMsg": "Follow the instructions shown on the scoreboard",
  "throwMsgLeft": "Throwing to the left!",
  "throwMsgRight": "Throwing to the right!",
  "receiveMsgLeft": "Receiving on the left!",
