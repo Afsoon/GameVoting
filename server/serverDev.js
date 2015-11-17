@@ -9,7 +9,7 @@ var io = require('socket.io')(server);
 var routes = require('../routes/index');
 var Game = require('./../modules/tenisgame');
 var Players = require('./../modules/players');
-var playersInstance = new Players(2, ['service', 'reception']);
+var playersInstance = new Players(2, ['team1', 'team2']);
 var gameInstance = new Game(2, {'left': 0, 'right': 0});
 
 app.use('/', routes);
@@ -47,15 +47,14 @@ io.on('connection', function(socket){
         generateStatusJSON(socket);
     }
     
+    
     socket.on('start', function (data) {
         started = true;
         var informationScoreboard = JSON.parse(data);
         setCountdown(informationScoreboard['countdownSeconds']);
         setLanguage(informationScoreboard['language']);
         socket.emit('startScoreboard', informationScoreboard['language']);
-        var informationPlayer = {};
-        informationPlayer['sessionID'] = generateSessionID();
-        socket.emit('startPlayer', informationPlayer);
+        socket.emit('startPlayer');
     });
 
     socket.on('team1', function (data){
