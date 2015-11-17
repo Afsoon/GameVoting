@@ -41,7 +41,17 @@ describe('Who is the winner?', function () {
         tenisGame.addVote('team2', 'right', false);
         var information = tenisGame.getVotesGameJSON();
         expect(information).toEqual({'team1': 2, 'team2': 2});
-    })
+    });
+
+    it('Give me JSON at the end with the game\'s information', function () {
+        tenisGame.addVote('team1', 'left', false);
+        tenisGame.addVote('team1', 'left', false);
+        tenisGame.addVote('team2', 'right', false);
+        tenisGame.addVote('team2', 'right', false);
+        var information = tenisGame.getGameInformationJSON();
+        expect(information).toEqual({'winner': 'Team 1', 'team1Side': 'left', 'team1Pct': '100', 'team2Side': 'right',
+                                        'team2Pct': '100'});
+    });
 });
 
 describe('Error during vote', function () {

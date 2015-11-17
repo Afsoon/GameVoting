@@ -42,12 +42,23 @@ TenisGame.prototype.getWinner = function () {
 };
 
 TenisGame.prototype.getVotesGameJSON = function () {
-    var informationJSON = {};
+    var votesInformationJSON = {};
     for(var x in this.teamMap){
-        informationJSON[x] = this.teamMap[x].getTotalVotes();
+        votesInformationJSON[x] = this.teamMap[x].getTotalVotes();
     }
     
-    return informationJSON;
+    return votesInformationJSON;
+};
+
+TenisGame.prototype.getGameInformationJSON = function () {
+    var gameInformationJSON = {};
+    gameInformationJSON['winner'] = this.getWinner();
+    for(var x in this.teamMap){
+        gameInformationJSON[x+'Side'] = this.teamMap[x].getActionMajority();
+        gameInformationJSON[x+'Pct'] = this.teamMap[x].getPercentageActionMajority();
+    }
+    
+    return gameInformationJSON;
 };
 
 module.exports = TenisGame;
