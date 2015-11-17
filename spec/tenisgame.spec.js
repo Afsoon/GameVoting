@@ -33,6 +33,15 @@ describe('Who is the winner?', function () {
         var winner = tenisGame.getWinner();
         expect(winner).toBe('Team 2');
     });
+    
+    it('Give me JSON with total of votes of both teams', function () {
+        tenisGame.addVote('team1', 'left', false);
+        tenisGame.addVote('team1', 'left', false);
+        tenisGame.addVote('team2', 'right', false);
+        tenisGame.addVote('team2', 'right', false);
+        var information = tenisGame.getVotesGameJSON();
+        expect(information).toEqual({'team1': 2, 'team2': 2});
+    })
 });
 
 describe('Error during vote', function () {

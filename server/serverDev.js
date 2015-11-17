@@ -9,8 +9,10 @@ var io = require('socket.io')(server);
 var routes = require('../routes/index');
 var Game = require('./../modules/tenisgame');
 var Players = require('./../modules/players');
+var GUIDController = require('./../modules/GUIDController');
 var playersInstance = new Players(2, ['team1', 'team2']);
 var gameInstance = new Game(2, {'left': 0, 'right': 0});
+var guid = new GUIDController();
 
 app.use('/', routes);
 
@@ -19,7 +21,6 @@ var countdown = -1;
 var language;
 var timeout = false;
 var started = false;
-var timestamp;
 
 setInterval(function(){
     if(countdown>0 ){
@@ -42,23 +43,26 @@ server.listen(9000, function(){
 io.on('connection', function(socket){
 
     socket.emit('side', playersInstance.addPlayer());
-    generateSessionID();
-    if(started){
-        generateStatusJSON(socket);
-    }
-    
+
+    socket.on('setupInstruction', function (language){
+       socket.emit('showInstructions', language); 
+    });
     
     socket.on('start', function (data) {
+        guid.cleanHashMap();
         started = true;
-        var informationScoreboard = JSON.parse(data);
+        var informationScoreboard = getJSON(data);
         setCountdown(informationScoreboard['countdownSeconds']);
-        setLanguage(informationScoreboard['language']);
         socket.emit('startScoreboard', informationScoreboard['language']);
         socket.emit('startPlayer');
     });
 
     socket.on('team1', function (data){
-        gameInstance.addVote('team1', data, timeout);
+        var informationVote = getJSON(data);
+        if(!guid.getStatusToken(getTokenID(informationVote))){
+            gameInstance.addVote('team1', getSideVoted(informationVote), timeout);  
+        }
+        
     });
 
 
@@ -66,10 +70,22 @@ io.on('connection', function(socket){
         gameInstance.addVote('team2', data, timeout);
     });
     
-    socket.on('getStatus', function () {
-        generateStatusJSON(socket);
+    socket.on('getStatus', function (data) {
+        generateStatus(socket);
     })
 });
+
+function getJSON(data){
+    return JSON.parse(data);
+}
+
+function getTokenID(information){
+    return information['token'];
+}
+
+function getSideVoted(information){
+    return information['votedSide'];
+}
 
 function setCountdown(seconds){
     if(seconds === 'default'){
@@ -79,25 +95,33 @@ function setCountdown(seconds){
     }
 }
 
-function generateStatusJSON(socket){
-    var informationServer = {};
-    informationServer['canVote'] = started;
-    informationServer['sessionID'] = timestamp;
-    socket.emit('status', informationServer);
+function generateStatus(tokenID, socket){
+    try{
+        guid.addToken(tokenID);
+    }catch(err){}
+    socket.emit('status', getStateGame(tokenID));
+}
+
+function getStateGame(tokenID){
+    if(guid.getStatusToken(tokenID)){
+        return 'cannotVote';
+    }else if(!guid.getStatusToken(tokenID)){
+        if(started){
+            return 'canVote';
+        }else{
+            return 'wait';
+        }
+    }
+}
+
+function generatePlayerJSON(){
+    var informationVote = getJSON(data);
+    if(!guid.getStatusToken(getTokenID(informationVote))){
+        gameInstance.addVote('team1', getSideVoted(informationVote), timeout);
+    }
+    socket.emit('update')
 }
 
 function setLanguage(languageGame){
     language = languageGame;
-}
-
-function generateSessionID(){
-    if(started){
-        timestamp = Date.now();
-        return timestamp;
-    }
-    
-    if(timestamp === undefined){
-        timestamp = Date.now();
-        return timestamp;
-    }
 }
