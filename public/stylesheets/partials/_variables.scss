@@ -1,0 +1,24 @@
+/* reset */
+
+section, article, figure, header {
+	display: block;
+}
+
+body, h1, h2, h3, h4, h5, h6, ul {
+  margin: 0;
+  padding: 0;       
+}               
+
+/* general */      
+
+html, body, article, section {
+  height: 100%;
+}
+
+body {      
+  font-size: 2rem;
+  font-family: 'Roboto', sans-serif;
+  color: black;
+  background: white;
+}
+
