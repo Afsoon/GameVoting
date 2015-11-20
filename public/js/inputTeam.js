@@ -34,6 +34,7 @@ $(function() {
 
   // Set English as default language if locale language not found.
   function setLanguage(){
+    language = language.slice(0,2);
     if (language != "es" && language != "en") {
       language === "en";
     }
