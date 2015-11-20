@@ -21,7 +21,7 @@ $(function(){
     }
 
     function setLanguage(lang) {
-        language = lang;
+        language = lang.slice(0,2);
         if ( language !== "es" && language !== "en") {
             language = "en";
         }
