@@ -13,7 +13,6 @@ html, body, article, section {
   height: 100%; }
 
 body {
-  font-size: 2rem;
   font-family: 'Roboto', sans-serif;
   color: black;
   background: white; }
@@ -66,27 +65,96 @@ body {
   100% {
     opacity: 1;
     transform: translateX(0); } }
+/* Title transform */
 .title, article.init section .content h1.instructions {
-  animation: moveTitle ease 2s both;
-  -webkit-animation: moveTitle ease 2s both;
-  -moz-animation: moveTitle ease 2s both;
-  -o-animation: moveTitle ease  2s both; }
+  animation: moveTitle ease-in 1.2s both;
+  -webkit-animation: moveTitle ease-in 1.2s both;
+  -moz-animation: moveTitle ease-in 1.2s both;
+  -o-animation: moveTitle ease  1.2s both; }
 
 @-moz-keyframes moveTitle {
   0% {
-    transform: translateY(0) scale(1, 1); }
+    font-size: 15em;
+    opacity: 1; }
+  50% {
+    opacity: 0.5;
+    color: grey; }
   100% {
-    transform: translateY(-300px) scale(0.75, 0.75); } }
+    font-size: 10em;
+    opacity: 1;
+    margin-top: 5%; } }
 @-webkit-keyframes moveTitle {
   0% {
-    transform: translateY(0) scale(1, 1); }
+    font-size: 15em;
+    opacity: 1; }
+  50% {
+    opacity: 0.5;
+    color: grey; }
   100% {
-    transform: translateY(-300px) scale(0.75, 0.75); } }
+    font-size: 10em;
+    opacity: 1;
+    margin-top: 5%; } }
 @keyframes moveTitle {
   0% {
-    transform: translateY(0) scale(1, 1); }
+    font-size: 15em;
+    opacity: 1; }
+  50% {
+    opacity: 0.5;
+    color: grey; }
   100% {
-    transform: translateY(-300px) scale(0.75, 0.75); } }
+    font-size: 10em;
+    opacity: 1;
+    margin-top: 5%; } }
+/* First article pushed away */
+.push, article.bye {
+  animation: pushArticle ease-in 1.2s both;
+  -webkit-animation: pushArticle ease-in 1.2s both;
+  -moz-animation: pushArticle ease-in 1.2s both;
+  -o-animation: pushArticle ease  1.2s both; }
+
+@-moz-keyframes pushArticle {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 0;
+    margin-left: -100%; } }
+@-webkit-keyframes pushArticle {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 0;
+    margin-left: -100%; } }
+@keyframes pushArticle {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 0;
+    margin-left: -100%; } }
+/* Second article enters */
+.push2, article.scoreboard.enter {
+  animation: enterArticle ease-in 1.2s both;
+  -webkit-animation: enterArticle ease-in 1.2s both;
+  -moz-animation: enterArticle ease-in 1.2s both;
+  -o-animation: enterArticle ease  1.2s both; }
+
+@-moz-keyframes enterArticle {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 1;
+    margin-left: 0%; } }
+@-webkit-keyframes enterArticle {
+  0% {
+    opacity: 1; }
+  100% {
+    margin-left: 0%; } }
+@keyframes enterArticle {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 1;
+    margin-left: 0%;
+    background-color: blue; } }
 /* reset format */
 /* Front-end style */
 article {
@@ -100,18 +168,48 @@ article {
     text-align: center; }
     article.init section .content {
       vertical-align: middle;
-      display: table-cell;
-      float: none; }
+      /*display: table-row;*/ }
       article.init section .content h1 {
-        font-size: 15rem;
+        font-size: 15em;
         font-weight: 400;
-        font-family: 'Bangers', cursive; }
+        font-family: 'Bangers', cursive;
+        display: block;
+        width: 100%;
+        margin-top: 15%;
+        text-align: center; }
       article.init section .content h2 {
-        font-size: 2rem;
+        font-size: 2em;
         font-weight: 200; }
+      article.init section .content img {
+        z-index: -1;
+        position: absolute;
+        top: -6%;
+        background-color: transparent; }
+        article.init section .content img#tennisGirl {
+          left: 0; }
+        article.init section .content img#tennisBoy {
+          right: 0; }
     article.init section .instructions {
       vertical-align: middle;
-      display: table-row; }
+      font-size: 2em;
+      margin-top: 5%; }
+  article.scoreboard {
+    margin-left: 100%;
+    background-color: red; }
+    article.scoreboard aside {
+      position: fixed;
+      top: 5%;
+      left: 5%;
+      width: 40%;
+      height: 10%; }
+      article.scoreboard aside .time {
+        width: 100%;
+        height: 40px;
+        position: relative;
+        background: #C41212; }
+        article.scoreboard aside .time .progress {
+          height: 100%;
+          background: #FFEA00; }
 
 /* reset format */
 /* all fonts */

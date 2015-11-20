@@ -14,31 +14,79 @@ article {
 			
 			.content{
 				vertical-align: middle;
-				display: table-cell;
-				float: none;
+				/*display: table-row;*/
 				@extend .boing;
 
 				h1 {	
-					font-size: 15rem;
+					font-size: 15em;
 					font-weight: 400;			
 					font-family: 'Bangers', cursive;
-
+					display: block;
+					width: 100%;
+					margin-top: 15%;
+					text-align: center;
 					&.instructions{
 						@extend .title;
 					}
-					
 				}
 
 				h2 {
-					font-size: 2rem;
+					font-size: 2em;
 					font-weight: 200;
+				}
+
+				img {
+					z-index: -1;
+					position: absolute;
+					top: -6%;
+					background-color: transparent;
+
+					&#tennisGirl{
+						left: 0;
+					}
+
+					&#tennisBoy{
+						right: 0;
+					}
 				}
 			}
 
 			.instructions{
 				vertical-align: middle;
-				display: table-row;
+				font-size: 2em;
+				margin-top: 5%;
 				@extend .boing;
+			}
+		}
+	}
+
+	&.bye{
+		@extend .push;
+	}
+
+	&.scoreboard {
+		margin-left: 100%;
+		background-color: red;
+
+		&.enter{
+			@extend .push2;
+		}
+
+		aside {
+			position: fixed;
+			top: 5%;
+			left: 5%;
+			width: 40%;
+			height: 10%;
+			.time {
+				width: 100%;
+				height: 40px;
+				position: relative;
+				background: #C41212;
+				.progress {
+					height: 100%;
+					background: #FFEA00;
+				}
 			}
 		}
 	}

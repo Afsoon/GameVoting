@@ -32,7 +32,7 @@ $(function(){
         $("#gameVoting").toggleClass("instructions");
         for(var i in GAMEVOTING){
             if(startsWith(i, "instruction")) {
-                $("#instructions").append("· " + GAMEVOTING[i] + "<br><br>");        
+                $("#instructions ul").append("· " + GAMEVOTING[i] + "<br><br>");        
             }
         }
         $("#instructions").toggleClass("instructions");      
@@ -43,13 +43,16 @@ $(function(){
     }
 
     function showScores() {
-        $("#instructions").hide();
+        var timeTotal = 0;
+        $("#cover").addClass("bye");
+        $("#scoreboard").addClass("scoreboard");
         $("#team1 h3").text(GAMEVOTING.votes + " " + GAMEVOTING.team1);
         $("#team2 h3").text(GAMEVOTING.votes + " " + GAMEVOTING.team2);
         $("#team1votes").text("0");
         $("#team2votes").text("0");
         socket.on('time', function(time){
-            $("#clock").text(GAMEVOTING.timeLeftMsg + time.toString() + " " + GAMEVOTING.timeUnit);
+            timeTotal = Math.max(timeTotal, time);
+            $(".progress").css("width", Math.round( (time / timeTotal) * 100 ).toString() + "%");
         });
     }
 
