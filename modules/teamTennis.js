@@ -1,6 +1,7 @@
 /**
  * Created by saidatrahouchecharrouti on 14/11/15.
  */
+'use strict';
 
 function TeamTennis(actions){
 
@@ -23,7 +24,7 @@ TeamTennis.prototype.addVote = function(action){
         throw Error('Invalid vote');
     }
     this.actionsMap[action] = this.actionsMap[action] + 1;
-    this.totalVotes++;
+    this.totalVotes += 1;
     if(this.actionsMap[action] > this.numberVotesActionMajority){
         this.actionMajority = action;
         this.numberVotesActionMajority = this.actionsMap[action];
@@ -31,10 +32,11 @@ TeamTennis.prototype.addVote = function(action){
 };
 
 TeamTennis.prototype.getPercentageActionMajority = function () {
+    var percentage;
     if(this.totalVotes === 0){
         return '0';
-    }
-    var percentage = ((Math.round((this.numberVotesActionMajority/this.totalVotes)*100) * 100) / 100).toString();
+    } 
+    percentage = ((Math.round((this.numberVotesActionMajority/this.totalVotes)*100) * 100) / 100).toString();
     if(percentage === '50'){
         return '51';
     }
