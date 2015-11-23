@@ -1,24 +1,30 @@
 $(function() {
   var teamSide, sideVote, token, GAMEVOTING;
-  var supportsVibrate = "vibrate" in navigator;
-  var socket = io.connect('http://46.101.214.219:9000', { 'forceNew': true });
-  var voted = false;
   var language = navigator.language || navigator.userLanguage;
-  GAMEVOTING = {};
-
+  var supportsVibrate = "vibrate" in navigator;
+  var voted = false;
   var myShakeEvent = new Shake({
     threshold: 15
   });
 
+  tokenize();
+
+  var socket = io.connect('http://46.101.214.219:9000', { 'forceNew': true, 'token': token });
+  GAMEVOTING = {};
+
   setupApp();
 
-  function setupApp() {
-    setLanguage();
+  function tokenize() {
     if (checkToken()) {
       token = getToken();
     } else {
       token = createToken();
     }
+  }
+
+  function setupApp() {
+    setLanguage();
+    
     $.getJSON("../config/inputStrings_" + language + ".json", function(data){
       GAMEVOTING = data;
       socket.on('side', function(data){
