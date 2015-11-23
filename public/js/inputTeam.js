@@ -9,7 +9,7 @@ $(function() {
 
   tokenize();
 
-  var socket = io.connect('http://46.101.214.219:9000', { 'forceNew': true, 'token': token });
+  var socket = io.connect('http://46.101.214.219:9000', { 'forceNew': true, query: "token="token });
   GAMEVOTING = {};
 
   setupApp();
