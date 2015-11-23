@@ -10,23 +10,35 @@ function GUIDController(){
     this.GUIDMap = {};
 }
 
-GUIDController.prototype.addToken = function (tokenID) {
+GUIDController.prototype._isValidToken = function (tokenID) {
+    return !((this.getStatusToken(tokenID))['voted']);
+};
+
+GUIDController.prototype.addToken = function (tokenID, side) {
     if((tokenID in this.GUIDMap) ){
         throw new Error('Invalid Token: it exist');
     }
-    this.GUIDMap[tokenID] = false;
+    this.GUIDMap[tokenID] = {'voted': false, 'side': side};
+};
+
+GUIDController.prototype.getSide = function (tokenID) {
+    console.log(this.GUIDMap);
+    if(!(tokenID in this.GUIDMap) ){
+        throw new Error('Invalid Token: doesn\'t exist');
+    }
+    return this.GUIDMap[tokenID]['side'];
 };
 
 GUIDController.prototype.getStatusToken = function (tokenID) {
     if(!(tokenID in this.GUIDMap)){
         return false;
     }
-    return this.GUIDMap[tokenID];  
+    return this.GUIDMap[tokenID]['voted'];  
 };
 
 GUIDController.prototype.validTokenVote = function (tokenID) {
-    if(!this.getStatusToken(tokenID)){
-            this.GUIDMap[tokenID] = true;
+    if(this._isValidToken(tokenID)){
+            this.GUIDMap[tokenID]['voted'] = true;
             return true;
     }
     return false;

@@ -3,7 +3,6 @@
  */
 var express = require('express');
 var app = express();
-var path = require('path');
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 var routes = require('../routes/index');
@@ -41,10 +40,9 @@ setInterval(function(){
 server.listen(9000, function(){      
 });
 
-
 io.on('connection', function(socket){
     
-    io.sockets.emit('side', playersInstance.addPlayer());
+    console.log('conexion establecida');
 
     socket.on('setupInstructions', function (language){
         io.sockets.emit('showInstructions', language); 
@@ -73,9 +71,12 @@ io.on('connection', function(socket){
     
     socket.on('getStatus', function (data) {
         try{
-            guid.addToken(data);
-        }catch(err){}
-        generateStatus(socket);
+            guid.addToken(data, playersInstance.addPlayer());
+        }catch(err){
+            console.log(err);
+        }
+        io.sockets.emit('side', guid.getSide(data));
+        generateStatus(data);
     })
 });
 
@@ -100,9 +101,7 @@ function setCountdown(seconds){
 }
 
 function generateStatus(tokenID, socket){
-    try{
-        guid.addToken(tokenID);
-    }catch(err){}
+    
     io.sockets.emit('status', getStateGame(tokenID));
 }
 
