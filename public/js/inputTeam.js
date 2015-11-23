@@ -9,7 +9,8 @@ $(function() {
 
   tokenize();
 
-  var socket = io.connect('http://46.101.214.219:9000', { 'forceNew': true, query: "token="token });
+  var socket = io.connect('http://46.101.214.219:9000', { 'forceNew': true });
+
   GAMEVOTING = {};
 
   setupApp();
@@ -33,7 +34,7 @@ $(function() {
       });
       socket.on('status', function(status){
         checkStatus(status);
-      })
+      });
       socket.emit('getStatus', token);
     });
   }
