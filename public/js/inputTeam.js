@@ -4,8 +4,24 @@ $(function() {
   var supportsVibrate = "vibrate" in navigator;
   var voted = false;
   var myShakeEvent = new Shake({
-    threshold: 15
+    threshold: 10
   });
+
+  /* Twitter intent */
+  window.twttr = (function(d, s, id) {
+   var js, fjs = d.getElementsByTagName(s)[0],
+   t = window.twttr || {};
+   if (d.getElementById(id)) return t;
+   js = d.createElement(s);
+   js.id = id;
+   js.src = "https://platform.twitter.com/widgets.js";
+   fjs.parentNode.insertBefore(js, fjs);
+   t._e = [];
+   t.ready = function(f) {
+     t._e.push(f);
+   };
+   return t;
+  }(document, "script", "twitter-wjs"));
 
   tokenize();
 
@@ -141,8 +157,10 @@ $(function() {
 
   function showVoted() {
     if(supportsVibrate) { navigator.vibrate(1000); }
-    $("#swipeArea").html(GAMEVOTING.votedMsg + "<br><br>" + GAMEVOTING.thanksMsg);
-     $("#swipeArea").css('background-color', '#DD0000');
+    $("#swipeArea").html(GAMEVOTING.votedMsg + "<br><br>" + GAMEVOTING.thanksMsg + "<br><br>");
+    $("#swipeArea").css('background-color', '#AD0505');
+    $("#swipeArea").append("<a href='https://twitter.com/intent/tweet?text="+ GAMEVOTING.tweet + "'>"
+      +"<img src='images/tweetbutton.png' alt='Tweet this!' id='tweet'></a>")
   }
 
   function sendVote(){

@@ -1,7 +1,8 @@
 @import url(https://fonts.googleapis.com/css?family=Bangers);
+@import url(https://fonts.googleapis.com/css?family=Roboto);
 
 body {
-    background-color: antiquewhite;
+    background-color: #056100;
     /* background-image: url("../images/tennis-pitch.jpg"); */
     background-repeat: no-repeat;
     background-size: cover;
@@ -12,7 +13,7 @@ h1 {
     text-align: center;
     font-weight: 400;
     font-size: 3rem;
-    color: #000000;
+    color: white;
     font-family: 'Bangers', cursive;
 }
 
@@ -20,28 +21,33 @@ h2 {
     width: 100%;
     text-align: center;
     font-weight: 200;
-    font-size: 2rem;
-    color: #000000;
-    font-family: 'Bangers', cursive;
+    font-size: 1.5rem;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}
+
+#content {
+    width: 100%;
+    display: table;
 }
 
 #swipeArea{
     width: 100%;
     height: 20rem;
-    background-color: #009900;
-    font-family: Consolas, Menlo, Monaco, monospace;
+    margin: 5px;
+    padding: 5px;
+    background-color: #409141;
+    font-family: 'Roboto', sans-serif;
     font-size: 1rem;
-    color: antiquewhite;
+    color: white;
     text-align: center;
     vertical-align: middle;
+    display: table-cell;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
 }
 
-#content {
-    display: none;
-}
-
-#loading {
-    height: 100%;
-    width: 100%;
-    background-color: red;
+#swipeArea #tweet {
+    max-width: 25%;
 }
