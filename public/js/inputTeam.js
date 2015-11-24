@@ -156,11 +156,19 @@ $(function() {
   }
 
   function showVoted() {
+    var tweet = convert(GAMEVOTING.tweet);
     if(supportsVibrate) { navigator.vibrate(1000); }
     $("#swipeArea").html(GAMEVOTING.votedMsg + "<br><br>" + GAMEVOTING.thanksMsg + "<br><br>");
     $("#swipeArea").css('background-color', '#AD0505');
-    $("#swipeArea").append("<a href='https://twitter.com/intent/tweet?text="+ GAMEVOTING.tweet + "'>"
+    $("#swipeArea").append("<a href='https://twitter.com/intent/tweet?text="+ tweet + "'>"
       +"<img src='images/tweetbutton.png' alt='Tweet this!' id='tweet'></a>")
+  }
+
+  function convert(s) {
+    s = s.replace(" ", "%20");
+    s = s.replace("#", "%23");
+    s = s.replace("@", "%40");
+    return s;
   }
 
   function sendVote(){
