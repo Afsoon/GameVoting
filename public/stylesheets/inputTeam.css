@@ -36,12 +36,6 @@ h2 {
     vertical-align: middle;
 }
 
-#content {
-    display: none;
-}
-
-#loading {
-    height: 100%;
-    width: 100%;
-    background-color: red;
+#swipeArea #tweet {
+    max-width: 25%;
 }
