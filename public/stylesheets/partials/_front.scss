@@ -9,15 +9,15 @@
 article {
 	width: 100%;
 	height: 100%;
-	position: relative;
-	
+	position: absolute;
+
 	&.init{
 		section {
 			width: 100%;		
 			color: black;
 			display: table;
 			text-align: center;
-			
+
 			.content{
 				vertical-align: middle;
 				/*display: table-row;*/
@@ -70,31 +70,44 @@ article {
 		@extend .push;
 	}
 
-	&.scoreboard {
+	&#scoreboard {
 		margin-left: 100%;
-		background-color: red;
 
-		&.enter{
+		&.scoreboard {
+			width: 100%;
+			height: 100%;
+			margin-left: 100%;
+			background-color: #053005;
+			color: white;
 			@extend .push2;
-		}
 
-		aside {
-			position: fixed;
-			top: 5%;
-			left: 5%;
-			width: 40%;
-			height: 10%;
-			.time {
-				width: 100%;
-				height: 40px;
-				position: relative;
-				background: #C41212;
-				.progress {
-					height: 100%;
-					background: #FFEA00;
+			aside {
+				position: fixed;
+				top: 5%;
+				left: 100%;
+				width: 40%;
+				height: 10%;
+				.time {
+					width: 100%;
+					height: 40px;
+					position: relative;
+					background: #C41212;
+					-webkit-border-radius: 10px;
+					-moz-border-radius: 10px;
+					border-radius: 10px;
+					.progress {
+						height: 100%;
+						background: #FFEA00;
+						-webkit-border-radius: 10px;
+						-moz-border-radius: 10px;
+						border-radius: 10px;
+					}
+				}
+
+				&.enterTime {
+					@extend .pushTime;
 				}
 			}
 		}
 	}
 }
-

@@ -92,16 +92,38 @@
 }
 
 @-moz-keyframes enterArticle {
-	0%	{opacity: 1;}
+	0%	{opacity: 0.5;}
 	100% {opacity: 1; margin-left: 0%;}
 }
 
 @-webkit-keyframes enterArticle {
-	0%	{opacity: 1;}
-	100% {margin-left: 0%;}
+	0%	{opacity: 0.5;}
+	100% {opacity: 1; margin-left: 0%;}
 }
 
 @keyframes enterArticle {
-	0%	{opacity: 1;}
-	100% {opacity: 1; margin-left: 0%; background-color: blue;}
+	0%	{opacity: 0.5;}
+	100% {opacity: 1; margin-left: 0%;}
+}
+
+.pushTime {
+	animation: enterTime ease-in 1.2s both;
+	-webkit-animation: enterTime ease-in 1.2s both;
+	-moz-animation: enterTime ease-in 1.2s both;
+	-o-animation: enterTime ease  1.2s both;
+}
+
+@-moz-keyframes enterTime {
+	0%	{opacity: 0;}
+	100% {opacity: 1; left: 5%;}
+}
+
+@-webkit-keyframes enterTime {
+	0%	{opacity: 0;}
+	100% {opacity: 1; left: 5%;}
+}
+
+@keyframes enterTime {
+	0%	{opacity: 0;}
+	100% {opacity: 1; left: 5%;}
 }

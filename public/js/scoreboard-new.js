@@ -46,6 +46,7 @@ $(function(){
         var timeTotal = 0;
         $("#cover").addClass("bye");
         $("#scoreboard").addClass("scoreboard");
+        $("#scoreboard aside").addClass("enterTime");
         $("#team1 h3").text(GAMEVOTING.votes + " " + GAMEVOTING.team1);
         $("#team2 h3").text(GAMEVOTING.votes + " " + GAMEVOTING.team2);
         $("#team1votes").text("0");

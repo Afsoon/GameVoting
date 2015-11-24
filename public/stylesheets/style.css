@@ -131,7 +131,7 @@ body {
     opacity: 0;
     margin-left: -100%; } }
 /* Second article enters */
-.push2, article.scoreboard.enter {
+.push2, article#scoreboard.scoreboard {
   animation: enterArticle ease-in 1.2s both;
   -webkit-animation: enterArticle ease-in 1.2s both;
   -moz-animation: enterArticle ease-in 1.2s both;
@@ -139,22 +139,46 @@ body {
 
 @-moz-keyframes enterArticle {
   0% {
-    opacity: 1; }
+    opacity: 0.5; }
   100% {
     opacity: 1;
     margin-left: 0%; } }
 @-webkit-keyframes enterArticle {
   0% {
-    opacity: 1; }
+    opacity: 0.5; }
   100% {
+    opacity: 1;
     margin-left: 0%; } }
 @keyframes enterArticle {
   0% {
-    opacity: 1; }
+    opacity: 0.5; }
   100% {
     opacity: 1;
-    margin-left: 0%;
-    background-color: blue; } }
+    margin-left: 0%; } }
+.pushTime, article#scoreboard.scoreboard aside.enterTime {
+  animation: enterTime ease-in 1.2s both;
+  -webkit-animation: enterTime ease-in 1.2s both;
+  -moz-animation: enterTime ease-in 1.2s both;
+  -o-animation: enterTime ease  1.2s both; }
+
+@-moz-keyframes enterTime {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1;
+    left: 5%; } }
+@-webkit-keyframes enterTime {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1;
+    left: 5%; } }
+@keyframes enterTime {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1;
+    left: 5%; } }
 /* reset format */
 /* Front-end style */
 .container {
@@ -165,7 +189,7 @@ body {
 article {
   width: 100%;
   height: 100%;
-  position: relative; }
+  position: absolute; }
   article.init section {
     width: 100%;
     color: black;
@@ -198,23 +222,34 @@ article {
       vertical-align: middle;
       font-size: 2em;
       margin-top: 5%; }
-  article.scoreboard {
-    margin-left: 100%;
-    background-color: red; }
-    article.scoreboard aside {
-      position: fixed;
-      top: 5%;
-      left: 5%;
-      width: 40%;
-      height: 10%; }
-      article.scoreboard aside .time {
-        width: 100%;
-        height: 40px;
-        position: relative;
-        background: #C41212; }
-        article.scoreboard aside .time .progress {
-          height: 100%;
-          background: #FFEA00; }
+  article#scoreboard {
+    margin-left: 100%; }
+    article#scoreboard.scoreboard {
+      width: 100%;
+      height: 100%;
+      margin-left: 100%;
+      background-color: #053005;
+      color: white; }
+      article#scoreboard.scoreboard aside {
+        position: fixed;
+        top: 5%;
+        left: 100%;
+        width: 40%;
+        height: 10%; }
+        article#scoreboard.scoreboard aside .time {
+          width: 100%;
+          height: 40px;
+          position: relative;
+          background: #C41212;
+          -webkit-border-radius: 10px;
+          -moz-border-radius: 10px;
+          border-radius: 10px; }
+          article#scoreboard.scoreboard aside .time .progress {
+            height: 100%;
+            background: #FFEA00;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px; }
 
 /* reset format */
 /* all fonts */
