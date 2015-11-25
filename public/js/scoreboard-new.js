@@ -47,10 +47,10 @@ $(function(){
         $("#cover").addClass("bye");
         $("#scoreboard").addClass("scoreboard");
         $("#scoreboard aside").addClass("enterTime");
-        $("#team1 h3").text(GAMEVOTING.votes + " " + GAMEVOTING.team1);
-        $("#team2 h3").text(GAMEVOTING.votes + " " + GAMEVOTING.team2);
-        $("#team1votes").text("0");
-        $("#team2votes").text("0");
+        $(".content .t1 p").text(GAMEVOTING.team1Name);
+        $(".content .t1 p").text(GAMEVOTING.team2Name);
+        $("#team1votes").text("00");
+        $("#team2votes").text("00");
         socket.on('time', function(time){
             timeTotal = Math.max(timeTotal, time);
             $(".progress").css("width", Math.round( (time / timeTotal) * 100 ).toString() + "%");
@@ -103,8 +103,12 @@ $(function(){
     }
 
     function updateVotes(votes) {
-        $("#team1votes").text(votes.team1Votes);
-        $("#team2votes").text(votes.team2Votes);
+        var v1 = votes.team1Votes;
+        var v2 = votes.team2Votes;
+        if (v1 < 10) { v1 = "0" + v1;}
+        if (v2 < 10) { v2 = "0" + v2;}
+        $("#team1votes").text(v1);
+        $("#team2votes").text(v2);
     }
 
     function showWinner(winner){
@@ -116,13 +120,12 @@ $(function(){
     }
 
     function showResults(team1Pct, team1Side, team2Pct, team2Side){
-        $("#team1 h3").text(GAMEVOTING.team1);
-        $("#team2 h3").text(GAMEVOTING.team2);
-        $("#team1, #team2 div").css("font-size", "2rem");
+        $(".content h2").css("font-size", "3em")
+                        .css("background-color", "#167003");
         $("#team1votes")
            .text(GAMEVOTING.chose +" "+ team1Pct + "% " + GAMEVOTING[team1Side]);
         $("#team2votes")
            .text(GAMEVOTING.chose +" "+ team2Pct + "% " + GAMEVOTING[team2Side]);
-        $(".team").fadeIn(1500);
+        
     }
 });

@@ -74,16 +74,18 @@ article {
 
 	&#scoreboard {
 		margin-left: 100%;
+		background: url('../images/background.jpg') left bottom no-repeat;
+		background-size: cover;
 
 		&.scoreboard {
 			width: 100%;
 			height: 100%;
 			margin-left: 100%;
-			background-color: #053005;
+			/*background-color: #053005;*/
 			color: white;
 			@extend .push2;
 
-			aside {
+			.countdown{
 				position: fixed;
 				top: 5%;
 				left: 100%;
@@ -114,40 +116,55 @@ article {
 
 			section {
 				position: absolute;
-				width: 45%;
-				height: 70%;
+				width: 30%;
+				height: 90%;
 				text-align: center;
 				color: white;
 				display: table;
+				
 				&.team1 {
 					left: 0;
 					bottom: 0;
-					/*background: transparent url('../img/scorpion.png') left bottom no-repeat;*/
-					background-size: auto 100%;
+					background: transparent url('../images/scorpion.png') left top no-repeat;
+					background-size: auto 80%;
 				} 
+				
 				&.team2 {
 					right: 0;
 					top: 0;
+					background: transparent url('../images/foe.png') right bottom no-repeat;
+					background-size: auto 80%;
 				}
+
 				.content {
+					position: inherit;
+					width: 500px;
 					display: table-cell;
+					vertical-align: text-bottom;
 					background-color: #167003;
-					width: 30%;
-					height: 30%;
-					vertical-align: middle;
-					-webkit-border-radius: 110%;
+					-webkit-border-radius: 100%;
 					-moz-border-radius: 100%;
-					border-radius: 110%;
+					border-radius: 100%;
 					
 					h2 {
-						font-size: 4rem;
+						font-size: 6rem;
 					}
 					
 					p {
-						font-size: 2rem;
-						opacity: 0.5;
+						font-size: 1.5rem;
+						opacity: 0.7;
 						text-transform: uppercase;
-						letter-spacing: 0.5rem;
+						letter-spacing: 0.3rem;
+					}
+
+					&.t1 {
+						bottom: 1%;
+						left: 10%;
+					}
+
+					&.t2 {
+						top: 1%;
+						right: 10%;
 					}
 				}
 			}
