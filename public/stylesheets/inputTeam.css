@@ -1,12 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Bangers);
-@import url(https://fonts.googleapis.com/css?family=Roboto);
 
 body {
-<<<<<<< HEAD
-    background-color: #056100;
-=======
     background-color: #FFFFFF;
->>>>>>> 9ee9330e115c8ec6c6a17e598e32d1a011410752
     /* background-image: url("../images/tennis-pitch.jpg"); */
     background-repeat: no-repeat;
     background-size: cover;
@@ -17,7 +12,7 @@ h1 {
     text-align: center;
     font-weight: 400;
     font-size: 3rem;
-    color: white;
+    color: #000000;
     font-family: 'Bangers', cursive;
 }
 
@@ -25,33 +20,13 @@ h2 {
     width: 100%;
     text-align: center;
     font-weight: 200;
-    font-size: 1.5rem;
-    color: white;
-    font-family: 'Roboto', sans-serif;
-}
-
-#content {
-    width: 100%;
-    display: table;
+    font-size: 2rem;
+    color: #000000;
+    font-family: 'Bangers', cursive;
 }
 
 #swipeArea{
     width: 100%;
-<<<<<<< HEAD
-    height: 20rem;
-    margin: 5px;
-    padding: 5px;
-    background-color: #409141;
-    font-family: 'Roboto', sans-serif;
-    font-size: 1rem;
-    color: white;
-    text-align: center;
-    vertical-align: middle;
-    display: table-cell;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    border-radius: 20px;
-=======
     padding: 20% 0;
     background-color: #009900;
     font-family: Consolas, Menlo, Monaco, monospace;
@@ -62,9 +37,14 @@ h2 {
 
 .box {
     display: table;
->>>>>>> 9ee9330e115c8ec6c6a17e598e32d1a011410752
 }
 
-#swipeArea #tweet {
-    max-width: 25%;
+#content {
+    display: none;
+}
+
+#loading {
+    height: 100%;
+    width: 100%;
+    background-color: red;
 }

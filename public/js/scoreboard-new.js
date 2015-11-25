@@ -43,24 +43,17 @@ $(function(){
     }
 
     function showScores() {
-        var audioBell = new Audio("../sounds/bell.wav");
-        var audioBeep = new Audio("../sounds/beep.wav");
         var timeTotal = 0;
-
-        audioBell.play();
         $("#cover").addClass("bye");
         $("#scoreboard").addClass("scoreboard");
         $("#scoreboard aside").addClass("enterTime");
-        $(".content .t1 p").text(GAMEVOTING.team1Name);
-        $(".content .t1 p").text(GAMEVOTING.team2Name);
-        $("#team1votes").text("00");
-        $("#team2votes").text("00");
+        $("#team1 h3").text(GAMEVOTING.votes + " " + GAMEVOTING.team1);
+        $("#team2 h3").text(GAMEVOTING.votes + " " + GAMEVOTING.team2);
+        $("#team1votes").text("0");
+        $("#team2votes").text("0");
         socket.on('time', function(time){
             timeTotal = Math.max(timeTotal, time);
             $(".progress").css("width", Math.round( (time / timeTotal) * 100 ).toString() + "%");
-            if (time > 0 && time <10) {
-                audioBeep.play();
-            }
         });
     }
 
@@ -75,24 +68,21 @@ $(function(){
         socket.on('finishedTime', function(data){
             var results = JSON.parse(data);
             console.log("FINISH RECIBIDO -- RESULTS: " + results);
-            var audioDrums = new Audio("../sounds/drums.wav");
-            var audioApplause = new Audio("../sounds/applause.wav");
-            var audioEndingBeep = new Audio("../sounds/endingBeep.wav");
+            var audioFemale = new Audio("../sounds/female.wav");
+            var audioBell = new Audio("../sounds/bell.wav");
 
-            audioEndingBeep.play();
+            audioBell.play();
             
-            $(".content t1").fadeOut(2000);
-            $(".content t2").fadeOut(2000);
+            $(".team").fadeOut(1500);
+        	$("#clock").text(GAMEVOTING.endTimeMsg).fadeIn(500);
 
         	setTimeout(function() {
-        		$(".results").text(GAMEVOTING.winningMsg);
-                $(".results").addClass("show");
+        		$("#clock").text(GAMEVOTING.winningMsg);
+        		audioFemale.play();
         	},4000);
         	
             setTimeout(function() {
-        		$(".results").css("opacity", "0");
-                audioDrums.play();
-                $(".results").removeClass("show");
+        		$("#clock").fadeOut("slow");
         	},7000);
 
         	setTimeout(function() {
@@ -100,7 +90,7 @@ $(function(){
         	}, 8500);
         	
             setTimeout(function() {
-        		audioApplause.play();
+        		$("#clock").slideDown(500);
         	},10000);
         	
             setTimeout(function(){
@@ -113,29 +103,26 @@ $(function(){
     }
 
     function updateVotes(votes) {
-        var v1 = votes.team1Votes;
-        var v2 = votes.team2Votes;
-        if (v1 < 10) { v1 = "0" + v1;}
-        if (v2 < 10) { v2 = "0" + v2;}
-        $("#team1votes").text(v1);
-        $("#team2votes").text(v2);
+        $("#team1votes").text(votes.team1Votes);
+        $("#team2votes").text(votes.team2Votes);
     }
 
     function showWinner(winner){
-        $(".results").text(GAMEVOTING[winner])
-                    .addClass("show");
+        $("#clock").css("width", "90%")
+                    .css("font-size", "10rem")
+                    .css("background-color", "#AA0000")
+                    .css("color", "#EEEEEE")
+                    .text(GAMEVOTING[winner]).fadeIn(2000);
     }
 
     function showResults(team1Pct, team1Side, team2Pct, team2Side){
-        $(".content h2").css("font-size", "3em")
-                        .css("background-color", "#167003");
+        $("#team1 h3").text(GAMEVOTING.team1);
+        $("#team2 h3").text(GAMEVOTING.team2);
+        $("#team1, #team2 div").css("font-size", "2rem");
         $("#team1votes")
            .text(GAMEVOTING.chose +" "+ team1Pct + "% " + GAMEVOTING[team1Side]);
         $("#team2votes")
            .text(GAMEVOTING.chose +" "+ team2Pct + "% " + GAMEVOTING[team2Side]);
-        $(".content t1").fadeIn(1000);
-        $(".content t2").fadeIn(1000);
-
-        
+        $(".team").fadeIn(1500);
     }
 });
