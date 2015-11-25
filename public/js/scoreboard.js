@@ -21,7 +21,7 @@ $(function(){
     }
 
     function setLanguage(lang) {
-        language = lang;
+        language = lang.slice(0,2);
         if ( language !== "es" && language !== "en") {
             language = "en";
         }
@@ -41,6 +41,9 @@ $(function(){
     }
 
     function showScores() {
+        var audioBell = new Audio("../sounds/bell.wav");
+        var audioBeep = new Audio("../sounds/beep.wav");
+        audioBell.play();
         $("#instructions").hide();
         $("#team1 h3").text(GAMEVOTING.votes + " " + GAMEVOTING.team1);
         $("#team2 h3").text(GAMEVOTING.votes + " " + GAMEVOTING.team2);
@@ -48,6 +51,9 @@ $(function(){
         $("#team2votes").text("0");
         socket.on('time', function(time){
             $("#clock").text(GAMEVOTING.timeLeftMsg + time.toString() + " " + GAMEVOTING.timeUnit);
+            if (time > 0 && time <=10) {
+                audioBeep.play();
+            }
         });
     }
 
@@ -61,26 +67,26 @@ $(function(){
 
         socket.on('finishedTime', function(data){
             var results = JSON.parse(data);
-            console.log("FINISH RECIBIDO -- RESULTS: " + results);
-            var audioFemale = new Audio("../sounds/female.wav");
-            var audioBell = new Audio("../sounds/bell.wav");
-
-            audioBell.play();
+            var audioDrums = new Audio("../sounds/drums.wav");
+            var audioApplause = new Audio("../sounds/applause.wav");
+            var audioEndingBeep = new Audio("../sounds/endingBeep.wav");
             
+            audioEndingBeep.play();
             $(".team").fadeOut(1500);
         	$("#clock").text(GAMEVOTING.endTimeMsg).fadeIn(500);
 
         	setTimeout(function() {
         		$("#clock").text(GAMEVOTING.winningMsg);
-        		audioFemale.play();
         	},4000);
         	
             setTimeout(function() {
         		$("#clock").fadeOut("slow");
+                audioDrums.play();
         	},7000);
 
         	setTimeout(function() {
                 showWinner(results.winner);
+                audioApplause.play();
         	}, 8500);
         	
             setTimeout(function() {
