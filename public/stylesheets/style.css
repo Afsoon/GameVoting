@@ -17,6 +17,12 @@ body {
   color: black;
   background: white; }
 
+.t, article#scoreboard.scoreboard aside .time .progress {
+  -webkit-transition: 0.2s ease-in;
+  -moz-transition: 0.2s ease-in;
+  -o-transition: 0.2s ease-in;
+  transition: 0.2s ease-in; }
+
 /* variables */
 /* Animations */
 /* Cover bounce */
@@ -199,7 +205,7 @@ article {
       vertical-align: middle;
       /*display: table-row;*/ }
       article.init section .content h1 {
-        font-size: 15em;
+        font-size: 13em;
         font-weight: 400;
         font-family: 'Bangers', cursive;
         display: block;
@@ -212,12 +218,14 @@ article {
       article.init section .content img {
         z-index: -1;
         position: absolute;
-        top: -6%;
-        background-color: transparent; }
+        top: -7%;
+        background-color: transparent;
+        max-width: 600px;
+        max-height: 600px; }
         article.init section .content img#tennisGirl {
-          left: 0; }
+          left: 1%; }
         article.init section .content img#tennisBoy {
-          right: 0; }
+          right: 1%; }
     article.init section .instructions {
       vertical-align: middle;
       font-size: 2em;
@@ -250,6 +258,37 @@ article {
             -webkit-border-radius: 10px;
             -moz-border-radius: 10px;
             border-radius: 10px; }
+      article#scoreboard.scoreboard section {
+        position: absolute;
+        width: 45%;
+        height: 70%;
+        text-align: center;
+        color: white;
+        display: table; }
+        article#scoreboard.scoreboard section.team1 {
+          left: 0;
+          bottom: 0;
+          /*background: transparent url('../img/scorpion.png') left bottom no-repeat;*/
+          background-size: auto 100%; }
+        article#scoreboard.scoreboard section.team2 {
+          right: 0;
+          top: 0; }
+        article#scoreboard.scoreboard section .content {
+          display: table-cell;
+          background-color: #167003;
+          width: 30%;
+          height: 30%;
+          vertical-align: middle;
+          -webkit-border-radius: 110%;
+          -moz-border-radius: 100%;
+          border-radius: 110%; }
+          article#scoreboard.scoreboard section .content h2 {
+            font-size: 4rem; }
+          article#scoreboard.scoreboard section .content p {
+            font-size: 2rem;
+            opacity: 0.5;
+            text-transform: uppercase;
+            letter-spacing: 0.5rem; }
 
 /* reset format */
 /* all fonts */

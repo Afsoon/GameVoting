@@ -24,7 +24,7 @@ article {
 				@extend .boing;
 
 				h1 {	
-					font-size: 15em;
+					font-size: 13em;
 					font-weight: 400;			
 					font-family: 'Bangers', cursive;
 					display: block;
@@ -44,15 +44,17 @@ article {
 				img {
 					z-index: -1;
 					position: absolute;
-					top: -6%;
+					top: -7%;
 					background-color: transparent;
+					max-width: 600px;
+					max-height: 600px;
 
 					&#tennisGirl{
-						left: 0;
+						left: 1%;
 					}
 
 					&#tennisBoy{
-						right: 0;
+						right: 1%;
 					}
 				}
 			}
@@ -101,11 +103,52 @@ article {
 						-webkit-border-radius: 10px;
 						-moz-border-radius: 10px;
 						border-radius: 10px;
+						@extend .t;
 					}
 				}
 
 				&.enterTime {
 					@extend .pushTime;
+				}
+			}
+
+			section {
+				position: absolute;
+				width: 45%;
+				height: 70%;
+				text-align: center;
+				color: white;
+				display: table;
+				&.team1 {
+					left: 0;
+					bottom: 0;
+					/*background: transparent url('../img/scorpion.png') left bottom no-repeat;*/
+					background-size: auto 100%;
+				} 
+				&.team2 {
+					right: 0;
+					top: 0;
+				}
+				.content {
+					display: table-cell;
+					background-color: #167003;
+					width: 30%;
+					height: 30%;
+					vertical-align: middle;
+					-webkit-border-radius: 110%;
+					-moz-border-radius: 100%;
+					border-radius: 110%;
+					
+					h2 {
+						font-size: 4rem;
+					}
+					
+					p {
+						font-size: 2rem;
+						opacity: 0.5;
+						text-transform: uppercase;
+						letter-spacing: 0.5rem;
+					}
 				}
 			}
 		}
