@@ -1,0 +1,160 @@
+/* flas1 */
+
+
+.run {
+	animation: mascota ease 1.2s both;
+	-webkit-animation: mascota ease 1.2s both;
+	-moz-animation: mascota ease 1.2s both;
+	-o-animation: mascota ease  1.2s both;
+}
+
+@-moz-keyframes mascota  {
+	0% { opacity: 0;}
+	40% { transform: translateY(-450px);}
+	60% {  transform: translateY(70px);}
+	80% { transform: translateY(10px);}
+	100% { opacity: 1; transform: translateY(0);}
+}
+
+@-webkit-keyframes mascota  {
+	0% { opacity: 0; }
+	40% { transform: translateY(-450px);}
+	60% {  transform: translateY(70px); }
+	80% { transform: translateY(10px); }
+	100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes mascota  {
+	0% { opacity: 0; }
+	40% { transform: translateY(-450px);}
+	60% {  transform: translateY(70px); }
+	80% { transform: translateY(10px); }
+	100% { opacity: 1; transform: translateY(0); }
+}
+
+.push {
+	animation: all pushAnim ease-in-out 1.2s both;
+	-webkit-animation: pushAnim ease-in-out 1.2s both;
+	-moz-animation: pushAnim ease-in-out 1.2s both;
+	-o-animation: pushAnim ease-in-out  1.2s both;
+}
+
+@-moz-keyframes pushAnim  {
+	0% { opacity: 1;}
+	100% { background-color: white; margin-left: -100%; opacity: 0;}
+}
+
+@-webkit-keyframes pushAnim  {
+	0% { opacity: 1;}
+	100% { margin-left: -100%; opacity: 0;}
+}
+
+@keyframes pushAnim  {
+	0% { opacity: 1;}
+	100% { margin-left: -100%; opacity: 0;}
+}
+
+.push2 {
+	animation: enterArticle ease 0.6s both;
+	-webkit-animation: enterArticle ease 0.6s both;
+	-moz-animation: enterArticle ease 0.6s both;
+	-o-animation: enterArticle ease  0.6s both;	
+}
+
+@-moz-keyframes enterArticle {
+	0%	{opacity: 0;}
+	100% {opacity: 1; background-color: black; }
+}
+
+@-webkit-keyframes enterArticle {
+	0%	{opacity: 0;}
+	100% {opacity: 1; background-color: black; }
+}
+
+@keyframes enterArticle {
+	0%	{opacity: 0;}
+	100% {opacity: 1; background-color: black; }
+}
+
+.appear {
+	animation: appearanim ease-in-out 1.2s both;
+	-webkit-animation: appearanim ease-in-out 1.2s both;
+	-moz-animation: appearanim ease-in-out 1.2s both;
+	-o-animation: appearanim ease-in-out  1.2s both;
+}
+
+@-moz-keyframes appearanim  {
+	0% { opacity: 0;}
+	40% { transform: translateX(-450px);}
+	60% { transform: translateX(70px);}
+	80% { transform: translateX(10px);}
+	100% { opacity: 1; transform: translateX(0);}
+}
+
+@-webkit-keyframes appearanim  {
+	0% { opacity: 0; }
+	40% { transform: translateX(-450px);}
+	60% {  transform: translateX(70px); }
+	80% { transform: translateX(10px); }
+	100% { opacity: 1; transform: translateX(0); }
+}
+
+
+.run_inverse {
+	animation: mascota_inverse ease 1.2s both;
+	-webkit-animation: mascota_inverse ease 1.2s both;
+	-moz-animation: mascota_inverse ease 1.2s both;
+	-o-animation: mascota_inverse ease  1.2s both;
+}
+
+@-moz-keyframes mascota_inverse  {
+	0% { opacity: 0;}
+	40% { transform: translateY(450px);}
+	60% {  transform: translateY(-70px);}
+	80% { transform: translateY(10px);}
+	100% { opacity: 1; transform: translateY(0);}
+}
+
+@-webkit-keyframes mascota_inverse  {
+	0% { opacity: 0; }
+	40% { transform: translateY(450px);}
+	60% {  transform: translateY(-70px); }
+	80% { transform: translateY(10px); }
+	100% { opacity: 1; transform: translateY(0); }
+}
+
+
+@keyframes mascota_inverse  {
+	0% { opacity: 0; }
+	40% { transform: translateY(450px);}
+	60% {  transform: translateY(-70px); }
+	80% { transform: translateY(10px); }
+	100% { opacity: 1; transform: translateY(0); }
+}
+
+.dissapear {
+	animation: dissapear ease-in-out 1s both;
+	-webkit-animation: dissapear ease-in-out 1s both;
+	-moz-animation: dissapear ease-in-out 1s both;
+	-o-animation: dissapear ease-in-out  1s both;
+}
+
+@-moz-keyframes dissapear  {
+	0% { opacity: 1; transform: translateX(0px);}
+	60% {  transform: translateX(70px);}
+	100% { opacity: 0; transform: translateX(150px);}
+
+}
+
+@-webkit-keyframes dissapear  {
+	0% { opacity: 1; transform: translateX(0px); }
+	60% {  transform: translateX(-70px);}
+	100% { opacity: 0; transform: translateX(450px); }
+}
+
+
+@keyframes dissapear  {
+	0% { opacity: 1; transform: translateX(0px); }
+	60% {  transform: translateX(-70px);}
+	100% { opacity: 0; transform: translateX(450px); }
+}

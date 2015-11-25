@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Marcador</title>
+    
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+    <script src="vendor/jquery-2.1.4.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/scoreboard-new.js"></script>
+</head>
+<body>
+    <div id="container">
+    <article class="init" id="cover">
+        <section>
+            <div class="content">
+                <h1 id="gameVoting">#Gamevoting</h1>
+                <h2 id="subtitle">Entra en <b>gamevoting.me</b> en el navegador de tu dispositivo para jugar</h2>
+                <img src="images/tennisGirl.png" id="tennisGirl">
+                <img src="images/tennisBoy.png" id="tennisBoy">
+            </div>
+            <br/>
+            <div id="instructions"><ul></ul></div>
+        </section>
+    </article>
+    
+    <article class="" id="scoreboard">
+        <section class="team1">
+            <div class="content">
+                <h2>00</h2>
+                <p>Equipo de saque</p>
+            </div>
+        </section>
+        
+        <section class="team2">
+            <div class="content">
+                <h2>00</h2>
+                <p>Equipo receptor</p>
+            </div>
+        </section>
+        
+        <aside>
+            <div class="time">
+                <div style="width: 100%;" class="progress">
+                </div>
+            </div><!-- time -->
+        </aside>
+    </article>   
+    </div> 
+</body>
+</html>

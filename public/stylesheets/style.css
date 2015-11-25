@@ -1,8 +1,296 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+/* all css */
+/* reset */
+@import url(https://fonts.googleapis.com/css?family=Bangers);
+section, article, figure, header {
+  display: block; }
 
-a {
-  color: #00B7FF;
-}
+body, h1, h2, h3, h4, h5, h6, ul {
+  margin: 0;
+  padding: 0; }
+
+/* general */
+html, body, article, section {
+  height: 100%; }
+
+body {
+  font-family: 'Roboto', sans-serif;
+  color: black;
+  background: white; }
+
+.t, article#scoreboard.scoreboard aside .time .progress {
+  -webkit-transition: 0.2s ease-in;
+  -moz-transition: 0.2s ease-in;
+  -o-transition: 0.2s ease-in;
+  transition: 0.2s ease-in; }
+
+/* variables */
+/* Animations */
+/* Cover bounce */
+.boing, article.init section .content, article.init section .instructions {
+  animation: bounce ease 2s both;
+  -webkit-animation: bounce ease 2s both;
+  -moz-animation: bounce ease 2s both;
+  -o-animation: bounce ease  2s both; }
+
+@-moz-keyframes bounce {
+  0% {
+    opacity: 0;
+    transform: translateX(500px); }
+  40% {
+    transform: translateX(-250px); }
+  60% {
+    transform: translateX(100px); }
+  80% {
+    transform: translateX(-30px); }
+  100% {
+    opacity: 1;
+    transform: translateX(0); } }
+@-webkit-keyframes bounce {
+  0% {
+    opacity: 0;
+    transform: translateX(500px); }
+  40% {
+    transform: translateX(-250px); }
+  60% {
+    transform: translateX(100px); }
+  80% {
+    transform: translateX(-30px); }
+  100% {
+    opacity: 1;
+    transform: translateX(0); } }
+@keyframes bounce {
+  0% {
+    opacity: 0;
+    transform: translateX(500px); }
+  40% {
+    transform: translateX(-250px); }
+  60% {
+    transform: translateX(100px); }
+  80% {
+    transform: translateX(-30px); }
+  100% {
+    opacity: 1;
+    transform: translateX(0); } }
+/* Title transform */
+.title, article.init section .content h1.instructions {
+  animation: moveTitle ease-in 1.2s both;
+  -webkit-animation: moveTitle ease-in 1.2s both;
+  -moz-animation: moveTitle ease-in 1.2s both;
+  -o-animation: moveTitle ease  1.2s both; }
+
+@-moz-keyframes moveTitle {
+  0% {
+    font-size: 15em;
+    opacity: 1; }
+  50% {
+    opacity: 0.5;
+    color: grey; }
+  100% {
+    font-size: 10em;
+    opacity: 1;
+    margin-top: 5%; } }
+@-webkit-keyframes moveTitle {
+  0% {
+    font-size: 15em;
+    opacity: 1; }
+  50% {
+    opacity: 0.5;
+    color: grey; }
+  100% {
+    font-size: 10em;
+    opacity: 1;
+    margin-top: 5%; } }
+@keyframes moveTitle {
+  0% {
+    font-size: 15em;
+    opacity: 1; }
+  50% {
+    opacity: 0.5;
+    color: grey; }
+  100% {
+    font-size: 10em;
+    opacity: 1;
+    margin-top: 5%; } }
+/* First article pushed away */
+.push, article.bye {
+  animation: pushArticle ease-in 1.2s both;
+  -webkit-animation: pushArticle ease-in 1.2s both;
+  -moz-animation: pushArticle ease-in 1.2s both;
+  -o-animation: pushArticle ease  1.2s both; }
+
+@-moz-keyframes pushArticle {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 0;
+    margin-left: -100%; } }
+@-webkit-keyframes pushArticle {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 0;
+    margin-left: -100%; } }
+@keyframes pushArticle {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 0;
+    margin-left: -100%; } }
+/* Second article enters */
+.push2, article#scoreboard.scoreboard {
+  animation: enterArticle ease-in 1.2s both;
+  -webkit-animation: enterArticle ease-in 1.2s both;
+  -moz-animation: enterArticle ease-in 1.2s both;
+  -o-animation: enterArticle ease  1.2s both; }
+
+@-moz-keyframes enterArticle {
+  0% {
+    opacity: 0.5; }
+  100% {
+    opacity: 1;
+    margin-left: 0%; } }
+@-webkit-keyframes enterArticle {
+  0% {
+    opacity: 0.5; }
+  100% {
+    opacity: 1;
+    margin-left: 0%; } }
+@keyframes enterArticle {
+  0% {
+    opacity: 0.5; }
+  100% {
+    opacity: 1;
+    margin-left: 0%; } }
+.pushTime, article#scoreboard.scoreboard aside.enterTime {
+  animation: enterTime ease-in 1.2s both;
+  -webkit-animation: enterTime ease-in 1.2s both;
+  -moz-animation: enterTime ease-in 1.2s both;
+  -o-animation: enterTime ease  1.2s both; }
+
+@-moz-keyframes enterTime {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1;
+    left: 5%; } }
+@-webkit-keyframes enterTime {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1;
+    left: 5%; } }
+@keyframes enterTime {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1;
+    left: 5%; } }
+/* reset format */
+/* Front-end style */
+.container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden; }
+
+article {
+  width: 100%;
+  height: 100%;
+  position: absolute; }
+  article.init section {
+    width: 100%;
+    color: black;
+    display: table;
+    text-align: center; }
+    article.init section .content {
+      vertical-align: middle;
+      /*display: table-row;*/ }
+      article.init section .content h1 {
+        font-size: 13em;
+        font-weight: 400;
+        font-family: 'Bangers', cursive;
+        display: block;
+        width: 100%;
+        margin-top: 15%;
+        text-align: center; }
+      article.init section .content h2 {
+        font-size: 2em;
+        font-weight: 200; }
+      article.init section .content img {
+        z-index: -1;
+        position: absolute;
+        top: -7%;
+        background-color: transparent;
+        max-width: 600px;
+        max-height: 600px; }
+        article.init section .content img#tennisGirl {
+          left: 1%; }
+        article.init section .content img#tennisBoy {
+          right: 1%; }
+    article.init section .instructions {
+      vertical-align: middle;
+      font-size: 2em;
+      margin-top: 5%; }
+  article#scoreboard {
+    margin-left: 100%; }
+    article#scoreboard.scoreboard {
+      width: 100%;
+      height: 100%;
+      margin-left: 100%;
+      background-color: #053005;
+      color: white; }
+      article#scoreboard.scoreboard aside {
+        position: fixed;
+        top: 5%;
+        left: 100%;
+        width: 40%;
+        height: 10%; }
+        article#scoreboard.scoreboard aside .time {
+          width: 100%;
+          height: 40px;
+          position: relative;
+          background: #C41212;
+          -webkit-border-radius: 10px;
+          -moz-border-radius: 10px;
+          border-radius: 10px; }
+          article#scoreboard.scoreboard aside .time .progress {
+            height: 100%;
+            background: #FFEA00;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px; }
+      article#scoreboard.scoreboard section {
+        position: absolute;
+        width: 45%;
+        height: 70%;
+        text-align: center;
+        color: white;
+        display: table; }
+        article#scoreboard.scoreboard section.team1 {
+          left: 0;
+          bottom: 0;
+          /*background: transparent url('../img/scorpion.png') left bottom no-repeat;*/
+          background-size: auto 100%; }
+        article#scoreboard.scoreboard section.team2 {
+          right: 0;
+          top: 0; }
+        article#scoreboard.scoreboard section .content {
+          display: table-cell;
+          background-color: #167003;
+          width: 30%;
+          height: 30%;
+          vertical-align: middle;
+          -webkit-border-radius: 110%;
+          -moz-border-radius: 100%;
+          border-radius: 110%; }
+          article#scoreboard.scoreboard section .content h2 {
+            font-size: 4rem; }
+          article#scoreboard.scoreboard section .content p {
+            font-size: 2rem;
+            opacity: 0.5;
+            text-transform: uppercase;
+            letter-spacing: 0.5rem; }
+
+/* reset format */
+/* all fonts */
+
+/*# sourceMappingURL=style.css.map */

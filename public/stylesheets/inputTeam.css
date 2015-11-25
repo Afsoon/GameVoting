@@ -2,7 +2,11 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto);
 
 body {
+<<<<<<< HEAD
     background-color: #056100;
+=======
+    background-color: #FFFFFF;
+>>>>>>> 9ee9330e115c8ec6c6a17e598e32d1a011410752
     /* background-image: url("../images/tennis-pitch.jpg"); */
     background-repeat: no-repeat;
     background-size: cover;
@@ -33,6 +37,7 @@ h2 {
 
 #swipeArea{
     width: 100%;
+<<<<<<< HEAD
     height: 20rem;
     margin: 5px;
     padding: 5px;
@@ -46,6 +51,18 @@ h2 {
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
     border-radius: 20px;
+=======
+    padding: 20% 0;
+    background-color: #009900;
+    font-family: Consolas, Menlo, Monaco, monospace;
+    font-size: 1rem;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+.box {
+    display: table;
+>>>>>>> 9ee9330e115c8ec6c6a17e598e32d1a011410752
 }
 
 #swipeArea #tweet {

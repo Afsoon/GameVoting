@@ -1,0 +1,129 @@
+/* Animations */
+
+/* Cover bounce */
+
+.boing {
+	animation: bounce ease 2s both;
+	-webkit-animation: bounce ease 2s both;
+	-moz-animation: bounce ease 2s both;
+	-o-animation: bounce ease  2s both;
+}
+
+@-moz-keyframes bounce  {
+	0% { opacity: 0; transform: translateX(500px); }
+	40% { transform: translateX(-250px);}
+	60% { transform: translateX(100px); }
+	80% { transform: translateX(-30px); }
+	100% { opacity: 1; transform: translateX(0); }
+}
+
+@-webkit-keyframes bounce  {
+	0% { opacity: 0; transform: translateX(500px); }
+	40% { transform: translateX(-250px);}
+	60% { transform: translateX(100px); }
+	80% { transform: translateX(-30px); }
+	100% { opacity: 1; transform: translateX(0); }
+}
+
+
+@keyframes bounce  {
+	0% { opacity: 0; transform: translateX(500px); }
+	40% { transform: translateX(-250px);}
+	60% { transform: translateX(100px); }
+	80% { transform: translateX(-30px); }
+	100% { opacity: 1; transform: translateX(0); }
+}
+
+/* Title transform */
+.title {
+	animation: moveTitle ease-in 1.2s both;
+	-webkit-animation: moveTitle ease-in 1.2s both;
+	-moz-animation: moveTitle ease-in 1.2s both;
+	-o-animation: moveTitle ease  1.2s both;	
+}
+
+@-moz-keyframes moveTitle {
+	0%	{font-size: 15em; opacity: 1;}
+	50%	{opacity: 0.5; color: grey;}
+	100% {font-size: 10em; opacity: 1; margin-top: 5%;}
+}
+
+@-webkit-keyframes moveTitle {
+	0%	{font-size: 15em; opacity: 1;}
+	50%	{opacity: 0.5; color: grey;}
+	100% {font-size: 10em; opacity: 1; margin-top: 5%;}
+}
+
+@keyframes moveTitle {
+	0%	{font-size: 15em; opacity: 1;}
+	50%	{opacity: 0.5; color: grey;}
+	100% {font-size: 10em; opacity: 1; margin-top: 5%;}
+}
+
+/* First article pushed away */
+.push {
+	animation: pushArticle ease-in 1.2s both;
+	-webkit-animation: pushArticle ease-in 1.2s both;
+	-moz-animation: pushArticle ease-in 1.2s both;
+	-o-animation: pushArticle ease  1.2s both;	
+}
+
+@-moz-keyframes pushArticle {
+	0%	{opacity: 1;}
+	100% {opacity: 0; margin-left: -100%;}
+}
+
+@-webkit-keyframes pushArticle {
+	0%	{opacity: 1;}
+	100% {opacity: 0; margin-left: -100%;}
+}
+
+@keyframes pushArticle {
+	0%	{opacity: 1;}
+	100% {opacity: 0; margin-left: -100%;}
+}
+
+/* Second article enters */
+.push2 {
+	animation: enterArticle ease-in 1.2s both;
+	-webkit-animation: enterArticle ease-in 1.2s both;
+	-moz-animation: enterArticle ease-in 1.2s both;
+	-o-animation: enterArticle ease  1.2s both;	
+}
+
+@-moz-keyframes enterArticle {
+	0%	{opacity: 0.5;}
+	100% {opacity: 1; margin-left: 0%;}
+}
+
+@-webkit-keyframes enterArticle {
+	0%	{opacity: 0.5;}
+	100% {opacity: 1; margin-left: 0%;}
+}
+
+@keyframes enterArticle {
+	0%	{opacity: 0.5;}
+	100% {opacity: 1; margin-left: 0%;}
+}
+
+.pushTime {
+	animation: enterTime ease-in 1.2s both;
+	-webkit-animation: enterTime ease-in 1.2s both;
+	-moz-animation: enterTime ease-in 1.2s both;
+	-o-animation: enterTime ease  1.2s both;
+}
+
+@-moz-keyframes enterTime {
+	0%	{opacity: 0;}
+	100% {opacity: 1; left: 5%;}
+}
+
+@-webkit-keyframes enterTime {
+	0%	{opacity: 0;}
+	100% {opacity: 1; left: 5%;}
+}
+
+@keyframes enterTime {
+	0%	{opacity: 0;}
+	100% {opacity: 1; left: 5%;}
+}

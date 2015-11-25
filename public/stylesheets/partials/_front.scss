@@ -1,0 +1,156 @@
+/* Front-end style */
+
+.container{
+	width: 100%;
+	height: 100%;
+	overflow: hidden;	
+}
+
+article {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+
+	&.init{
+		section {
+			width: 100%;		
+			color: black;
+			display: table;
+			text-align: center;
+
+			.content{
+				vertical-align: middle;
+				/*display: table-row;*/
+				@extend .boing;
+
+				h1 {	
+					font-size: 13em;
+					font-weight: 400;			
+					font-family: 'Bangers', cursive;
+					display: block;
+					width: 100%;
+					margin-top: 15%;
+					text-align: center;
+					&.instructions{
+						@extend .title;
+					}
+				}
+
+				h2 {
+					font-size: 2em;
+					font-weight: 200;
+				}
+
+				img {
+					z-index: -1;
+					position: absolute;
+					top: -7%;
+					background-color: transparent;
+					max-width: 600px;
+					max-height: 600px;
+
+					&#tennisGirl{
+						left: 1%;
+					}
+
+					&#tennisBoy{
+						right: 1%;
+					}
+				}
+			}
+
+			.instructions{
+				vertical-align: middle;
+				font-size: 2em;
+				margin-top: 5%;
+				@extend .boing;
+			}
+		}
+	}
+
+	&.bye{
+		@extend .push;
+	}
+
+	&#scoreboard {
+		margin-left: 100%;
+
+		&.scoreboard {
+			width: 100%;
+			height: 100%;
+			margin-left: 100%;
+			background-color: #053005;
+			color: white;
+			@extend .push2;
+
+			aside {
+				position: fixed;
+				top: 5%;
+				left: 100%;
+				width: 40%;
+				height: 10%;
+				.time {
+					width: 100%;
+					height: 40px;
+					position: relative;
+					background: #C41212;
+					-webkit-border-radius: 10px;
+					-moz-border-radius: 10px;
+					border-radius: 10px;
+					.progress {
+						height: 100%;
+						background: #FFEA00;
+						-webkit-border-radius: 10px;
+						-moz-border-radius: 10px;
+						border-radius: 10px;
+						@extend .t;
+					}
+				}
+
+				&.enterTime {
+					@extend .pushTime;
+				}
+			}
+
+			section {
+				position: absolute;
+				width: 45%;
+				height: 70%;
+				text-align: center;
+				color: white;
+				display: table;
+				&.team1 {
+					left: 0;
+					bottom: 0;
+					/*background: transparent url('../img/scorpion.png') left bottom no-repeat;*/
+					background-size: auto 100%;
+				} 
+				&.team2 {
+					right: 0;
+					top: 0;
+				}
+				.content {
+					display: table-cell;
+					background-color: #167003;
+					width: 30%;
+					height: 30%;
+					vertical-align: middle;
+					-webkit-border-radius: 110%;
+					-moz-border-radius: 100%;
+					border-radius: 110%;
+					
+					h2 {
+						font-size: 4rem;
+					}
+					
+					p {
+						font-size: 2rem;
+						opacity: 0.5;
+						text-transform: uppercase;
+						letter-spacing: 0.5rem;
+					}
+				}
+			}
+		}
+	}
+}
