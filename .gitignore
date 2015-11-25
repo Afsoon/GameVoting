@@ -4,3 +4,4 @@
 /public/.sass-cache/**/*
 /public/stylesheets/clientAnimation/index.css.map
 /public/stylesheets/style.css.map
+gulpfile.js

@@ -33,7 +33,7 @@
 }
 
 .push {
-	animation: pushAnim ease-in-out 1.2s both;
+	animation: all pushAnim ease-in-out 1.2s both;
 	-webkit-animation: pushAnim ease-in-out 1.2s both;
 	-moz-animation: pushAnim ease-in-out 1.2s both;
 	-o-animation: pushAnim ease-in-out  1.2s both;
@@ -63,17 +63,17 @@
 
 @-moz-keyframes enterArticle {
 	0%	{opacity: 0;}
-	100% {opacity: 1; background-color: #00FF12; }
+	100% {opacity: 1; background-color: black; }
 }
 
 @-webkit-keyframes enterArticle {
 	0%	{opacity: 0;}
-	100% {opacity: 1; background-color: #00FF12; }
+	100% {opacity: 1; background-color: black; }
 }
 
 @keyframes enterArticle {
 	0%	{opacity: 0;}
-	100% {opacity: 1; background-color: #00FF12; }
+	100% {opacity: 1; background-color: black; }
 }
 
 .appear {
