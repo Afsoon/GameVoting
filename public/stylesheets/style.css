@@ -301,6 +301,50 @@ article {
             right: 10%; }
 
 /* reset format */
+/* animation */
+.slide-effect, aside.slide-2 {
+  animation: plash ease 4s both;
+  -webkit-animation: plash ease 4s both;
+  -moz-animation: plash ease 4s both;
+  -o-animation: plash ease  4s both; }
+
+@-webkit-keyframes plash {
+  100% {
+    right: 0; } }
+.slide-effect-2, aside.slide-1 {
+  animation: replash ease 4s both;
+  -webkit-animation: replash ease 4s both;
+  -moz-animation: replash ease 4s both;
+  -o-animation: replash ease  4s both; }
+
+@-webkit-keyframes replash {
+  100% {
+    right: -100%; } }
+/* structure */
+aside {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  display: table; }
+  aside.slide-1 {
+    top: 0;
+    right: 0;
+    background: #e4ff00;
+    z-index: 1;
+    /* effecto 1 */ }
+  aside.slide-2 {
+    top: 0;
+    right: 100%;
+    background: #9000ff;
+    z-index: 2;
+    /* effecto 1 */ }
+  aside h2 {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 4rem; }
+
+/* reset format */
 /* all fonts */
 
 /*# sourceMappingURL=style.css.map */
