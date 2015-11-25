@@ -1,0 +1,52 @@
+/* reset */
+
+section, article, figure, header {
+	display: block;
+}
+
+body, h1, h2, h3, h4, h5, h6, ul {
+  margin: 0;
+  padding: 0;       
+}  
+
+.t {
+  -webkit-transition: 0.2s ease-in;
+  -moz-transition: 0.2s ease-in;
+  -o-transition: 0.2s ease-in;
+  transition: 0.2s ease-in;
+}                        
+
+ul {
+  list-style-type: none;
+}              
+
+/* general */      
+
+html, body, article, section {
+  height: 100%;
+}
+
+body {      
+  font-size: 62.5%;
+  font-family: 'Roboto', sans-serif;
+  color: black;
+  background: white;
+}
+
+/* mixins SASS */
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  -o-border-radius: $radius;
+  border-radius: $radius;
+}
+
+.rad_small {
+  @include border-radius(4px);
+}
+
+.circle {
+  @include border-radius(100%);
+}
