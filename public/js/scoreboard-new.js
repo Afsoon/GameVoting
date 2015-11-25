@@ -42,28 +42,6 @@ $(function(){
         return string.slice(0, prefix.length) == prefix;
     }
 
-    function showScores() {
-        var audioBell = new Audio("../sounds/bell.wav");
-        var audioBeep = new Audio("../sounds/beep.wav");
-        var timeTotal = 0;
-
-        audioBell.play();
-        $("#cover").addClass("bye");
-        $("#scoreboard").addClass("scoreboard");
-        $("#scoreboard aside").addClass("enterTime");
-        $(".content .t1 p").text(GAMEVOTING.team1Name);
-        $(".content .t1 p").text(GAMEVOTING.team2Name);
-        $("#team1votes").text("00");
-        $("#team2votes").text("00");
-        socket.on('time', function(time){
-            timeTotal = Math.max(timeTotal, time);
-            $(".progress").css("width", Math.round( (time / timeTotal) * 100 ).toString() + "%");
-            if (time > 0 && time <10) {
-                audioBeep.play();
-            }
-        });
-    }
-
     function initApp(){
         showScores();
 
@@ -112,6 +90,28 @@ $(function(){
         });
     }
 
+    function showScores() {
+        var audioBell = new Audio("../sounds/bell.wav");
+        var audioBeep = new Audio("../sounds/beep.wav");
+        var timeTotal = 0;
+
+        audioBell.play();
+        $("#cover").addClass("bye");
+        $("#scoreboard").addClass("scoreboard");
+        $("#scoreboard aside").addClass("enterTime");
+        $("#t1Name").text(GAMEVOTING.team1);
+        $("#t2Name").text(GAMEVOTING.team2);
+        $("#team1votes").text("00");
+        $("#team2votes").text("00");
+        socket.on('time', function(time){
+            timeTotal = Math.max(timeTotal, time);
+            $(".progress").css("width", Math.round( (time / timeTotal) * 100 ).toString() + "%");
+            if (time > 0 && time <8) {
+                audioBeep.play();
+            }
+        });
+    }
+
     function updateVotes(votes) {
         var v1 = votes.team1Votes;
         var v2 = votes.team2Votes;
@@ -123,6 +123,7 @@ $(function(){
 
     function showWinner(winner){
         $(".results").text(GAMEVOTING[winner])
+                    .css("font-size", "7em")
                     .addClass("show");
     }
 
@@ -134,8 +135,6 @@ $(function(){
         $("#team2votes")
            .text(GAMEVOTING.chose +" "+ team2Pct + "% " + GAMEVOTING[team2Side]);
         $(".content t1").fadeIn(1000);
-        $(".content t2").fadeIn(1000);
-
-        
+        $(".content t2").fadeIn(1000);        
     }
 });
