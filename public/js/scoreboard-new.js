@@ -43,7 +43,11 @@ $(function(){
     }
 
     function showScores() {
+        var audioBell = new Audio("../sounds/bell.wav");
+        var audioBeep = new Audio("../sounds/beep.wav");
         var timeTotal = 0;
+
+        audioBell.play();
         $("#cover").addClass("bye");
         $("#scoreboard").addClass("scoreboard");
         $("#scoreboard aside").addClass("enterTime");
@@ -54,6 +58,9 @@ $(function(){
         socket.on('time', function(time){
             timeTotal = Math.max(timeTotal, time);
             $(".progress").css("width", Math.round( (time / timeTotal) * 100 ).toString() + "%");
+            if (time > 0 && time <10) {
+                audioBeep.play();
+            }
         });
     }
 
@@ -68,21 +75,24 @@ $(function(){
         socket.on('finishedTime', function(data){
             var results = JSON.parse(data);
             console.log("FINISH RECIBIDO -- RESULTS: " + results);
-            var audioFemale = new Audio("../sounds/female.wav");
-            var audioBell = new Audio("../sounds/bell.wav");
+            var audioDrums = new Audio("../sounds/drums.wav");
+            var audioApplause = new Audio("../sounds/applause.wav");
+            var audioEndingBeep = new Audio("../sounds/endingBeep.wav");
 
-            audioBell.play();
+            audioEndingBeep.play();
             
-            $(".team").fadeOut(1500);
-        	$("#clock").text(GAMEVOTING.endTimeMsg).fadeIn(500);
+            $(".content t1").fadeOut(2000);
+            $(".content t2").fadeOut(2000);
 
         	setTimeout(function() {
-        		$("#clock").text(GAMEVOTING.winningMsg);
-        		audioFemale.play();
+        		$(".results").text(GAMEVOTING.winningMsg);
+                $(".results").addClass("show");
         	},4000);
         	
             setTimeout(function() {
-        		$("#clock").fadeOut("slow");
+        		$(".results").css("opacity", "0");
+                audioDrums.play();
+                $(".results").removeClass("show");
         	},7000);
 
         	setTimeout(function() {
@@ -90,7 +100,7 @@ $(function(){
         	}, 8500);
         	
             setTimeout(function() {
-        		$("#clock").slideDown(500);
+        		audioApplause.play();
         	},10000);
         	
             setTimeout(function(){
@@ -112,11 +122,8 @@ $(function(){
     }
 
     function showWinner(winner){
-        $("#clock").css("width", "90%")
-                    .css("font-size", "10rem")
-                    .css("background-color", "#AA0000")
-                    .css("color", "#EEEEEE")
-                    .text(GAMEVOTING[winner]).fadeIn(2000);
+        $(".results").text(GAMEVOTING[winner])
+                    .addClass("show");
     }
 
     function showResults(team1Pct, team1Side, team2Pct, team2Side){
@@ -126,6 +133,9 @@ $(function(){
            .text(GAMEVOTING.chose +" "+ team1Pct + "% " + GAMEVOTING[team1Side]);
         $("#team2votes")
            .text(GAMEVOTING.chose +" "+ team2Pct + "% " + GAMEVOTING[team2Side]);
+        $(".content t1").fadeIn(1000);
+        $(".content t2").fadeIn(1000);
+
         
     }
 });

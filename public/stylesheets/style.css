@@ -1,6 +1,7 @@
 /* all css */
 /* reset */
 @import url(https://fonts.googleapis.com/css?family=Bangers);
+@import url(https://fonts.googleapis.com/css?family=Krona+One);
 section, article, figure, header {
   display: block; }
 
@@ -26,7 +27,7 @@ body {
 /* variables */
 /* Animations */
 /* Cover bounce */
-.boing, article.init section .content, article.init section .instructions {
+.boing, article.init section .content, article.init section .instructions, article#scoreboard.scoreboard .results.show {
   animation: bounce ease 2s both;
   -webkit-animation: bounce ease 2s both;
   -moz-animation: bounce ease 2s both;
@@ -260,6 +261,16 @@ article {
             -webkit-border-radius: 10px;
             -moz-border-radius: 10px;
             border-radius: 10px; }
+      article#scoreboard.scoreboard .results {
+        position: fixed;
+        top: 45%;
+        width: 100%;
+        height: 10%;
+        font-family: 'Krona One', sans-serif;
+        font-size: 5em;
+        text-shadow: 1px 2px 2px #222;
+        text-align: center;
+        opacity: 0; }
       article#scoreboard.scoreboard section {
         position: absolute;
         width: 30%;
