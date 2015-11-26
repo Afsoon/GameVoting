@@ -11,10 +11,20 @@ body {
 h1 {
     width: 100%;
     text-align: center;
-    font-size: 15em;
+    font-size: 14em;
     font-weight: 400;
     color: #000000;
     font-family: 'Bangers', cursive;
+}
+
+h2 {
+    width: 100%;
+    text-align: center;
+    font-size: 3em;
+    font-weight: 400;
+    color: black;
+    opacity: 0.6;
+    font-family: 'Roboto', sans-serif;
 }
 
 h3 {
