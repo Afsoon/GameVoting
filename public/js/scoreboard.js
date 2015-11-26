@@ -29,6 +29,7 @@ $(function(){
 
     function showInstructions() {
         $("h1").css("font-size", "7rem");
+        $("h2").fadeOut(500);
         for(var i in GAMEVOTING){
             if(startsWith(i, "instruction")) {
                 $("#instructions").append("· " + GAMEVOTING[i] + "<br><br>");        
