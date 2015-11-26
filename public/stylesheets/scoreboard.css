@@ -15,6 +15,10 @@ h1 {
     font-weight: 400;
     color: #000000;
     font-family: 'Bangers', cursive;
+    -webkit-transition: 0.2s ease-in;
+    -moz-transition: 0.2s ease-in;
+    -o-transition: 0.2s ease-in;
+    transition: 0.2s ease-in;
 }
 
 h2 {
