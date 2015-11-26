@@ -10,8 +10,8 @@ setTimeout(function(){
 }, 2000);
 
 setTimeout(function () {
-    $("#article").addClass('goGame');
-    $("#juego").addClass('middle');
+    $("#article").addClass('gone');
+    $("#juego").addClass('slide-2');
 }, 7000);
 /**
  setTimeout(function () {
@@ -24,9 +24,11 @@ setTimeout(function () {
 }, 9000);**/
 
 setTimeout(function () {
-    $("#instr").append("<h2 id=\"textInfo\">Desliza el dedo sobre la pantalla</h2>");
-    $("#option").append("<h3 id=\"arrowLeft\"> > </h3>");
-}, 9000);
+    $("#info").append("<h2>Desliza el dedo sobre la pantalla</h2>");
+    $("#arrow").append("<h3> > </h3>");
+    $("#info").addClass('up');
+    $("#arrow").addClass('down');
+}, 12000);
 /**
  setTimeout(function () {
 	$("#article").removeClass('init');

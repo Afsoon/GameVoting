@@ -85,7 +85,7 @@ body {
   100% {
     opacity: 1;
     transform: translateY(0); } }
-.push, .goGame {
+.push {
   animation: all pushAnim ease-in-out 1.2s both;
   -webkit-animation: pushAnim ease-in-out 1.2s both;
   -moz-animation: pushAnim ease-in-out 1.2s both;
@@ -110,7 +110,7 @@ body {
   100% {
     margin-left: -100%;
     opacity: 0; } }
-.push2, .middle {
+.push2 {
   animation: enterArticle ease 0.6s both;
   -webkit-animation: enterArticle ease 0.6s both;
   -moz-animation: enterArticle ease 0.6s both;
@@ -134,7 +134,7 @@ body {
   100% {
     opacity: 1;
     background-color: black; } }
-.appear, .middle section .content h2, .middle section .content h3 {
+.appear, aside.slide-2 section.up h2, aside.slide-2 section.down h3 {
   animation: appearanim ease-in-out 1.2s both;
   -webkit-animation: appearanim ease-in-out 1.2s both;
   -moz-animation: appearanim ease-in-out 1.2s both;
@@ -164,7 +164,7 @@ body {
   100% {
     opacity: 1;
     transform: translateX(0); } }
-.run_inverse, .init section {
+.run_inverse, aside.slide-1 section, aside.slide-2 section {
   animation: mascota_inverse ease 1.2s both;
   -webkit-animation: mascota_inverse ease 1.2s both;
   -moz-animation: mascota_inverse ease 1.2s both;
@@ -206,7 +206,7 @@ body {
   100% {
     opacity: 1;
     transform: translateY(0); } }
-.dissapear, .init section.instruction h2.none, .init section.game h2.none {
+.dissapear, aside.slide-1 section.instruction h2.none, aside.slide-1 section.game h2.none {
   animation: dissapear ease-in-out 1s both;
   -webkit-animation: dissapear ease-in-out 1s both;
   -moz-animation: dissapear ease-in-out 1s both;
@@ -259,80 +259,105 @@ header {
     width: 10%;
     float: right; }
 
-.inner {
+.slide-effect, aside.slide-2 {
+  animation: plash ease 1s both;
+  -webkit-animation: plash ease 1s both;
+  -moz-animation: plash ease 1s both;
+  -o-animation: plash ease  1s both; }
+
+@-webkit-keyframes plash {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1;
+    right: 0; } }
+.slide-effect-2, aside.slide-1.gone {
+  animation: replash ease 1s both;
+  -webkit-animation: replash ease 1s both;
+  -moz-animation: replash ease 1s both;
+  -o-animation: replash ease  1s both; }
+
+@-webkit-keyframes replash {
+  100% {
+    right: -100%; } }
+aside {
   width: 100%;
   height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  margin-bottom: 0px;
-  overflow: hidden; }
-
-.overflow {
-  width: 200%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  overflow-y: hidden;
-  -webkit-transition: all 0.3s ease-in-out;
-  -moz-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out; }
-
-.init {
-  width: 50%;
-  height: 100%;
-  position: absolute;
-  background-color: black; }
-  .init section {
+  position: fixed;
+  display: table; }
+  aside.slide-1 {
+    top: 0;
+    right: 0;
+    background: black;
+    z-index: 1; }
+    aside.slide-1.gone {
+      /* effecto 1 */ }
+    aside.slide-1 section {
+      width: 100%;
+      overflow: auto;
+      margin: 0;
+      color: white;
+      text-align: center;
+      height: 60%; }
+      aside.slide-1 section.instruction h2 {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        font-weight: 300;
+        font-size: 3rem; }
+      aside.slide-1 section.game h2 {
+        position: absolute;
+        opacity: 0.5;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        font-weight: 100;
+        font-size: 3rem; }
+  aside.slide-2 {
+    top: 0;
+    right: 100%;
+    background: #9000ff;
+    z-index: 2;
+    /* effecto 1 */ }
+    aside.slide-2 section {
+      width: 100%;
+      overflow: auto;
+      margin: 0;
+      color: white;
+      text-align: center;
+      height: 50%; }
+      aside.slide-2 section.up h2 {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        font-weight: 100;
+        font-size: 3rem; }
+      aside.slide-2 section.down h3 {
+        position: absolute;
+        opacity: 0.5;
+        left: 0;
+        right: 0;
+        top: 0;
+        font-weight: 300;
+        font-size: 1.5rem; }
+  aside #content {
     width: 100%;
-    overflow: auto;
-    margin: 0;
+    height: 100%;
+    display: table; }
+  aside #swipeArea {
+    width: 100%;
+    height: 20rem;
+    margin: 5px;
+    padding: 5px;
+    background-color: #409141;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
     color: white;
     text-align: center;
-    height: 60%; }
-    .init section.instruction h2 {
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 0;
-      font-weight: 300;
-      font-size: 3rem; }
-    .init section.game h2 {
-      position: absolute;
-      opacity: 0.5;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      font-weight: 100;
-      font-size: 3rem; }
-
-.middle {
-  width: 50%;
-  height: 100%;
-  position: absolute; }
-  .middle section {
-    width: 100%;
-    overflow: auto;
-    margin: 0;
-    color: white;
-    text-align: center;
-    height: 50%; }
-    .middle section.up {
-      left: 0;
-      right: 0;
-      bottom: 0; }
-    .middle section.down {
-      left: 0;
-      right: 0;
-      top: 0; }
-    .middle section .content h2 {
-      font-weight: 100;
-      font-size: 3rem; }
-    .middle section .content h3 {
-      font-weight: 300;
-      font-size: 1.5rem; }
+    vertical-align: middle;
+    display: table-cell; }
 
 /* reset format */
 /* variables */

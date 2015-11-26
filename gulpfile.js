@@ -9,18 +9,10 @@ var args = minimist(process.argv.slice(2));
 var gulpsftp = require('gulp-sftp');
 
 
-var publics = ['public/**/*.html',
-    'public/**/*.js',
-    'public/**/*.css',
-    'public/**/*.json',
-    'public/**/*.wav',
-    'public/**/*.jpg',
-    'public/**/*.png,' +
-    'public/**/*.ico'];
-var server = ['server/*.js'];
-var routes = ['routes/*.js'];
-var test = ['spec/**.js'];
 
+var publics = ['public/**/index-new.html',
+    'public/**/index-new.js',
+    'public/**/index.css'];
 
 gulp.task('default', ['test', 'deploy']);
 
@@ -32,13 +24,9 @@ gulp.task('test', function(){
 //nombre de la tarea, dependencias, funcion. Tambien se puede hacer con stream off
 //Si la tarea de la que depende sale con error, no se ejecuta
 
-gulp.task('deploy', ['test'], function(){
+gulp.task('deploy', function(){
     gulp.src(publics)
         .pipe(gulpsftp(generatePath('public')));
-    gulp.src(server)
-        .pipe(gulpsftp(generatePath('server')));
-    gulp.src(routes)
-        .pipe(gulpsftp(generatePath('routes')));
 
 });
 
