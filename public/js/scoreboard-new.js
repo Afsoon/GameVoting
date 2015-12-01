@@ -100,9 +100,8 @@ $(function(){
         $("#scoreboard").addClass("scoreboard");
         $("#scoreboard aside").addClass("enterTime");
         $("#t1Name").text(GAMEVOTING.team1);
-        $("#t2Name").text(GAMEVOTING.team2);
-        $("#team1votes").text("00");
-        $("#team2votes").text("00");
+        prepareCanvas($("#canvas"));
+
         socket.on('time', function(time){
             timeTotal = Math.max(timeTotal, time);
             $(".progress").css("width", Math.round( (time / timeTotal) * 100 ).toString() + "%");
@@ -110,6 +109,15 @@ $(function(){
                 audioBeep.play();
             }
         });
+    }
+
+    function preparesCanvas (canvasDiv) {
+        var context;
+
+        context = canvasDiv.getContex("2d");
+        context.moveTo(0,0);
+        context.lineTo(200,100);
+        context.stroke();
     }
 
     function updateVotes(votes) {

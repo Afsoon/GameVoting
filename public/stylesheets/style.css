@@ -233,14 +233,16 @@ article {
       margin-top: 5%; }
   article#scoreboard {
     margin-left: 100%;
-    background: url("../images/background.jpg") left bottom no-repeat;
-    background-size: cover; }
+    /* background: url('../images/background.jpg') left bottom no-repeat;
+    background-size: cover; */ }
     article#scoreboard.scoreboard {
       width: 100%;
       height: 100%;
       margin-left: 100%;
       /*background-color: #053005;*/
-      color: white; }
+      color: white;
+      /* Aside countdown */
+      /* Aside final results */ }
       article#scoreboard.scoreboard .countdown {
         position: fixed;
         top: 5%;
@@ -271,45 +273,9 @@ article {
         text-shadow: 1px 2px 2px #222;
         text-align: center;
         opacity: 0; }
-      article#scoreboard.scoreboard section {
-        position: absolute;
-        width: 30%;
-        height: 90%;
-        text-align: center;
-        color: white;
-        display: table; }
-        article#scoreboard.scoreboard section.team1 {
-          left: 0;
-          bottom: 0;
-          background: transparent url("../images/scorpion.png") left top no-repeat;
-          background-size: auto 80%; }
-        article#scoreboard.scoreboard section.team2 {
-          right: 0;
-          top: 0;
-          background: transparent url("../images/foe.png") right bottom no-repeat;
-          background-size: auto 80%; }
-        article#scoreboard.scoreboard section .content {
-          position: inherit;
-          width: 500px;
-          display: table-cell;
-          vertical-align: text-bottom;
-          background-color: #167003;
-          -webkit-border-radius: 100%;
-          -moz-border-radius: 100%;
-          border-radius: 100%; }
-          article#scoreboard.scoreboard section .content h2 {
-            font-size: 6rem; }
-          article#scoreboard.scoreboard section .content p {
-            font-size: 1.5rem;
-            opacity: 0.7;
-            text-transform: uppercase;
-            letter-spacing: 0.3rem; }
-          article#scoreboard.scoreboard section .content.t1 {
-            bottom: 1%;
-            left: 10%; }
-          article#scoreboard.scoreboard section .content.t2 {
-            top: 1%;
-            right: 10%; }
+      article#scoreboard.scoreboard #canvas {
+        width: 100%;
+        height: 100%; }
 
 /* reset format */
 /* all fonts */
