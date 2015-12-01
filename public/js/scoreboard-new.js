@@ -1,5 +1,5 @@
 $(function(){
-
+    var c, context, maxWidth, maxHeight;
     var socket = io.connect('http://46.101.214.219:9000', { 'forceNew': true });
     var language = navigator.language || navigator.userLanguage;
     var GAMEVOTING = {};
@@ -93,31 +93,92 @@ $(function(){
     function showScores() {
         var audioBell = new Audio("../sounds/bell.wav");
         var audioBeep = new Audio("../sounds/beep.wav");
-        var timeTotal = 0;
 
         audioBell.play();
         $("#cover").addClass("bye");
         $("#scoreboard").addClass("scoreboard");
         $("#scoreboard aside").addClass("enterTime");
         $("#t1Name").text(GAMEVOTING.team1);
-        prepareCanvas($("#canvas"));
+        prepareCanvas();
+        loadTime();
+        
+    }
 
+    function prepareCanvas() {
+        c = document.getElementById("courtCanvas");
+        context = c.getContext("2d");
+        maxWidth = window.innerWidth;
+        maxHeight = window.innerHeight;
+        context.canvas.width  = maxWidth;
+        context.canvas.height = maxHeight;
+        drawSky();
+        drawCourt();
+    }
+
+    function drawSky() {
+        context.beginPath();
+        context.rect(0, 0, maxWidth, maxHeight);
+        context.fillStyle = '#90C3D4';
+        context.fill();
+        context.stroke();
+    }
+
+    function drawCourt() {
+        /* Court ground */
+        context.beginPath();
+        context.rect(0, maxHeight/2, maxWidth, maxHeight);
+        context.fillStyle = '#409141';
+        context.fill();
+        context.lineWidth='0';
+        context.stroke();
+
+        /* White lines */
+        context.beginPath();
+        context.moveTo(0, maxHeight/2);
+        context.lineTo(maxWidth, maxHeight/2);
+        context.lineWidth = '20';
+        context.strokeStyle = 'white';
+        context.stroke();
+
+        context.beginPath();
+        context.moveTo(maxWidth/2, maxHeight/2);
+        context.lineTo(maxWidth/2, maxHeight);
+        context.lineWidth = '20';
+        context.strokeStyle = 'white';
+        context.stroke();
+
+        context.beginPath();
+        context.moveTo(maxWidth/4, maxHeight/2);
+        context.lineTo(maxWidth/7, maxHeight);
+        context.lineWidth = '15';
+        context.strokeStyle = 'white';
+        context.stroke();
+
+        context.beginPath();
+        context.moveTo(maxWidth*3/4, maxHeight/2);
+        context.lineTo(maxWidth*6/7, maxHeight);
+        context.lineWidth = '15';
+        context.strokeStyle = 'white';
+        context.stroke();
+
+        context.beginPath();
+        context.moveTo(maxWidth*11/56, maxHeight*3/4);
+        context.lineTo(maxWidth*45/56, maxHeight*3/4);
+        context.lineWidth = '15';
+        context.strokeStyle = 'white';
+        context.stroke();
+    }
+
+    function loadTime() {
+        var timeTotal = 0;
         socket.on('time', function(time){
             timeTotal = Math.max(timeTotal, time);
             $(".progress").css("width", Math.round( (time / timeTotal) * 100 ).toString() + "%");
+            $(".progress").text(time + " seconds");
             if (time > 0 && time <8) {
                 audioBeep.play();
             }
         });
-    }
-
-    function preparesCanvas (canvasDiv) {
-        var context;
-
-        context = canvasDiv.getContex("2d");
-        context.moveTo(0,0);
-        context.lineTo(200,100);
-        context.stroke();
     }
 
     function updateVotes(votes) {
