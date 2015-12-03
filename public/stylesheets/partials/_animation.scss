@@ -1,7 +1,34 @@
 /* Animations */
 
-/* Cover bounce */
+/* Voted! */
+.voted {
+	animation: bump ease 1s both;
+	-webkit-animation: bump ease 1s both;
+	-moz-animation: bump ease 1s both;
+	-o-animation: bounce ease  1s both;
+}
 
+@-moz-keyframes bump {
+	0% { opacity: 1; transform: scale(1,1); }
+	50% { opacity: 0.5; transform: scale(1.5,1.5); }
+	100% { opacity: 1; transform: scale(1,1); }
+}
+
+@-webkit-keyframes bump {
+	0% { opacity: 1; transform: scale(1,1); }
+	50% { opacity: 0.5; transform: scale(1.5,1.5); }
+	100% { opacity: 1; transform: scale(1,1); }
+}
+
+
+@keyframes bump {
+	0% { opacity: 1; transform: scale(1,1); }
+	50% { opacity: 0.5; transform: scale(1.5,1.5); }
+	100% { opacity: 1; transform: scale(1,1); }
+}
+
+
+/* Cover bounce */
 .boing {
 	animation: bounce ease 2s both;
 	-webkit-animation: bounce ease 2s both;

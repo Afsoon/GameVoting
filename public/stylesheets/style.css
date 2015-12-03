@@ -26,6 +26,43 @@ body {
 
 /* variables */
 /* Animations */
+/* Voted! */
+.voted, article#scoreboard.scoreboard .score .teamVotes.vote {
+  animation: bump ease 1s both;
+  -webkit-animation: bump ease 1s both;
+  -moz-animation: bump ease 1s both;
+  -o-animation: bounce ease  1s both; }
+
+@-moz-keyframes bump {
+  0% {
+    opacity: 1;
+    transform: scale(1, 1); }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.5, 1.5); }
+  100% {
+    opacity: 1;
+    transform: scale(1, 1); } }
+@-webkit-keyframes bump {
+  0% {
+    opacity: 1;
+    transform: scale(1, 1); }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.5, 1.5); }
+  100% {
+    opacity: 1;
+    transform: scale(1, 1); } }
+@keyframes bump {
+  0% {
+    opacity: 1;
+    transform: scale(1, 1); }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.5, 1.5); }
+  100% {
+    opacity: 1;
+    transform: scale(1, 1); } }
 /* Cover bounce */
 .boing, article.init section .content, article.init section .instructions, article#scoreboard.scoreboard .results.show {
   animation: bounce ease 2s both;
@@ -241,8 +278,42 @@ article {
       margin-left: 100%;
       /*background-color: #053005;*/
       color: white;
+      /* Scores */
       /* Aside countdown */
       /* Aside final results */ }
+      article#scoreboard.scoreboard .score {
+        position: absolute;
+        width: 20%;
+        height: 10%;
+        top: 20%;
+        background-color: #004359;
+        text-align: center;
+        font-family: 'Roboto', sans-serif;
+        display: table; }
+        article#scoreboard.scoreboard .score .teamVotes {
+          font-size: 5em;
+          font-weight: 800; }
+        article#scoreboard.scoreboard .score .teamName {
+          font-size: 2em;
+          font-weight: 200; }
+        article#scoreboard.scoreboard .score#team1 {
+          left: 0px;
+          -webkit-border-top-right-radius: 30px;
+          -webkit-border-bottom-right-radius: 30px;
+          -moz-border-radius-topright: 30px;
+          -moz-border-radius-bottomright: 30px;
+          border-top-right-radius: 30px;
+          border-bottom-right-radius: 30px;
+          box-shadow: -10px 10px 5px #888888; }
+        article#scoreboard.scoreboard .score#team2 {
+          right: 0px;
+          -webkit-border-top-left-radius: 30px;
+          -webkit-border-bottom-left-radius: 30px;
+          -moz-border-radius-topleft: 30px;
+          -moz-border-radius-bottomleft: 30px;
+          border-top-left-radius: 30px;
+          border-bottom-left-radius: 30px;
+          box-shadow: 10px 10px 5px #888888; }
       article#scoreboard.scoreboard .countdown {
         position: fixed;
         top: 5%;
@@ -268,7 +339,7 @@ article {
             vertical-align: middle; }
       article#scoreboard.scoreboard .results {
         position: fixed;
-        top: 30%;
+        top: 45%;
         width: 100%;
         height: 10%;
         font-family: 'Krona One', sans-serif;

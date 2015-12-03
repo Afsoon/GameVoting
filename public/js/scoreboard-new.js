@@ -98,7 +98,6 @@ $(function(){
         $("#cover").addClass("bye");
         $("#scoreboard").addClass("scoreboard");
         $("#scoreboard aside").addClass("enterTime");
-        $("#t1Name").text(GAMEVOTING.team1);
         prepareCanvas();
         loadTime();
         
@@ -113,6 +112,7 @@ $(function(){
         context.canvas.height = maxHeight;
         drawSky();
         drawCourt();
+        drawScores();
     }
 
     function drawSky() {
@@ -169,6 +169,11 @@ $(function(){
         context.stroke();
     }
 
+    function drawScores() {
+        $("#team1Name").text(GAMEVOTING.team1);
+        $("#team2Name").text(GAMEVOTING.team2);
+    }
+
     function loadTime() {
         var timeTotal = 0;
         socket.on('time', function(time){
@@ -186,8 +191,17 @@ $(function(){
         var v2 = votes.team2Votes;
         if (v1 < 10) { v1 = "0" + v1;}
         if (v2 < 10) { v2 = "0" + v2;}
-        $("#team1votes").text(v1);
-        $("#team2votes").text(v2);
+        console.log("V1: " + v1 + "  - V2: " + v2);
+        $("#team1Votes").text(v1);
+        if (v1 > $("#team1Votes").value) {
+            $("team1Votes").addClass("vote");
+            $("team1Votes").removeClass("vote");
+        }
+        $("#team2Votes").text(v2);
+        if (v1 > $("#team2Votes").value) {
+            $("team2Votes").addClass("vote");
+            $("team2Votes").removeClass("vote");
+        }
     }
 
     function showWinner(winner){
@@ -199,9 +213,9 @@ $(function(){
     function showResults(team1Pct, team1Side, team2Pct, team2Side){
         $(".content h2").css("font-size", "3em")
                         .css("background-color", "#167003");
-        $("#team1votes")
+        $("#team1Votes")
            .text(GAMEVOTING.chose +" "+ team1Pct + "% " + GAMEVOTING[team1Side]);
-        $("#team2votes")
+        $("#team2Votes")
            .text(GAMEVOTING.chose +" "+ team2Pct + "% " + GAMEVOTING[team2Side]);
         $(".content t1").fadeIn(1000);
         $(".content t2").fadeIn(1000);        

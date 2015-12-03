@@ -85,6 +85,54 @@ article {
 			color: white;
 			@extend .push2;
 
+			/* Scores */
+			.score {
+				position: absolute;
+				width: 20%;
+				height: 10%;
+				top: 20%; 
+				background-color: #004359;
+				text-align: center;
+				font-family: 'Roboto', sans-serif;
+				display: table;
+
+				.teamVotes {
+					font-size: 5em;
+					font-weight: 800;
+
+					&.vote {
+						@extend .voted;
+					}
+				}
+
+				.teamName {
+					font-size: 2em;
+					font-weight: 200;
+				}
+
+				&#team1 {
+					left: 0px;
+					-webkit-border-top-right-radius: 30px;
+					-webkit-border-bottom-right-radius: 30px;
+					-moz-border-radius-topright: 30px;
+					-moz-border-radius-bottomright: 30px;
+					border-top-right-radius: 30px;
+					border-bottom-right-radius: 30px;
+					box-shadow: -10px 10px 5px #888888;
+				}
+
+				&#team2 {
+					right: 0px;
+					-webkit-border-top-left-radius: 30px;
+					-webkit-border-bottom-left-radius: 30px;
+					-moz-border-radius-topleft: 30px;
+					-moz-border-radius-bottomleft: 30px;
+					border-top-left-radius: 30px;
+					border-bottom-left-radius: 30px;
+					box-shadow: 10px 10px 5px #888888;
+				}
+			}
+
 			/* Aside countdown */
 			.countdown{
 				position: fixed;
@@ -121,7 +169,7 @@ article {
 			/* Aside final results */
 			.results {
 				position: fixed;
-				top: 30%;
+				top: 45%;
 				width: 100%;
 				height: 10%;
 				font-family: 'Krona One', sans-serif;
