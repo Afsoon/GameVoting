@@ -2,10 +2,10 @@
 
 /* Voted! */
 .voted {
-	animation: bump ease 1s both;
-	-webkit-animation: bump ease 1s both;
-	-moz-animation: bump ease 1s both;
-	-o-animation: bounce ease  1s both;
+	animation: bump ease 0.5s both;
+	-webkit-animation: bump ease 0.5s both;
+	-moz-animation: bump ease 0.5s both;
+	-o-animation: bounce ease  0.5s both;
 }
 
 @-moz-keyframes bump {
@@ -142,15 +142,90 @@
 
 @-moz-keyframes enterTime {
 	0%	{opacity: 0;}
-	100% {opacity: 1; left: 5%;}
+	100% {opacity: 1; left: 10%; top: 5%;}
 }
 
 @-webkit-keyframes enterTime {
 	0%	{opacity: 0;}
-	100% {opacity: 1; left: 5%;}
+	100% {opacity: 1; left: 10%; top: 5%;}
 }
 
 @keyframes enterTime {
 	0%	{opacity: 0;}
-	100% {opacity: 1; left: 5%;}
+	100% {opacity: 1; left: 10%; top: 5%;}
+}
+
+/* Enter score team1 */
+.team1Enter {
+	animation: enterT1 ease-in 0.75s both;
+	-webkit-animation: enterT1 ease-in 0.75s both;
+	-moz-animation: enterT1 ease-in 0.75s both;
+	-o-animation: enterT1 ease  0.75s both;
+}
+
+@-moz-keyframes enterT1 {
+	0%	{opacity: 1;}
+	100% {opacity: 1; left: 0px;}
+}
+
+@-webkit-keyframes enterT1 {
+	0%	{opacity: 1;}
+	100% {opacity: 1; left: 0px;}
+}
+
+@keyframes enterT1 {
+	0%	{opacity: 1;}
+	100% {opacity: 1; left: 0px;}
+}
+
+/* Enter score team2 */
+.team2Enter {
+	animation: enterT2 ease-in 0.75s both;
+	-webkit-animation: enterT2 ease-in 0.75s both;
+	-moz-animation: enterT2 ease-in 0.75s both;
+	-o-animation: enterT2 ease  0.75s both;
+}
+
+@-moz-keyframes enterT2 {
+	0%	{opacity: 1;}
+	100% {opacity: 1; right: 0px;}
+}
+
+@-webkit-keyframes enterT2 {
+	0%	{opacity: 1;}
+	100% {opacity: 1; right: 0px;}
+}
+
+@keyframes enterT2 {
+	0%	{opacity: 1;}
+	100% {opacity: 1; right: 0px;}
+}
+
+/* Enter score team2 */
+.toastyEnter {
+	animation: toast ease-in 1.5s both;
+	-webkit-animation: toast ease-in 1.5s both;
+	-moz-animation: toast ease-in 1.5s both;
+	-o-animation: toast ease  1.5s both;
+}
+
+@-moz-keyframes toast {
+	0%	{opacity: 1; bottom: -400px}
+	25%	{bottom: 0;}
+	75%	{bottom: 0;}
+	100% {opacity: 1; bottom: -400px}
+}
+
+@-webkit-keyframes toast {
+	0%	{opacity: 1; bottom: -400px}
+	25%	{bottom: 0;}
+	75%	{bottom: 0;}
+	100% {opacity: 1; bottom: -400px}
+}
+
+@keyframes toast {
+	0%	{opacity: 1; bottom: -400px}
+	25%	{bottom: 0;}
+	75%	{bottom: 0;}
+	100% {opacity: 1; bottom: -400px}
 }

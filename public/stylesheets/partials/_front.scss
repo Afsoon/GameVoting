@@ -38,7 +38,8 @@ article {
 
 				h2 {
 					font-size: 2em;
-					font-weight: 200;
+					font-weight: 400;
+					font-family: 'Roboto', sans-serif;
 				}
 
 				img {
@@ -87,7 +88,7 @@ article {
 
 			/* Scores */
 			.score {
-				position: absolute;
+				position: fixed;
 				width: 20%;
 				height: 10%;
 				top: 20%; 
@@ -95,6 +96,8 @@ article {
 				text-align: center;
 				font-family: 'Roboto', sans-serif;
 				display: table;
+				opacity: 0;
+				padding: 10px;
 
 				.teamVotes {
 					font-size: 5em;
@@ -111,7 +114,7 @@ article {
 				}
 
 				&#team1 {
-					left: 0px;
+					left: -500px;
 					-webkit-border-top-right-radius: 30px;
 					-webkit-border-bottom-right-radius: 30px;
 					-moz-border-radius-topright: 30px;
@@ -119,10 +122,14 @@ article {
 					border-top-right-radius: 30px;
 					border-bottom-right-radius: 30px;
 					box-shadow: -10px 10px 5px #888888;
+
+					&.enterT1 {
+						@extend .team1Enter;
+					}
 				}
 
 				&#team2 {
-					right: 0px;
+					right: -500px;
 					-webkit-border-top-left-radius: 30px;
 					-webkit-border-bottom-left-radius: 30px;
 					-moz-border-radius-topleft: 30px;
@@ -130,15 +137,19 @@ article {
 					border-top-left-radius: 30px;
 					border-bottom-left-radius: 30px;
 					box-shadow: 10px 10px 5px #888888;
+
+					&.enterT2 {
+						@extend .team2Enter;
+					}
 				}
 			}
 
 			/* Aside countdown */
 			.countdown{
 				position: fixed;
-				top: 5%;
+				top: 100%;
 				left: 100%;
-				width: 80%;
+				width: 75%;
 				height: 10%;
 				.time {
 					width: 100%;
@@ -155,8 +166,6 @@ article {
 						-moz-border-radius: 10px;
 						border-radius: 10px;
 						padding-left: 5px;
-						text-align: left;
-						vertical-align: middle;
 						@extend .t;
 					}
 				}
@@ -169,22 +178,40 @@ article {
 			/* Aside final results */
 			.results {
 				position: fixed;
-				top: 45%;
+				top: 5%;
 				width: 100%;
 				height: 10%;
 				font-family: 'Krona One', sans-serif;
-				font-size: 5em;
-				text-shadow: 1px 2px 2px #222;
+				font-size: 4em;
+				text-shadow: 2px 2px 5px #222;
 				text-align: center;
 				opacity: 0;
+				@extend .t;
 
 				&.show {
 					@extend .boing;
 				}
 			}
 
-			#courtCanvas {
-				position: absolute;
+			/* Toasty! */
+			.toasty {
+				z-index: 2;
+				left: 45%;
+				opacity: 0;
+				width: 250px;
+				height: 319px;
+				bottom: -400px;
+				position: fixed;
+				background: url('../images/toasty.png') left bottom no-repeat;
+				background-size: cover;
+
+				&.appear {
+					@extend .toastyEnter;
+				}
+			}
+
+			canvas {
+				position: fixed;
 				width: 100%;
 				height: 100%;
 			}
