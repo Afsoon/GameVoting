@@ -39,7 +39,7 @@ gulp.task('deploy', ['test'], function(){
     gulp.src(modules)
         .pipe(gulpsftp(generatePath('modules')));
     gulp.src(pack)
-        .pipe(gulpsftp(generatePath('')))
+        .pipe(gulpsftp(generatePath('')));
     /**gulp.src(routes)
         .pipe(gulpsftp(generatePath('routes')));
     gulp.src(views)

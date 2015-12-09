@@ -75,7 +75,7 @@ io.on('connection', function(socket){
         }catch(err){
             console.log(err);
         }
-        io.sockets.emit('side', guid.getSide(data));
+        socket.emit('side', guid.getSide(data));
         generateStatus(data);
     })
 });
@@ -102,7 +102,7 @@ function setCountdown(seconds){
 
 function generateStatus(tokenID, socket){
     
-    io.sockets.emit('status', getStateGame(tokenID));
+    socket.emit('status', getStateGame(tokenID));
 }
 
 function getStateGame(tokenID){
