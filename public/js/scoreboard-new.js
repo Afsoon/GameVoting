@@ -1,10 +1,25 @@
 $(function(){
-    var c, d, context, ctx, maxWidth, maxHeight, intervalId, results;
+    var c, d, e, context, charCtx, ballCtx, maxWidth, maxHeight, intervalId, results;
     var socket = io.connect('http://46.101.214.219:9000', { 'forceNew': true });
     var language = navigator.language || navigator.userLanguage;
     var GAMEVOTING = {};
+    var images = {};
     var ball = {}, x, y, moveX, moveY;
-
+    var totalResources = 6;
+    var numResourcesLoaded = 0;
+    var fps = 30;
+    var character1X,character1Y;
+    var breathInc = 0.1;
+    var breathDir = 1;
+    var breathAmt = 0;
+    var breathMax = 2;
+    var maxEyeHeight = 14;
+    var curEyeHeight = maxEyeHeight;
+    var eyeOpenTime = 0;
+    var timeBtwBlinks = 4000;
+    var blinkUpdateTime = 200;
+    var intervalChars;
+    
     setupApp();
 
     function setupApp() {
@@ -89,22 +104,30 @@ $(function(){
     function prepareCanvas() {
         c = document.getElementById("courtCanvas");
         d = document.getElementById("ballCanvas");
+        e = document.getElementById("charCanvas");
         context = c.getContext("2d");
-        ctx = d.getContext("2d");
+        ballCtx = d.getContext("2d");
+        charCtx = e.getContext("2d");
         maxWidth = window.innerWidth;
         maxHeight = window.innerHeight;
         context.canvas.width  = maxWidth;
         context.canvas.height = maxHeight;
-        ctx.canvas.width  = maxWidth;
-        ctx.canvas.height = maxHeight;
-        
+        ballCtx.canvas.width  = maxWidth;
+        ballCtx.canvas.height = maxHeight;
+        charCtx.canvas.width  = maxWidth;
+        charCtx.canvas.height = maxHeight;
+
         ball.x = maxWidth / 6;
         ball.y = maxHeight / 2;
+
+        character1X = maxWidth / 7;
+        character1Y = maxHeight * 3 / 4;
         
         drawSky();
         drawCourt();
         drawScores();
         drawTime();
+        drawCharacters();
     }
 
     function drawSky() {
@@ -174,33 +197,119 @@ $(function(){
         $("#scoreboard aside").addClass("enterTime");
     }
 
+    function drawCharacters() {
+        loadImage("leftArm");
+        loadImage("legs");
+        loadImage("torso");
+        loadImage("rightArm");
+        loadImage("head");
+        loadImage("hair");
+        loadImage("ball");
+    }
+
+    function loadImage(file) {
+        images[file] = new Image();
+        images[file].onload = function() {
+            resourcesLoaded();
+        }
+        images[file].src = "../images/character/" + file + ".png";
+    }
+
+    function resourcesLoaded() {
+        numResourcesLoaded += 1;
+        if (numResourcesLoaded === totalResources) {
+            intervalChars = setInterval(redrawChars, 1000 / fps);
+            setInterval(updateBreath, 1000 / fps);
+        }
+    }
+
+    function redrawChars() {
+        var x = character1X;
+        var y = character1Y;
+
+        e.width = e.width; 
+
+        charCtx.drawImage(images["leftArm"], x+40, y-42- breathAmt);
+        charCtx.drawImage(images["legs"], x, y);
+        charCtx.drawImage(images["torso"], x, y-50);
+        charCtx.drawImage(images["rightArm"], x-15, y-42);
+        charCtx.drawImage(images["head"], x-10, y-125- breathAmt);
+        charCtx.drawImage(images["hair"], x-37, y-138- breathAmt);
+        drawEye(x+47, y-68- breathAmt, 8, curEyeHeight);
+        drawEye(x+58, y-68- breathAmt, 8, curEyeHeight);
+        drawEye(x+40, y+29, 160 - breathAmt, 6); // drawShadow
+    }
+
+    function drawEye(centerX, centerY, width, height){
+        charCtx.beginPath();
+
+        charCtx.moveTo(centerX, centerY - height/2);
+
+        charCtx.bezierCurveTo(
+            centerX + width / 2, centerY - height / 2,
+            centerX + width / 2, centerY + height / 2,
+            centerX, centerY + height / 2);
+
+        charCtx.bezierCurveTo(
+            centerX - width / 2, centerY + height / 2,
+            centerX - width / 2, centerY - height / 2,
+            centerX, centerY - height / 2);
+
+        charCtx.fillStyle = "black";
+        charCtx.fill();
+        charCtx.closePath;
+    }
+
+    function updateBreath() {
+        if (breathDir === 1) {  // breath in
+            breathAmt -= breathInc;
+            if (breathAmt < -breathMax) {
+              breathDir = -1;
+            }
+        } else {  // breath out
+            breathAmt += breathInc;
+            if(breathAmt > breathMax) {
+              breathDir = 1;
+            }
+        }
+    }
+
+    function updateBlink() { 
+        curEyeHeight -= 1;
+        if (curEyeHeight <= 0) {
+            eyeOpenTime = 0;
+            curEyeHeight = maxEyeHeight;
+         } else {
+            setTimeout(updateBlink, 10);
+         }  
+    }
+    
     function drawWinner() {
         if (results.winner === "team1") {
-            ball.moveX = 9;
+            ball.moveX = 12;
             ball.moveY = 4;
-            intervalId = setInterval(throwBall,1000/60);
+            intervalId = setInterval(throwBall,1000/fps);
         } else if (results.winner === "team2") {
-            ball.moveX = 9;
+            ball.moveX = 12;
             ball.moveY = 5;
-            intervalId = setInterval(receiveBall,1200/60);
+            intervalId = setInterval(receiveBall,1200/fps);
         } else {
             showWinner();
         }
     }
 
     function throwBall() {
-        ctx.save();
-        ctx.clearRect(0,0,maxWidth,maxHeight);
-        ctx.beginPath();
-        drawBall();
+        ballCtx.save();
+        ballCtx.clearRect(0,0,maxWidth,maxHeight);
+        drawBall(ball.x, ball.y);
 
-        if ( ball.y > maxHeight * 9/10){
+        if ( ball.y > maxHeight * 7/10){
             ball.moveY =-ball.moveY;
         }
 
         ball.x += ball.moveX;
         ball.y += ball.moveY;        
-        ctx.restore();
+        ballCtx.restore();
 
         if ( ball.x > maxWidth + 100) {
             clearInterval(intervalId);
@@ -209,11 +318,11 @@ $(function(){
     }
 
     function receiveBall(){
-        ctx.save();
-        ctx.clearRect(0,0,maxWidth,maxHeight);
-        drawBall();
+        ballCtx.save();
+        ballCtx.clearRect(0,0,maxWidth,maxHeight);
+        drawBall(ball.x, ball.y);
 
-        if ( ball.y > maxHeight * 9/10 || ball.y < (maxHeight / 2)) { 
+        if ( ball.y > maxHeight * 7/10 || ball.y < (maxHeight / 2)) { 
             ball.moveY = -ball.moveY;
         }
 
@@ -224,24 +333,16 @@ $(function(){
 
         ball.x += ball.moveX;
         ball.y += ball.moveY;        
-        ctx.restore();
+        ballCtx.restore();
 
         if ( ball.x < -100) {
             clearInterval(intervalId);
             showWinner();
         }
-
     }
 
-    function drawBall() {
-        ctx.beginPath();
-        ctx.fillStyle="#E8E52E";
-        ctx.arc(ball.x, ball.y, 20, 0, Math.PI*2, true); 
-        ctx.closePath();
-        ctx.fill();
-        ctx.lineWidth = 2;
-        ctx.strokeStyle = "#000000";
-        ctx.stroke();
+    function drawBall(x, y) {
+        ballCtx.drawImage(images["ball"], x, y);
     }
 
     function loadTime() {
@@ -280,6 +381,8 @@ $(function(){
         if (parseInt(v2,10) > parseInt(v2Old,10)) {
             $("#team2Votes").addClass("vote");
         }
+
+        updateBlink();
     }
 
     function showWinner(){
