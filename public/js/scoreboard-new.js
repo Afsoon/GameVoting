@@ -4,15 +4,15 @@ $(function(){
     var GAMEVOTING = {};
     var images = {};
     var ball = {}, x, y, moveX, moveY;
-    var totalResources = 6;
+    var totalResources = 12;
     var numResourcesLoaded = 0;
     var fps = 30;
-    var character1X,character1Y;
+    var character1X,character1Y, character2X,character2Y;
     var breathInc = 0.1;
     var breathDir = 1;
     var breathAmt = 0;
     var breathMax = 2;
-    var maxEyeHeight = 20;
+    var maxEyeHeight = 30;
     var curEyeHeight = maxEyeHeight;
     var eyeOpenTime = 0;
     var timeBtwBlinks = 4000;
@@ -118,11 +118,14 @@ $(function(){
         charCtx.canvas.width  = maxWidth;
         charCtx.canvas.height = maxHeight;
 
-        ball.x = maxWidth / 6;
+        ball.x = maxWidth * 2 / 6;
         ball.y = maxHeight / 2;
 
         character1X = maxWidth / 10;
         character1Y = maxHeight * 5 / 7;
+
+        character2X = maxWidth * 8 / 10;
+        character2Y = maxHeight * 5 / 7;
         
         drawSky();
         drawCourt();
@@ -184,9 +187,17 @@ $(function(){
         loadImage("torso1");
         loadImage("rightArm1");
         loadImage("head1");
-        loadImage("hair");
+       // loadImage("hair1");
+
+        loadImage("leftArm2");
+        loadImage("legs2");
+        loadImage("torso2");
+        loadImage("rightArm2");
+        loadImage("head2");
+       // loadImage("hair2");
 
         loadImage("ball");
+        loadImage("Cup");
     }
 
     function loadImage(file) {
@@ -206,20 +217,30 @@ $(function(){
     }
 
     function redrawChars() {
-        var x = character1X;
-        var y = character1Y;
+        var x1 = character1X;
+        var y1 = character1Y;
+        var x2 = character2X;
+        var y2 = character2Y;
 
         e.width = e.width; 
 
-        charCtx.drawImage(images["legs1"], x, y);
-        charCtx.drawImage(images["rightArm1"], x+125, y-195 - breathAmt);
-        charCtx.drawImage(images["torso1"], x, y-150);
-        charCtx.drawImage(images["leftArm1"], x-50, y-142 - breathAmt);
-        charCtx.drawImage(images["head1"], x+15, y-280 - breathAmt);
+        charCtx.drawImage(images["legs1"], x1, y1);
+        charCtx.drawImage(images["rightArm1"], x1+125, y1-195 - breathAmt);
+        charCtx.drawImage(images["torso1"], x1, y1-150);
+        charCtx.drawImage(images["leftArm1"], x1-50, y1-142 - breathAmt);
+        charCtx.drawImage(images["head1"], x1+15, y1-280 - breathAmt);
         //charCtx.drawImage(images["hair"], x-37, y-138- breathAmt);
-        drawEye(x+125, y-188- breathAmt, 15, curEyeHeight);
-        drawEye(x+140, y-188- breathAmt, 15, curEyeHeight);
-        //drawEye(x+40, y+29, 160 - breathAmt, 6); // drawShadow
+        drawEye(x1+125, y1-193- breathAmt, 20, curEyeHeight);
+        drawEye(x1+150, y1-193- breathAmt, 20, curEyeHeight);
+
+        charCtx.drawImage(images["legs2"], x2, y2);
+        charCtx.drawImage(images["rightArm2"], x2-175, y2-195 - breathAmt);
+        charCtx.drawImage(images["torso2"], x2+50, y2-150);
+        charCtx.drawImage(images["leftArm2"], x2+170, y2-142 - breathAmt);
+        charCtx.drawImage(images["head2"], x2+35, y2-280 - breathAmt);
+        //charCtx.drawImage(images["hair"], x-37, y-138- breathAmt);
+        drawEye(x2+75, y2-193- breathAmt, 20, curEyeHeight);
+        drawEye(x2+100, y2-193- breathAmt, 20, curEyeHeight);
     }
 
     function drawEye(centerX, centerY, width, height){
@@ -272,7 +293,7 @@ $(function(){
             ball.moveY = 4;
             intervalId = setInterval(throwBall,1000/fps);
         } else if (results.winner === "team2") {
-            ball.moveX = 12;
+            ball.moveX = 11;
             ball.moveY = 5;
             intervalId = setInterval(receiveBall,1200/fps);
         } else {
@@ -308,9 +329,9 @@ $(function(){
             ball.moveY = -ball.moveY;
         }
 
-        if ( ball.x > maxWidth * 5/6 ) {
-            ball.moveX = -13;
-            ball.moveY = 3;
+        if ( ball.x > ((maxWidth * 5/7) + 50)) {
+            ball.moveX = -22;
+            ball.moveY = 4;
         }
 
         ball.x += ball.moveX;
@@ -370,6 +391,14 @@ $(function(){
     function showWinner(){
         var audioApplause = new Audio("../sounds/applause.wav");
 
+        clearInterval(intervalChars);
+
+        if (results.winner === "team1"){
+            showCup();
+        } else if (results.winner === "team2"){
+            showCup();
+        }
+
         $(".results").text(GAMEVOTING[results.winner])
             .css("font-size", "7em")
             .addClass("show");
@@ -384,6 +413,10 @@ $(function(){
                 results.team2Pct,
                 results.team2Side);
         },2000);        
+    }
+
+    function showCup() {
+        context.drawImage(images["Cup"], maxWidth /2 - 203, maxHeight / 2 - 364);
     }
 
     function showResults(team1Pct, team1Side, team2Pct, team2Side){
