@@ -1,7 +1,6 @@
 $(function(){
     var c, d, e, context, charCtx, ballCtx, maxWidth, maxHeight, intervalId, results;
     var socket = io.connect('http://46.101.214.219:9000', { 'forceNew': true });
-    var language = navigator.language || navigator.userLanguage;
     var GAMEVOTING = {};
     var images = {};
     var ball = {}, x, y, moveX, moveY;
@@ -13,7 +12,7 @@ $(function(){
     var breathDir = 1;
     var breathAmt = 0;
     var breathMax = 2;
-    var maxEyeHeight = 14;
+    var maxEyeHeight = 20;
     var curEyeHeight = maxEyeHeight;
     var eyeOpenTime = 0;
     var timeBtwBlinks = 4000;
@@ -23,8 +22,9 @@ $(function(){
     setupApp();
 
     function setupApp() {
+        var language = navigator.language || navigator.userLanguage;
         socket.on('showInstructions', function(lang){
-            setLanguage(lang);
+            language = setLanguage(lang);
             var file = "../config/scoreboardStrings_" + language + ".json";
             $.getJSON(file, function(data){
                 GAMEVOTING = data;
@@ -37,10 +37,11 @@ $(function(){
     }
 
     function setLanguage(lang) {
-        language = lang;
+        var language = lang;
         if ( language !== "es" && language !== "en") {
             language = "en";
         }
+        return language;
     }
 
     function showInstructions() {
@@ -120,8 +121,8 @@ $(function(){
         ball.x = maxWidth / 6;
         ball.y = maxHeight / 2;
 
-        character1X = maxWidth / 7;
-        character1Y = maxHeight * 3 / 4;
+        character1X = maxWidth / 10;
+        character1Y = maxHeight * 5 / 7;
         
         drawSky();
         drawCourt();
@@ -148,39 +149,19 @@ $(function(){
         context.stroke();
 
         /* White lines */
-        context.beginPath();
-        context.moveTo(0, maxHeight/2);
-        context.lineTo(maxWidth, maxHeight/2);
-        context.lineWidth = '20';
-        context.strokeStyle = 'white';
-        context.stroke();
+        drawLine(0, maxHeight/2, maxWidth, maxHeight/2, '20', 'white');
+        drawLine(maxWidth/2, maxHeight/2, maxWidth/2, maxHeight, '20', 'white');
+        drawLine(maxWidth/4, maxHeight/2, maxWidth/7, maxHeight, '15', 'white');
+        drawLine(maxWidth*3/4, maxHeight/2, maxWidth*6/7, maxHeight, '15', 'white');
+        drawLine(maxWidth*11/56, maxHeight*3/4, maxWidth*45/56, maxHeight*3/4, '15', 'white');
+    }
 
+    function drawLine(iniX, iniY, endX, endY, thickness, color){
         context.beginPath();
-        context.moveTo(maxWidth/2, maxHeight/2);
-        context.lineTo(maxWidth/2, maxHeight);
-        context.lineWidth = '20';
-        context.strokeStyle = 'white';
-        context.stroke();
-
-        context.beginPath();
-        context.moveTo(maxWidth/4, maxHeight/2);
-        context.lineTo(maxWidth/7, maxHeight);
-        context.lineWidth = '15';
-        context.strokeStyle = 'white';
-        context.stroke();
-
-        context.beginPath();
-        context.moveTo(maxWidth*3/4, maxHeight/2);
-        context.lineTo(maxWidth*6/7, maxHeight);
-        context.lineWidth = '15';
-        context.strokeStyle = 'white';
-        context.stroke();
-
-        context.beginPath();
-        context.moveTo(maxWidth*11/56, maxHeight*3/4);
-        context.lineTo(maxWidth*45/56, maxHeight*3/4);
-        context.lineWidth = '15';
-        context.strokeStyle = 'white';
+        context.moveTo(iniX, iniY);
+        context.lineTo(endX, endY);
+        context.lineWidth = thickness;
+        context.strokeStyle = color;
         context.stroke();
     }
 
@@ -190,7 +171,7 @@ $(function(){
         setTimeout(function() {
                 $("#team1").addClass("enterT1");
                 $("#team2").addClass("enterT2");
-            }, 1210);
+        }, 1210);
     }
 
     function drawTime() {
@@ -198,12 +179,13 @@ $(function(){
     }
 
     function drawCharacters() {
-        loadImage("leftArm");
-        loadImage("legs");
-        loadImage("torso");
-        loadImage("rightArm");
-        loadImage("head");
+        loadImage("leftArm1");
+        loadImage("legs1");
+        loadImage("torso1");
+        loadImage("rightArm1");
+        loadImage("head1");
         loadImage("hair");
+
         loadImage("ball");
     }
 
@@ -229,15 +211,15 @@ $(function(){
 
         e.width = e.width; 
 
-        charCtx.drawImage(images["leftArm"], x+40, y-42- breathAmt);
-        charCtx.drawImage(images["legs"], x, y);
-        charCtx.drawImage(images["torso"], x, y-50);
-        charCtx.drawImage(images["rightArm"], x-15, y-42);
-        charCtx.drawImage(images["head"], x-10, y-125- breathAmt);
-        charCtx.drawImage(images["hair"], x-37, y-138- breathAmt);
-        drawEye(x+47, y-68- breathAmt, 8, curEyeHeight);
-        drawEye(x+58, y-68- breathAmt, 8, curEyeHeight);
-        drawEye(x+40, y+29, 160 - breathAmt, 6); // drawShadow
+        charCtx.drawImage(images["legs1"], x, y);
+        charCtx.drawImage(images["rightArm1"], x+125, y-195 - breathAmt);
+        charCtx.drawImage(images["torso1"], x, y-150);
+        charCtx.drawImage(images["leftArm1"], x-50, y-142 - breathAmt);
+        charCtx.drawImage(images["head1"], x+15, y-280 - breathAmt);
+        //charCtx.drawImage(images["hair"], x-37, y-138- breathAmt);
+        drawEye(x+125, y-188- breathAmt, 15, curEyeHeight);
+        drawEye(x+140, y-188- breathAmt, 15, curEyeHeight);
+        //drawEye(x+40, y+29, 160 - breathAmt, 6); // drawShadow
     }
 
     function drawEye(centerX, centerY, width, height){
