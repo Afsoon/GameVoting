@@ -25,12 +25,13 @@ setInterval(function(){
     if(countdown>0 ){
         countdown--;
         io.sockets.emit('time', countdown);
-        if(countdown == 0){
+        if(countdown === 0){
             timeout = true;
             started = false;
             guid.cleanHashMap();
             generateUpdateJSON();
             io.sockets.emit('finishedTime', JSON.stringify(gameInstance.getGameInformationJSON()));
+            io.sockets.emit('winner', gameInstance.getWinner());
             console.log('enviado');
             gameInstance = new Game(2, {'left': 0, 'right': 0});
         }
@@ -75,8 +76,10 @@ io.on('connection', function(socket){
         }catch(err){
             console.log(err);
         }
+        console.log("primer emit");
         socket.emit('side', guid.getSide(data));
-        generateStatus(data);
+        console.log("Enviado el emit");
+        generateStatus(data, socket);
     })
 });
 
@@ -101,17 +104,22 @@ function setCountdown(seconds){
 }
 
 function generateStatus(tokenID, socket){
-    
-    socket.emit('status', getStateGame(tokenID));
+    console.log("generate");
+    getStateGame(tokenID);
+    console.log("emitar");
+    socket.emit('status', getStateGame(tokenID) );
 }
 
 function getStateGame(tokenID){
     if(guid.getStatusToken(tokenID)){
+        console.log('cannotVote');
         return 'cannotVote';
     }else if(!guid.getStatusToken(tokenID)){
         if(started){
+            console.log('canVote');
             return 'canVote';
         }else{
+            console.log('wait');
             return 'wait';
         }
     }
