@@ -9,7 +9,9 @@ var routes = require('./routes/index');
 
 var app = express();
 var server = require('http').createServer(app);
+console.log('server');
 var websockets = require('./server/WebSocketsImplementation').handlerSocket(server);
+
 
 server.listen(80);
 

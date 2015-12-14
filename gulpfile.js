@@ -15,7 +15,7 @@ var publics = ['public/**/*.html',
     'public/**/*.wav'];
 var server = ['server/WebSocketsImplementation.js'];
 var routes = ['routes/*.js'];
-var pack = ['ecosystem.json', 'package.json'];
+var pack = ['ecosystem.json', 'package.json', 'app.js'];
 var test = ['spec/**.js'];
 var views = ['views/*.jade'];
 var modules = ['modules/*.js'];
