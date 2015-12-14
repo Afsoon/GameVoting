@@ -1,4 +1,4 @@
-var socket = io.connect('http://46.101.214.219:9000', { 'forceNew': true });
+var socket = io.connect('http://46.101.214.219:80', { 'forceNew': true });
 var language;
 
 function loadConfig(lang) {

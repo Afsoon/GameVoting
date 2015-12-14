@@ -1,6 +1,6 @@
 $(function(){
     var c, d, e, context, charCtx, ballCtx, maxWidth, maxHeight, intervalId, results;
-    var socket = io.connect('http://46.101.214.219:9000', { 'forceNew': true });
+    var socket = io.connect('http://46.101.214.219:80', { 'forceNew': true });
     var GAMEVOTING = {};
     var images = {};
     var ball = {}, x, y, moveX, moveY;
@@ -109,14 +109,13 @@ $(function(){
         context = c.getContext("2d");
         ballCtx = d.getContext("2d");
         charCtx = e.getContext("2d");
+        
         maxWidth = window.innerWidth;
         maxHeight = window.innerHeight;
-        context.canvas.width  = maxWidth;
-        context.canvas.height = maxHeight;
-        ballCtx.canvas.width  = maxWidth;
-        ballCtx.canvas.height = maxHeight;
-        charCtx.canvas.width  = maxWidth;
-        charCtx.canvas.height = maxHeight;
+        
+        assignCanvasSize(context.canvas);
+        assignCanvasSize(ballCtx.canvas);
+        assignCanvasSize(charCtx.canvas);
 
         ball.x = maxWidth * 2 / 6;
         ball.y = maxHeight / 2;
@@ -132,6 +131,11 @@ $(function(){
         drawScores();
         drawTime();
         drawCharacters();
+    }
+
+    function assignCanvasSize (canvas) {
+        canvas.width = maxWidth;
+        canvas.height = maxHeight;
     }
 
     function drawSky() {
@@ -225,13 +229,13 @@ $(function(){
         e.width = e.width; 
 
         charCtx.drawImage(images["legs1"], x1, y1);
-        charCtx.drawImage(images["rightArm1"], x1+125, y1-195 - breathAmt);
-        charCtx.drawImage(images["torso1"], x1, y1-150);
-        charCtx.drawImage(images["leftArm1"], x1-50, y1-142 - breathAmt);
-        charCtx.drawImage(images["head1"], x1+15, y1-280 - breathAmt);
+        charCtx.drawImage(images["rightArm1"], x1 + 125, y1 - 195 - breathAmt);
+        charCtx.drawImage(images["torso1"], x1, y1 - 150);
+        charCtx.drawImage(images["leftArm1"], x1 - 50, y1 - 142 - breathAmt);
+        charCtx.drawImage(images["head1"], x1 + 15, y1 - 280 - breathAmt);
         //charCtx.drawImage(images["hair"], x-37, y-138- breathAmt);
-        drawEye(x1+125, y1-193- breathAmt, 20, curEyeHeight);
-        drawEye(x1+150, y1-193- breathAmt, 20, curEyeHeight);
+        drawEye(x1 + 125, y1 - 193 - breathAmt, 20, curEyeHeight);
+        drawEye(x1 + 150, y1 - 193 - breathAmt, 20, curEyeHeight);
 
         charCtx.drawImage(images["legs2"], x2, y2);
         charCtx.drawImage(images["rightArm2"], x2-175, y2-195 - breathAmt);
@@ -239,8 +243,9 @@ $(function(){
         charCtx.drawImage(images["leftArm2"], x2+170, y2-142 - breathAmt);
         charCtx.drawImage(images["head2"], x2+35, y2-280 - breathAmt);
         //charCtx.drawImage(images["hair"], x-37, y-138- breathAmt);
-        drawEye(x2+75, y2-193- breathAmt, 20, curEyeHeight);
-        drawEye(x2+100, y2-193- breathAmt, 20, curEyeHeight);
+        drawEye(x2 + 75, y2 -193 - breathAmt, 20, curEyeHeight);
+        drawEye(x2 + 100, y2 -193 - breathAmt, 20, curEyeHeight);
+        console.log("breathAmt: " + breathAmt);
     }
 
     function drawEye(centerX, centerY, width, height){
@@ -390,33 +395,55 @@ $(function(){
 
     function showWinner(){
         var audioApplause = new Audio("../sounds/applause.wav");
+        var audioBoo = new Audio("../sounds/boo.wav");
+        images["team1"] = new Image();
+        images["team2"] = new Image();
 
         clearInterval(intervalChars);
-
-        if (results.winner === "team1"){
-            showCup();
-        } else if (results.winner === "team2"){
-            showCup();
-        }
 
         $(".results").text(GAMEVOTING[results.winner])
             .css("font-size", "7em")
             .addClass("show");
 
         setTimeout(function() {
-            audioApplause.play();
+            if (results.winner === "draw"){
+                audioBoo.play();
+            } else {
+                audioApplause.play();
+            }
         },1000);
+
+        if (results.winner === "team1"){
+            //images[team1].src = "../images/character/char1wins.png";
+            //images[team2].src = "../images/character/char2loses.png";
+            showCup();
+            //showEmotions();
+        } else if (results.winner === "team2"){
+            //images[team1].src = "../images/character/char1loses.png";
+            //images[team2].src = "../images/character/char2wins.png";
+            showCup();
+            //showEmotions();
+        } else {
+            curEyeHeight = 3;
+            redrawChars();
+        }
 
         setTimeout(function(){
             showResults(results.team1Pct,
                 results.team1Side,
                 results.team2Pct,
                 results.team2Side);
-        },2000);        
+        },1750);        
     }
 
     function showCup() {
         context.drawImage(images["Cup"], maxWidth /2 - 203, maxHeight / 2 - 364);
+    }
+
+    function showEmotions() {
+        e.width = e.width;
+        charCtx.drawImage(images["team1"], character1X-50, character1Y);
+        charCtx.drawImage(images["team2"], character2X-175, character2Y);
     }
 
     function showResults(team1Pct, team1Side, team2Pct, team2Side){
@@ -431,6 +458,7 @@ $(function(){
     }
 
     function showToasty() {
+        // Dedicado a Israel por su paciencia 
         var audioToasty = new Audio("../sounds/toasty.wav");        
         $(".toasty").addClass("appear");
         audioToasty.play();

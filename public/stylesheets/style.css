@@ -378,7 +378,7 @@ article {
       /* Toasty! */ }
       article#scoreboard.scoreboard .score {
         position: fixed;
-        width: 20%;
+        width: 25%;
         height: 10%;
         top: 20%;
         background-color: #004359;
@@ -444,7 +444,7 @@ article {
         opacity: 0; }
       article#scoreboard.scoreboard .toasty {
         z-index: 2;
-        left: 45%;
+        left: 43%;
         opacity: 0;
         width: 250px;
         height: 319px;
