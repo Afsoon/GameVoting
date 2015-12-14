@@ -13,7 +13,7 @@ var publics = ['public/**/*.html',
     'public/**/*.js',
     'public/**/*.css',
     'public/**/*.wav'];
-var server = ['server/serverDev.js'];
+var server = ['server/WebSocketsImplementation.js'];
 var routes = ['routes/*.js'];
 var pack = ['ecosystem.json'];
 var test = ['spec/**.js'];

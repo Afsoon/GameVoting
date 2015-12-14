@@ -1,19 +1,13 @@
 /**
  * Created by saidatrahouchecharrouti on 10/11/15.
  */
-var express = require('express');
-var app = express();
-var server = require('http').createServer(app);
-var io = require('socket.io')(server);
-var routes = require('../routes/index');
+var io = require('socket.io');
 var Game = require('./../modules/tenisgame');
 var Players = require('./../modules/players');
 var GUIDController = require('./../modules/GUIDController');
 var playersInstance = new Players(2, ['team1', 'team2']);
 var gameInstance = new Game(2);
 var guid = new GUIDController();
-
-app.use('/', routes);
 
 var COUNTDOWNDEFAULT = 90;
 var countdown = -1;
@@ -36,9 +30,6 @@ setInterval(function(){
         }
     }
 }, 1000);
-
-server.listen(9000, function(){      
-});
 
 io.on('connection', function(socket){
 
@@ -128,3 +119,5 @@ function addVote(data, team){
 function generateUpdateJSON(){
     io.sockets.emit('update', JSON.stringify(gameInstance.getVotesGameJSON()));
 }
+
+module.exports = io;
