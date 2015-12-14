@@ -9,30 +9,31 @@ var playersInstance = new Players(2, ['team1', 'team2']);
 var gameInstance = new Game(2);
 var guid = new GUIDController();
 
+var COUNTDOWNDEFAULT = 90;
+var countdown = -1;
+var language;
+var timeout = false;
+var started = false;
+
+setInterval(function(){
+    if(countdown>0 ){
+        countdown--;
+        io.sockets.emit('time', countdown);
+        if(countdown === 0){
+            timeout = true;
+            started = false;
+            guid.cleanHashMap();
+            generateUpdateJSON();
+            io.sockets.emit('finishedTime', JSON.stringify(gameInstance.getGameInformationJSON()));
+            io.sockets.emit('winner', gameInstance.getWinner());
+            gameInstance = new Game(2, {'left': 0, 'right': 0});
+        }
+    }
+}, 1000);
 
 module.exports.handlerSocket = function(app){
     var io = socketio.listen(app);
-    var COUNTDOWNDEFAULT = 90;
-    var countdown = -1;
-    var language;
-    var timeout = false;
-    var started = false;
-
-    setInterval(function(){
-        if(countdown>0 ){
-            countdown--;
-            io.sockets.emit('time', countdown);
-            if(countdown === 0){
-                timeout = true;
-                started = false;
-                guid.cleanHashMap();
-                generateUpdateJSON();
-                io.sockets.emit('finishedTime', JSON.stringify(gameInstance.getGameInformationJSON()));
-                io.sockets.emit('winner', gameInstance.getWinner());
-                gameInstance = new Game(2, {'left': 0, 'right': 0});
-            }
-        }
-    }, 1000);
+    
 
     io.on('connection', function(socket){
 
