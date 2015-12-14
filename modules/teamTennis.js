@@ -3,11 +3,11 @@
  */
 'use strict';
 
-function TeamTennis(actions){
+function TeamTennis(){
 
     this.numberVotesActionMajority = 0;
     this.actionMajority = 'none';
-    this.actionsMap = actions;
+    this.actionsMap = {'left': 0, 'right': 0};
     this.totalVotes = 0;
 }
 

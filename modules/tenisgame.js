@@ -6,14 +6,14 @@ var TeamTennis = require('./teamTennis');
 
 
 
-function TenisGame(numberTeams, actions){
+function TenisGame(numberTeams){
     if(!(this instanceof TenisGame)){
-        return new TenisGame(numberTeams, actions);
+        return new TenisGame(numberTeams);
     }
     this.teamMap = {};
     for(var i = 0; i < numberTeams; i++){
         //Hay que hacer un clone, este no es óptimo, para que apunte a otro objeto diferente...
-        this.teamMap['team' + (i+1)] = new TeamTennis(JSON.parse(JSON.stringify(actions)));
+        this.teamMap['team' + (i+1)] = new TeamTennis();
     }
 }
 

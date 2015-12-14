@@ -7,7 +7,7 @@ var TeamTennis = require('./../modules/teamTennis');
 describe('Team', function () {
     var team;
     beforeEach(function () {
-       team = new TeamTennis({'left' : 0, 'right': 0});
+       team = new TeamTennis();
     });
     
     it('add 1 vote to left action', function () {

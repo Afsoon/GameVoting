@@ -10,7 +10,7 @@ var Game = require('./../modules/tenisgame');
 var Players = require('./../modules/players');
 var GUIDController = require('./../modules/GUIDController');
 var playersInstance = new Players(2, ['team1', 'team2']);
-var gameInstance = new Game(2, {'left': 0, 'right': 0});
+var gameInstance = new Game(2);
 var guid = new GUIDController();
 
 app.use('/', routes);
@@ -32,7 +32,6 @@ setInterval(function(){
             generateUpdateJSON();
             io.sockets.emit('finishedTime', JSON.stringify(gameInstance.getGameInformationJSON()));
             io.sockets.emit('winner', gameInstance.getWinner());
-            console.log('enviado');
             gameInstance = new Game(2, {'left': 0, 'right': 0});
         }
     }
@@ -42,8 +41,6 @@ server.listen(9000, function(){
 });
 
 io.on('connection', function(socket){
-    
-    console.log('conexion establecida');
 
     socket.on('setupInstructions', function (language){
         io.sockets.emit('showInstructions', language); 
@@ -52,7 +49,6 @@ io.on('connection', function(socket){
     socket.on('start', function (data) {
         started = true;
         timeout = false;
-        
         var informationScoreboard = getJSON(data);
         setCountdown(informationScoreboard['countdownSeconds']);
         io.sockets.emit('startScoreboard', informationScoreboard['language']);
@@ -76,9 +72,7 @@ io.on('connection', function(socket){
         }catch(err){
             console.log(err);
         }
-        console.log("primer emit");
         socket.emit('side', guid.getSide(data));
-        console.log("Enviado el emit");
         generateStatus(data, socket);
     })
 });
@@ -104,9 +98,7 @@ function setCountdown(seconds){
 }
 
 function generateStatus(tokenID, socket){
-    console.log("generate");
     getStateGame(tokenID);
-    console.log("emitar");
     socket.emit('status', getStateGame(tokenID) );
 }
 
