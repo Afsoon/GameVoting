@@ -11,7 +11,7 @@ var app = express();
 var server = require('http').createServer(app);
 var websockets = require('./server/WebSocketsImplementation').handlerSocket(server);
 
-server.listen(9000);
+server.listen(80);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

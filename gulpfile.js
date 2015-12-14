@@ -15,7 +15,7 @@ var publics = ['public/**/*.html',
     'public/**/*.wav'];
 var server = ['server/WebSocketsImplementation.js'];
 var routes = ['routes/*.js'];
-var pack = ['ecosystem.json'];
+var pack = ['ecosystem.json', 'package.json'];
 var test = ['spec/**.js'];
 var views = ['views/*.jade'];
 var modules = ['modules/*.js'];
@@ -40,15 +40,8 @@ gulp.task('deploy', ['test'], function(){
         .pipe(gulpsftp(generatePath('modules')));
     gulp.src(pack)
         .pipe(gulpsftp(generatePath('')));
-    /**gulp.src(routes)
-        .pipe(gulpsftp(generatePath('routes')));
-    gulp.src(views)
-        .pipe(gulpsftp(generatePath('view')));
     gulp.src(pack)
         .pipe(gulpsftp(generatePath('')));
-    
-    //gulp.src(routes)**/
-    //   .pipe(gulpsftp(generatePath('routes')));
 
 });
 
