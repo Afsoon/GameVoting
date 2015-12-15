@@ -278,18 +278,18 @@ body {
     right: 0px; } }
 /* Enter score team2 */
 .toastyEnter, article#scoreboard.scoreboard .toasty.appear {
-  animation: toast ease-in 1.5s both;
-  -webkit-animation: toast ease-in 1.5s both;
-  -moz-animation: toast ease-in 1.5s both;
-  -o-animation: toast ease  1.5s both; }
+  animation: toast ease-in 2s both;
+  -webkit-animation: toast ease-in 2s both;
+  -moz-animation: toast ease-in 2s both;
+  -o-animation: toast ease  2 both; }
 
 @-moz-keyframes toast {
   0% {
     opacity: 1;
     bottom: -400px; }
-  25% {
+  20% {
     bottom: 0; }
-  75% {
+  80% {
     bottom: 0; }
   100% {
     opacity: 1;
@@ -298,9 +298,9 @@ body {
   0% {
     opacity: 1;
     bottom: -400px; }
-  25% {
+  20% {
     bottom: 0; }
-  75% {
+  80% {
     bottom: 0; }
   100% {
     opacity: 1;
@@ -309,9 +309,9 @@ body {
   0% {
     opacity: 1;
     bottom: -400px; }
-  25% {
+  20% {
     bottom: 0; }
-  75% {
+  80% {
     bottom: 0; }
   100% {
     opacity: 1;
@@ -389,7 +389,8 @@ article {
         padding: 10px; }
         article#scoreboard.scoreboard .score .teamVotes {
           font-size: 5em;
-          font-weight: 800; }
+          font-weight: 800;
+          line-height: 75%; }
         article#scoreboard.scoreboard .score .teamName {
           font-size: 2em;
           font-weight: 200; }

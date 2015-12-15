@@ -203,29 +203,29 @@
 
 /* Enter score team2 */
 .toastyEnter {
-	animation: toast ease-in 1.5s both;
-	-webkit-animation: toast ease-in 1.5s both;
-	-moz-animation: toast ease-in 1.5s both;
-	-o-animation: toast ease  1.5s both;
+	animation: toast ease-in 2s both;
+	-webkit-animation: toast ease-in 2s both;
+	-moz-animation: toast ease-in 2s both;
+	-o-animation: toast ease  2 both;
 }
 
 @-moz-keyframes toast {
 	0%	{opacity: 1; bottom: -400px}
-	25%	{bottom: 0;}
-	75%	{bottom: 0;}
+	20%	{bottom: 0;}
+	80%	{bottom: 0;}
 	100% {opacity: 1; bottom: -400px}
 }
 
 @-webkit-keyframes toast {
 	0%	{opacity: 1; bottom: -400px}
-	25%	{bottom: 0;}
-	75%	{bottom: 0;}
+	20%	{bottom: 0;}
+	80%	{bottom: 0;}
 	100% {opacity: 1; bottom: -400px}
 }
 
 @keyframes toast {
 	0%	{opacity: 1; bottom: -400px}
-	25%	{bottom: 0;}
-	75%	{bottom: 0;}
+	20%	{bottom: 0;}
+	80%	{bottom: 0;}
 	100% {opacity: 1; bottom: -400px}
 }

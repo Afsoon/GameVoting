@@ -233,7 +233,6 @@ $(function(){
         charCtx.drawImage(images["torso1"], x1, y1 - 150);
         charCtx.drawImage(images["leftArm1"], x1 - 50, y1 - 142 - breathAmt);
         charCtx.drawImage(images["head1"], x1 + 15, y1 - 280 - breathAmt);
-        //charCtx.drawImage(images["hair"], x-37, y-138- breathAmt);
         drawEye(x1 + 125, y1 - 193 - breathAmt, 20, curEyeHeight);
         drawEye(x1 + 150, y1 - 193 - breathAmt, 20, curEyeHeight);
 
@@ -242,10 +241,8 @@ $(function(){
         charCtx.drawImage(images["torso2"], x2+50, y2-150);
         charCtx.drawImage(images["leftArm2"], x2+170, y2-142 - breathAmt);
         charCtx.drawImage(images["head2"], x2+35, y2-280 - breathAmt);
-        //charCtx.drawImage(images["hair"], x-37, y-138- breathAmt);
         drawEye(x2 + 75, y2 -193 - breathAmt, 20, curEyeHeight);
         drawEye(x2 + 100, y2 -193 - breathAmt, 20, curEyeHeight);
-        console.log("breathAmt: " + breathAmt);
     }
 
     function drawEye(centerX, centerY, width, height){
@@ -413,42 +410,53 @@ $(function(){
             }
         },1000);
 
+        socket.emit('finish');
+
         if (results.winner === "team1"){
-            //images[team1].src = "../images/character/char1wins.png";
-            //images[team2].src = "../images/character/char2loses.png";
             showCup();
-            //showEmotions();
+            showEmotions("../images/character/winning1.png", "../images/character/losing2.png");
         } else if (results.winner === "team2"){
-            //images[team1].src = "../images/character/char1loses.png";
-            //images[team2].src = "../images/character/char2wins.png";
             showCup();
-            //showEmotions();
+            showEmotions("../images/character/losing1.png", "../images/character/winning2.png");
         } else {
             curEyeHeight = 3;
             redrawChars();
         }
 
         setTimeout(function(){
+
             showResults(results.team1Pct,
                 results.team1Side,
                 results.team2Pct,
                 results.team2Side);
-        },1750);        
+        },1500);        
     }
 
     function showCup() {
         context.drawImage(images["Cup"], maxWidth /2 - 203, maxHeight / 2 - 364);
     }
 
-    function showEmotions() {
+    function showEmotions(img1, img2) {
+        var team1 = new Image();
+        var team2 = new Image();
+        var y = maxHeight * 0.85;
+        team1.src = img1;
+        team2.src = img2;
+
         e.width = e.width;
-        charCtx.drawImage(images["team1"], character1X-50, character1Y);
-        charCtx.drawImage(images["team2"], character2X-175, character2Y);
+
+        team1.onload = function() {
+            charCtx.drawImage(team1, character1X, y - team1.height);
+        }
+        team2.onload = function() {
+            charCtx.drawImage(team2, character2X -150, y - team2.height);
+        }
     }
 
     function showResults(team1Pct, team1Side, team2Pct, team2Side){
         $(".teamVotes").css("font-size","2.5em")
-                        .css("font-weight", "400");
+                        .css("font-weight", "400")
+                        .css("line-height", "normal");
         $("#team1Votes")
            .text(GAMEVOTING.chose +" "+ team1Pct + "% " + GAMEVOTING[team1Side]);
         $("#team2Votes")
