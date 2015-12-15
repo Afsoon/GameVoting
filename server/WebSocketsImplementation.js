@@ -16,21 +16,19 @@ module.exports.handlerSocket = function(app){
     var COUNTDOWNDEFAULT = 90;
     var countdown = -1;
     var language;
-    var timeout = false;
-    var started = false;
+    var GAME_STATES = ['INICIO', 'INSTRUCCIONES', 'JUEGO', 'FIN'];
+    var gameState = GAME_STATES[0];
 
+    
     setInterval(function(){
         if(countdown>0 ){
             countdown--;
             io.sockets.emit('time', countdown);
             if(countdown === 0){
-                timeout = true;
-                started = false;
+                gameState = GAME_STATES[3];
                 guid.cleanHashMap();
                 generateUpdateJSON();
                 io.sockets.emit('finishedTime', JSON.stringify(gameInstance.getGameInformationJSON()));
-                io.sockets.emit('winner', gameInstance.getWinner());
-                gameInstance = new Game(2, {'left': 0, 'right': 0});
             }
         }
     }, 1000);
@@ -40,11 +38,11 @@ module.exports.handlerSocket = function(app){
 
         socket.on('setupInstructions', function (language){
             io.sockets.emit('showInstructions', language);
+            gameState = GAME_STATES[1];
         });
 
         socket.on('start', function (data) {
-            started = true;
-            timeout = false;
+            gameState = GAME_STATES[2];
             var informationScoreboard = getJSON(data);
             setCountdown(informationScoreboard['countdownSeconds']);
             io.sockets.emit('startScoreboard', informationScoreboard['language']);
@@ -70,7 +68,13 @@ module.exports.handlerSocket = function(app){
             }
             socket.emit('side', guid.getSide(data));
             generateStatus(data, socket);
-        })
+        });
+        
+        socket.on('finish', function(){
+            io.sockets.emit('winner', gameInstance.getWinner());
+            gameInstance = new Game(2, {'left': 0, 'right': 0});
+        });
+        
     });
 
     function getJSON(data){
@@ -103,7 +107,7 @@ module.exports.handlerSocket = function(app){
             console.log('cannotVote');
             return 'cannotVote';
         }else if(!guid.getStatusToken(tokenID)){
-            if(started){
+            if(gameState === GAME_STATES[2]){
                 console.log('canVote');
                 return 'canVote';
             }else{
@@ -115,9 +119,11 @@ module.exports.handlerSocket = function(app){
 
     function addVote(data, team){
         var informationVote = getJSON(data);
+        var isEndGame;
         if(!guid.getStatusToken(getTokenID(informationVote))){
             guid.validTokenVote(getTokenID(informationVote));
-            gameInstance.addVote(team, getSideVoted(informationVote), timeout);
+            isEndGame = !(gameState === GAME_STATES[2]);
+            gameInstance.addVote(team, getSideVoted(informationVote),  isEndGame);
         }
     }
 
