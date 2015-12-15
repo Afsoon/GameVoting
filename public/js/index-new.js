@@ -29,7 +29,7 @@ $(function() {
 
     tokenize();
 
-    var socket = io.connect('http://46.101.214.219:9000', { 'forceNew': true });
+    var socket = io.connect('http://46.101.214.219:80', { 'forceNew': true });
 
     GAMEVOTING = {};
 
@@ -184,9 +184,11 @@ $(function() {
     function showVoted() {
         socket.on('winner', function(side){
             if(teamSide === side){
-               console.log('winner');
+                $("#throphy").append("<img src = '../../images/winner.png' >");
+                if(supportsVibrate) { navigator.vibrate(1000); }
             }else{
-                console.log('loser');
+                $("#throphy").append("<img src = '../../images/loser.png' >");
+                if(supportsVibrate) { navigator.vibrate(1000); }
             }
             socket.disconnect();
         });
@@ -203,8 +205,8 @@ $(function() {
         var tweet = convertString(encodeURI(GAMEVOTING.tweet));
         if(supportsVibrate) { navigator.vibrate(1000); }
         $("#swipeArea").html("");
-        $("#swipeArea").append("<p id='voted' >"+GAMEVOTING.votedMsg + "<br><br>" + GAMEVOTING.thanksMsg + "<br><br>" + "</p> <a href='https://twitter.com/intent/tweet?text="+ tweet + "'>"
-            +"<img src='images/tweetbutton.png' alt='Tweet this!' id='tweet'></a>").addClass('showVoted');
+        $("#swipeArea").append("<div id='throphy' > </div> <div id='infoEnd'> <p id='voted' >"+GAMEVOTING.votedMsg + "<br><br>" + GAMEVOTING.thanksMsg + "<br><br>" + "</p> <a href='https://twitter.com/intent/tweet?text="+ tweet + "'>"
+            +"<img src='images/tweetbutton.png' alt='Tweet this!' id='tweet'></a> </div>").addClass('showVoted');
         $("#voted").addClass('showArrow');
         fastTrasitionAnimation.removeEventListener("animationend", addMessageVoted, false);
     }
