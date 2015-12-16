@@ -182,14 +182,16 @@ $(function() {
     }
 
     function showVoted() {
+        var width = window.innerWidth;
+        var height = window.innerHeight;
+
         socket.on('winner', function(side){
             if(teamSide === side){
                 $("#throphy").append("<img src = '../../images/winner.png' >");
-                if(supportsVibrate) { navigator.vibrate(1000); }
             }else{
                 $("#throphy").append("<img src = '../../images/loser.png' >");
-                if(supportsVibrate) { navigator.vibrate(1000); }
             }
+            if(supportsVibrate) { navigator.vibrate(1000); }
             socket.disconnect();
         });
 

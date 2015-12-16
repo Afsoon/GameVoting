@@ -352,20 +352,22 @@ header {
 
 .showVoted {
   top: 0;
-  right: 0;
-  z-index: 1; }
+  right: 0; }
   .showVoted div {
     width: 100%;
-    overflow: auto;
     margin: 0;
     color: white;
     text-align: center;
-    height: 60%; }
-    .showVoted div#throphy {
-      position: relative; }
-      .showVoted div#throphy img {
-        width: 75%;
-        margin-top: 30%; }
+    height: 50%;
+    position: relative; }
+    .showVoted div#throphy img {
+      max-width: 100%;
+      max-height: 85%;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto; }
     .showVoted div#infoEnd {
       position: relative; }
 
