@@ -16,8 +16,6 @@
             <div class="content">
                 <h1 id="gameVoting">#Gamevoting</h1>
                 <h2 id="subtitle">Entra en <b>gamevoting.me</b> en el navegador de tu dispositivo para jugar</h2>
-                <img src="images/tennisGirl.png" id="tennisGirl">
-                <img src="images/tennisBoy.png" id="tennisBoy">
             </div>
             <br/>
             <div id="instructions"><ul></ul></div>
@@ -25,27 +23,36 @@
     </article>
     
     <article class="" id="scoreboard">
-        <section class="team1">
-            
-            <div class="content t1">
-                <h2 id="team1votes">00</h2>
-                <p id="t1Name"></p>
-            </div>
-        </section>
-        <section class="team2">
-            <div class="content t2">
-                <h2 id="team2votes">00</h2>
-                <p id="t2Name"></p>
-            </div>
-        </section><!-- Team Scores -->
+        
+        <canvas id="courtCanvas">
+            YOUR BROWSER DOES NOT SUPPORT <B>CANVAS</B>!
+        </canvas>
+        <canvas id="charCanvas">
+        </canvas>
+        <canvas id="ballCanvas">
+        </canvas>
         
         <aside class="countdown">
             <div class="time">
                 <div style="width: 100%;" class="progress">
                 </div>
-            </div><!-- time -->
-        </aside>
+            </div>
+        </aside><!-- time -->
 
+        <aside id="team1" class="score">
+            <div id="team1Votes" class="teamVotes">00</div>
+            <div id="team1Name" class="teamName"></div>
+        </aside><!-- team1 Score-->
+
+        <aside id="team2" class="score">
+            <div id="team2Votes" class="teamVotes">00</div>
+            <div id="team2Name" class="teamName"></div>
+        </aside><!-- team2 Score-->        
+
+        <aside class="toasty">
+
+        </aside><!-- Toasty! -->
+        
         <aside class="results">
         </aside><!-- RESULTS -->
 
