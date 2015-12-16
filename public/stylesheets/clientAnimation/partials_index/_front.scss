@@ -10,131 +10,141 @@ header {
 		width: 90%;
 		height: 5%;
 		float: left;
-		p {
-			text-align: center;
+		h2 {
+			padding-left: 10%;
 			text-transform: uppercase;
-			letter-spacing: 1rem;
-
+			letter-spacing: 0.2em;
+			padding-top: 0.1rem;
 		}
 		
 	}
 	.info {
-		width: 10%;
+		width: 6%;
+		padding-right: 4%;
 		float: right;
 	}
 }
 
-.goGame {
-	@extend .push;
+.showArrow {
+	@extend  .appear;
 }
 
-.inner {
-	width: 100%;
-	height: 100%;
-	position: absolute;
+.showColorVoted {
+	@extend .changeColorVoted;
+}
+
+.showVoted {
 	top: 0;
-	left: 0;
-	margin-bottom: 0px;
-	overflow: hidden;
-}
-
-.overflow {
-	width: 200%;
-	height: 100%;
-	position: absolute;
-	top: 0;
-	left: 0;
-	overflow-y: hidden;
-	-webkit-transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
-}
-
-.init{
-	width: 50%;
-	height: 100%;
-	position: absolute;
-	background-color: black;
-	section {
-		@extend .run_inverse;
+	right: 0;
+	z-index: 1;
+	@extend .voted;
+	div {
 		width: 100%;
 		overflow: auto;
 		margin: 0;
 		color: white;
 		text-align: center;
 		height: 60%;
-		&.instruction{
-			h2 {
-				position: absolute;
-				left: 0;
-				right: 0;
-				top: 0;
-				font-weight: 300;
-				font-size: 3rem;
-
-				&.none {
-					@extend .dissapear;
-				}
+		&#throphy{
+			position: relative;
+			img{
+				width: 75%;
+				margin-top: 30%;
 			}
 		}
-
-		&.game{
-			h2{
-				position: absolute;
-				opacity: 0.5;
-				left: 0;
-				right: 0;
-				bottom: 0;
-				font-weight: 100;
-				font-size: 3rem;
-				&.none {
-					@extend .dissapear;
-				}
-			}
+		&#infoEnd{
+			position: relative;
 		}
 	}
 }
 
-.middle {
-	width: 50%;
+aside {
+	width: 100%;
 	height: 100%;
-	position: absolute;
-	@extend .push2;
-	section {
-		width: 100%;
-		overflow: auto;
-		margin: 0;
-		color: white;
-		text-align: center;
-		height: 50%;
-		&.up{
-			left: 0;
-			right: 0;
-			bottom: 0;
-				
-		}
+	position: fixed;
+	display: table;
 
-		&.down{
-			left: 0;
-			right: 0;
-			top: 0;
+	&.goToVotedFirstSlide {
+		@extend .fastSlide1;
+	}
+	&.slide-1 {
+		top: 0;
+		right: 0;
+		background: black;
+		z-index: 1;
+		&.gone {
+			@extend .slide-effect-2; /* effecto 1 */
 		}
-
-		.content {
-			h2 {
-				font-weight: 100;
-				font-size: 3rem;
-				@extend .appear;
+		section {
+			@extend .run_inverse;
+			width: 100%;
+			overflow: auto;
+			margin: 0;
+			color: white;
+			text-align: center;
+			height: 60%;
+			&.instruction{
+				h2 {
+					position: absolute;
+					left: 0;
+					right: 0;
+					top: 0;
+					font-weight: 300;
+					font-size: 2.5rem;
+					&.none {
+						@extend .dissapear;
+					}
+				}
 			}
 
-			h3 {
-				font-weight: 300;
-				font-size: 1.5rem;
-				@extend .appear;
+			&.game{
+				h2{
+					position: absolute;
+					opacity: 0.5;
+					left: 0;
+					right: 0;
+					bottom: 0;
+					font-weight: 100;
+					font-size: 2.5rem;
+					&.none {
+						@extend .dissapear;
+					}
+				}
 			}
 		}
 	}
+
+	&.slide-2 {
+		top: 0;
+		right: 100%;
+		background: black;
+		z-index: 2;
+		@extend .slide-effect; /* effecto 1 */
+	}
+
+	&.goToVotedSecondSlide {
+		top: 0;
+		right: 100%;
+		background: black;
+		z-index: 2;
+		@extend .fastSlide2;
+	}
+
+	#content {
+	    width: 100%;
+	    height: 100%;
+	    display: table;
+	}
+
+	#swipeArea{
+	    width: 100%;
+	    height: 100%;
+	    background-color: #409141;
+	    font-family: 'Roboto', sans-serif;
+	    font-size: 1rem;
+	    color: white;
+	    text-align: center;
+	    vertical-align: middle;
+	    display: table-cell;
+	}
 }
-
-
