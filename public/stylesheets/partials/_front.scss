@@ -1,0 +1,221 @@
+/* Front-end style */
+
+.container{
+	width: 100%;
+	height: 100%;
+	overflow: hidden;	
+}
+
+article {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+
+	&.init{
+		section {
+			width: 100%;		
+			color: black;
+			display: table;
+			text-align: center;
+
+			.content{
+				vertical-align: middle;
+				/*display: table-row;*/
+				@extend .boing;
+
+				h1 {	
+					font-size: 13em;
+					font-weight: 400;			
+					font-family: 'Bangers', cursive;
+					display: block;
+					width: 100%;
+					margin-top: 15%;
+					text-align: center;
+					&.instructions{
+						@extend .title;
+					}
+				}
+
+				h2 {
+					font-size: 2em;
+					font-weight: 400;
+					font-family: 'Roboto', sans-serif;
+				}
+
+				img {
+					z-index: -1;
+					position: absolute;
+					top: -7%;
+					background-color: transparent;
+					max-width: 600px;
+					max-height: 600px;
+
+					&#tennisGirl{
+						left: 1%;
+					}
+
+					&#tennisBoy{
+						right: 1%;
+					}
+				}
+			}
+
+			.instructions{
+				vertical-align: middle;
+				font-size: 2em;
+				margin-top: 5%;
+				@extend .boing;
+			}
+		}
+	}
+
+	&.bye{
+		@extend .push;
+	}
+
+	&#scoreboard {
+		margin-left: 100%;
+		/* background: url('../images/background.jpg') left bottom no-repeat;
+		background-size: cover; */
+
+		&.scoreboard {
+			width: 100%;
+			height: 100%;
+			margin-left: 100%;
+			/*background-color: #053005;*/
+			color: white;
+			@extend .push2;
+
+			/* Scores */
+			.score {
+				position: fixed;
+				width: 25%;
+				height: 10%;
+				top: 20%; 
+				background-color: #004359;
+				text-align: center;
+				font-family: 'Roboto', sans-serif;
+				display: table;
+				opacity: 0;
+				padding: 10px;
+
+				.teamVotes {
+					font-size: 5em;
+					font-weight: 800;
+					line-height: 75%;
+
+					&.vote {
+						@extend .voted;
+					}
+				}
+
+				.teamName {
+					font-size: 2em;
+					font-weight: 200;
+				}
+
+				&#team1 {
+					left: -500px;
+					-webkit-border-top-right-radius: 30px;
+					-webkit-border-bottom-right-radius: 30px;
+					-moz-border-radius-topright: 30px;
+					-moz-border-radius-bottomright: 30px;
+					border-top-right-radius: 30px;
+					border-bottom-right-radius: 30px;
+					box-shadow: -10px 10px 5px #888888;
+
+					&.enterT1 {
+						@extend .team1Enter;
+					}
+				}
+
+				&#team2 {
+					right: -500px;
+					-webkit-border-top-left-radius: 30px;
+					-webkit-border-bottom-left-radius: 30px;
+					-moz-border-radius-topleft: 30px;
+					-moz-border-radius-bottomleft: 30px;
+					border-top-left-radius: 30px;
+					border-bottom-left-radius: 30px;
+					box-shadow: 10px 10px 5px #888888;
+
+					&.enterT2 {
+						@extend .team2Enter;
+					}
+				}
+			}
+
+			/* Aside countdown */
+			.countdown{
+				position: fixed;
+				top: 100%;
+				left: 100%;
+				width: 75%;
+				height: 10%;
+				.time {
+					width: 100%;
+					height: 40px;
+					position: relative;
+					background: #C41212;
+					-webkit-border-radius: 10px;
+					-moz-border-radius: 10px;
+					border-radius: 10px;
+					.progress {
+						height: 100%;
+						background: #FFEA00;
+						-webkit-border-radius: 10px;
+						-moz-border-radius: 10px;
+						border-radius: 10px;
+						padding-left: 5px;
+						@extend .t;
+					}
+				}
+
+				&.enterTime {
+					@extend .pushTime;
+				}
+			}
+
+			/* Aside final results */
+			.results {
+				position: fixed;
+				top: 5%;
+				width: 100%;
+				height: 10%;
+				font-family: 'Krona One', sans-serif;
+				font-size: 4em;
+				text-shadow: 2px 2px 5px #222;
+				text-align: center;
+				opacity: 0;
+				@extend .t;
+
+				&.show {
+					@extend .boing;
+				}
+			}
+
+			/* Toasty! */
+			.toasty {
+				z-index: 2;
+				left: 43%;
+				opacity: 0;
+				width: 250px;
+				height: 319px;
+				bottom: -400px;
+				position: fixed;
+				background: url('../images/toasty.png') left bottom no-repeat;
+				background-size: cover;
+
+				&.appear {
+					@extend .toastyEnter;
+				}
+			}
+
+			canvas {
+				position: fixed;
+				width: 100%;
+				height: 100%;
+			}
+		}
+	}
+}

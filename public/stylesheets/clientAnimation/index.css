@@ -1,0 +1,435 @@
+/* all css */
+/* reset */
+section, article, figure, header {
+  display: block; }
+
+body, h1, h2, h3, h4, h5, h6, ul {
+  margin: 0;
+  padding: 0; }
+
+.t {
+  -webkit-transition: 0.2s ease-in;
+  -moz-transition: 0.2s ease-in;
+  -o-transition: 0.2s ease-in;
+  transition: 0.2s ease-in; }
+
+ul {
+  list-style-type: none; }
+
+/* general */
+html, body, article, section {
+  height: 100%; }
+
+body {
+  font-size: 62.5%;
+  font-family: 'Roboto', sans-serif;
+  color: black;
+  background: white; }
+
+/* mixins SASS */
+.rad_small {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px; }
+
+.circle {
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
+  -o-border-radius: 100%;
+  border-radius: 100%; }
+
+/* variables */
+/* flas1 */
+.run, header {
+  animation: mascota ease 1.2s both;
+  -webkit-animation: mascota ease 1.2s both;
+  -moz-animation: mascota ease 1.2s both;
+  -o-animation: mascota ease  1.2s both; }
+
+@-moz-keyframes mascota {
+  0% {
+    opacity: 0; }
+  40% {
+    transform: translateY(-450px); }
+  60% {
+    transform: translateY(70px); }
+  80% {
+    transform: translateY(10px); }
+  100% {
+    opacity: 1;
+    transform: translateY(0); } }
+@-webkit-keyframes mascota {
+  0% {
+    opacity: 0; }
+  40% {
+    transform: translateY(-450px); }
+  60% {
+    transform: translateY(70px); }
+  80% {
+    transform: translateY(10px); }
+  100% {
+    opacity: 1;
+    transform: translateY(0); } }
+@keyframes mascota {
+  0% {
+    opacity: 0; }
+  40% {
+    transform: translateY(-450px); }
+  60% {
+    transform: translateY(70px); }
+  80% {
+    transform: translateY(10px); }
+  100% {
+    opacity: 1;
+    transform: translateY(0); } }
+.slide-effect, aside.slide-2 {
+  animation: plash ease 1s both;
+  -webkit-animation: plash ease 1s both;
+  -moz-animation: plash ease 1s both;
+  -o-animation: plash ease  1s both; }
+
+@-webkit-keyframes plash {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1;
+    right: 0; } }
+@keyframes plash {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1;
+    right: 0; } }
+@-moz-keyframes plash {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1;
+    right: 0; } }
+.slide-effect-2, aside.slide-1.gone {
+  animation: replash ease 1s both;
+  -webkit-animation: replash ease 1s both;
+  -moz-animation: replash ease 1s both;
+  -o-animation: replash ease  1s both; }
+
+@-webkit-keyframes replash {
+  100% {
+    right: -100%; } }
+@keyframes replash {
+  100% {
+    right: -100%; } }
+@-moz-keyframes replash {
+  100% {
+    right: -100%; } }
+.fastSlide1, aside.goToVotedFirstSlide {
+  animation: fast ease 0.5s both;
+  -webkit-animation: fast ease 0.5s both;
+  -moz-animation: fast ease 0.5s both;
+  -o-animation: fast ease  0.5s both; }
+
+@-moz-keyframes fast {
+  100% {
+    right: -100%; } }
+@-webkit-keyframes fast {
+  100% {
+    right: -100%; } }
+@keyframes fast {
+  100% {
+    right: -100%; } }
+.fastSlide2, aside.goToVotedSecondSlide {
+  animation: fast2 ease 0.5s both;
+  -webkit-animation: fast2 ease 0.5s both;
+  -moz-animation: fast2 ease 0.5s both;
+  -o-animation: fast2 ease  0.5s both; }
+
+@-moz-keyframes fast2 {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1;
+    right: 0; } }
+@-webkit-keyframes fast2 {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1;
+    right: 0; } }
+@keyframes fast2 {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1;
+    right: 0; } }
+.appear, .showArrow {
+  animation: appearanim ease-in-out 1.2s both;
+  -webkit-animation: appearanim ease-in-out 1.2s both;
+  -moz-animation: appearanim ease-in-out 1.2s both;
+  -o-animation: appearanim ease-in-out  1.2s both; }
+
+@-moz-keyframes appearanim {
+  0% {
+    opacity: 0; }
+  40% {
+    transform: translateX(-450px); }
+  60% {
+    transform: translateX(70px); }
+  80% {
+    transform: translateX(10px); }
+  100% {
+    opacity: 1;
+    transform: translateX(0); } }
+@-webkit-keyframes appearanim {
+  0% {
+    opacity: 0; }
+  40% {
+    transform: translateX(-450px); }
+  60% {
+    transform: translateX(70px); }
+  80% {
+    transform: translateX(10px); }
+  100% {
+    opacity: 1;
+    transform: translateX(0); } }
+.changeColorVoted, .showColorVoted {
+  animation: changeColor ease 1.2s both;
+  -webkit-animation: changeColor ease 1.2s both;
+  -moz-animation: changeColor ease 1.2s both;
+  -o-animation: changeColor ease  1.2s both; }
+
+@-moz-keyframes changeColor {
+  100% {
+    background-color: #AD0505; } }
+@-webkit-keyframes changeColor {
+  100% {
+    background-color: #AD0505; } }
+@keyframes changeColor {
+  100% {
+    background-color: #AD0505; } }
+.voted, .showVoted {
+  animation: voteAnim ease 1.2s both;
+  -webkit-animation: voteAnim ease 1.2s both;
+  -moz-animation: voteAnim ease 1.2s both;
+  -o-animation: voteAnim ease  1.2s both; }
+
+@-moz-keyframes voteAnim {
+  0% {
+    opacity: 0; }
+  40% {
+    transform: translateY(450px); }
+  60% {
+    transform: translateY(-70px); }
+  80% {
+    transform: translateY(10px); }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    background-color: #AD0505; } }
+@-webkit-keyframes voteAnim {
+  0% {
+    opacity: 0; }
+  40% {
+    transform: translateY(450px); }
+  60% {
+    transform: translateY(-70px); }
+  80% {
+    transform: translateY(10px); }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    background-color: #AD0505; } }
+@keyframes voteAnim {
+  0% {
+    opacity: 0; }
+  40% {
+    transform: translateY(450px); }
+  60% {
+    transform: translateY(-70px); }
+  80% {
+    transform: translateY(10px); }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    background-color: #AD0505; } }
+.run_inverse, aside.slide-1 section {
+  animation: mascota_inverse ease 1.2s both;
+  -webkit-animation: mascota_inverse ease 1.2s both;
+  -moz-animation: mascota_inverse ease 1.2s both;
+  -o-animation: mascota_inverse ease  1.2s both; }
+
+@-moz-keyframes mascota_inverse {
+  0% {
+    opacity: 0; }
+  40% {
+    transform: translateY(450px); }
+  60% {
+    transform: translateY(-70px); }
+  80% {
+    transform: translateY(10px); }
+  100% {
+    opacity: 1;
+    transform: translateY(0); } }
+@-webkit-keyframes mascota_inverse {
+  0% {
+    opacity: 0; }
+  40% {
+    transform: translateY(450px); }
+  60% {
+    transform: translateY(-70px); }
+  80% {
+    transform: translateY(10px); }
+  100% {
+    opacity: 1;
+    transform: translateY(0); } }
+@keyframes mascota_inverse {
+  0% {
+    opacity: 0; }
+  40% {
+    transform: translateY(450px); }
+  60% {
+    transform: translateY(-70px); }
+  80% {
+    transform: translateY(10px); }
+  100% {
+    opacity: 1;
+    transform: translateY(0); } }
+.dissapear, aside.slide-1 section.instruction h2.none, aside.slide-1 section.game h2.none {
+  animation: dissapear ease-in-out 1s both;
+  -webkit-animation: dissapear ease-in-out 1s both;
+  -moz-animation: dissapear ease-in-out 1s both;
+  -o-animation: dissapear ease-in-out  1s both; }
+
+@-moz-keyframes dissapear {
+  0% {
+    opacity: 1;
+    transform: translateX(0px); }
+  60% {
+    transform: translateX(70px); }
+  100% {
+    opacity: 0;
+    transform: translateX(150px); } }
+@-webkit-keyframes dissapear {
+  0% {
+    opacity: 1;
+    transform: translateX(0px); }
+  60% {
+    transform: translateX(-70px); }
+  100% {
+    opacity: 0;
+    transform: translateX(450px); } }
+@keyframes dissapear {
+  0% {
+    opacity: 1;
+    transform: translateX(0px); }
+  60% {
+    transform: translateX(-70px); }
+  100% {
+    opacity: 0;
+    transform: translateX(450px); } }
+/* reset format */
+header {
+  top: 0;
+  left: 0;
+  position: fixed;
+  z-index: 9999;
+  width: 100%;
+  background: red; }
+  header .title {
+    width: 90%;
+    height: 5%;
+    float: left; }
+    header .title h2 {
+      padding-left: 10%;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      padding-top: 0.1rem; }
+  header .info {
+    width: 6%;
+    padding-right: 4%;
+    float: right; }
+
+.showVoted {
+  top: 0;
+  right: 0;
+  z-index: 1; }
+  .showVoted div {
+    width: 100%;
+    overflow: auto;
+    margin: 0;
+    color: white;
+    text-align: center;
+    height: 60%; }
+    .showVoted div#throphy {
+      position: relative; }
+      .showVoted div#throphy img {
+        width: 75%;
+        margin-top: 30%; }
+    .showVoted div#infoEnd {
+      position: relative; }
+
+aside {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  display: table; }
+  aside.slide-1 {
+    top: 0;
+    right: 0;
+    background: black;
+    z-index: 1; }
+    aside.slide-1.gone {
+      /* effecto 1 */ }
+    aside.slide-1 section {
+      width: 100%;
+      overflow: auto;
+      margin: 0;
+      color: white;
+      text-align: center;
+      height: 60%; }
+      aside.slide-1 section.instruction h2 {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        font-weight: 300;
+        font-size: 2.5rem; }
+      aside.slide-1 section.game h2 {
+        position: absolute;
+        opacity: 0.5;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        font-weight: 100;
+        font-size: 2.5rem; }
+  aside.slide-2 {
+    top: 0;
+    right: 100%;
+    background: black;
+    z-index: 2;
+    /* effecto 1 */ }
+  aside.goToVotedSecondSlide {
+    top: 0;
+    right: 100%;
+    background: black;
+    z-index: 2; }
+  aside #content {
+    width: 100%;
+    height: 100%;
+    display: table; }
+  aside #swipeArea {
+    width: 100%;
+    height: 100%;
+    background-color: #409141;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell; }
+
+/* reset format */
+/* variables */
+
+/*# sourceMappingURL=index.css.map */

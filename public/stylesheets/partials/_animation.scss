@@ -1,0 +1,231 @@
+/* Animations */
+
+/* Voted! */
+.voted {
+	animation: bump ease 0.5s both;
+	-webkit-animation: bump ease 0.5s both;
+	-moz-animation: bump ease 0.5s both;
+	-o-animation: bounce ease  0.5s both;
+}
+
+@-moz-keyframes bump {
+	0% { opacity: 1; transform: scale(1,1); }
+	50% { opacity: 0.5; transform: scale(1.5,1.5); }
+	100% { opacity: 1; transform: scale(1,1); }
+}
+
+@-webkit-keyframes bump {
+	0% { opacity: 1; transform: scale(1,1); }
+	50% { opacity: 0.5; transform: scale(1.5,1.5); }
+	100% { opacity: 1; transform: scale(1,1); }
+}
+
+
+@keyframes bump {
+	0% { opacity: 1; transform: scale(1,1); }
+	50% { opacity: 0.5; transform: scale(1.5,1.5); }
+	100% { opacity: 1; transform: scale(1,1); }
+}
+
+
+/* Cover bounce */
+.boing {
+	animation: bounce ease 2s both;
+	-webkit-animation: bounce ease 2s both;
+	-moz-animation: bounce ease 2s both;
+	-o-animation: bounce ease  2s both;
+}
+
+@-moz-keyframes bounce  {
+	0% { opacity: 0; transform: translateX(500px); }
+	40% { transform: translateX(-250px);}
+	60% { transform: translateX(100px); }
+	80% { transform: translateX(-30px); }
+	100% { opacity: 1; transform: translateX(0); }
+}
+
+@-webkit-keyframes bounce  {
+	0% { opacity: 0; transform: translateX(500px); }
+	40% { transform: translateX(-250px);}
+	60% { transform: translateX(100px); }
+	80% { transform: translateX(-30px); }
+	100% { opacity: 1; transform: translateX(0); }
+}
+
+
+@keyframes bounce  {
+	0% { opacity: 0; transform: translateX(500px); }
+	40% { transform: translateX(-250px);}
+	60% { transform: translateX(100px); }
+	80% { transform: translateX(-30px); }
+	100% { opacity: 1; transform: translateX(0); }
+}
+
+/* Title transform */
+.title {
+	animation: moveTitle ease-in 1.2s both;
+	-webkit-animation: moveTitle ease-in 1.2s both;
+	-moz-animation: moveTitle ease-in 1.2s both;
+	-o-animation: moveTitle ease  1.2s both;	
+}
+
+@-moz-keyframes moveTitle {
+	0%	{font-size: 15em; opacity: 1;}
+	50%	{opacity: 0.5; color: grey;}
+	100% {font-size: 10em; opacity: 1; margin-top: 5%;}
+}
+
+@-webkit-keyframes moveTitle {
+	0%	{font-size: 15em; opacity: 1;}
+	50%	{opacity: 0.5; color: grey;}
+	100% {font-size: 10em; opacity: 1; margin-top: 5%;}
+}
+
+@keyframes moveTitle {
+	0%	{font-size: 15em; opacity: 1;}
+	50%	{opacity: 0.5; color: grey;}
+	100% {font-size: 10em; opacity: 1; margin-top: 5%;}
+}
+
+/* First article pushed away */
+.push {
+	animation: pushArticle ease-in 1.2s both;
+	-webkit-animation: pushArticle ease-in 1.2s both;
+	-moz-animation: pushArticle ease-in 1.2s both;
+	-o-animation: pushArticle ease  1.2s both;	
+}
+
+@-moz-keyframes pushArticle {
+	0%	{opacity: 1;}
+	100% {opacity: 0; margin-left: -100%;}
+}
+
+@-webkit-keyframes pushArticle {
+	0%	{opacity: 1;}
+	100% {opacity: 0; margin-left: -100%;}
+}
+
+@keyframes pushArticle {
+	0%	{opacity: 1;}
+	100% {opacity: 0; margin-left: -100%;}
+}
+
+/* Second article enters */
+.push2 {
+	animation: enterArticle ease-in 1.2s both;
+	-webkit-animation: enterArticle ease-in 1.2s both;
+	-moz-animation: enterArticle ease-in 1.2s both;
+	-o-animation: enterArticle ease  1.2s both;	
+}
+
+@-moz-keyframes enterArticle {
+	0%	{opacity: 0.5;}
+	100% {opacity: 1; margin-left: 0%;}
+}
+
+@-webkit-keyframes enterArticle {
+	0%	{opacity: 0.5;}
+	100% {opacity: 1; margin-left: 0%;}
+}
+
+@keyframes enterArticle {
+	0%	{opacity: 0.5;}
+	100% {opacity: 1; margin-left: 0%;}
+}
+
+.pushTime {
+	animation: enterTime ease-in 1.2s both;
+	-webkit-animation: enterTime ease-in 1.2s both;
+	-moz-animation: enterTime ease-in 1.2s both;
+	-o-animation: enterTime ease  1.2s both;
+}
+
+@-moz-keyframes enterTime {
+	0%	{opacity: 0;}
+	100% {opacity: 1; left: 10%; top: 5%;}
+}
+
+@-webkit-keyframes enterTime {
+	0%	{opacity: 0;}
+	100% {opacity: 1; left: 10%; top: 5%;}
+}
+
+@keyframes enterTime {
+	0%	{opacity: 0;}
+	100% {opacity: 1; left: 10%; top: 5%;}
+}
+
+/* Enter score team1 */
+.team1Enter {
+	animation: enterT1 ease-in 0.75s both;
+	-webkit-animation: enterT1 ease-in 0.75s both;
+	-moz-animation: enterT1 ease-in 0.75s both;
+	-o-animation: enterT1 ease  0.75s both;
+}
+
+@-moz-keyframes enterT1 {
+	0%	{opacity: 1;}
+	100% {opacity: 1; left: 0px;}
+}
+
+@-webkit-keyframes enterT1 {
+	0%	{opacity: 1;}
+	100% {opacity: 1; left: 0px;}
+}
+
+@keyframes enterT1 {
+	0%	{opacity: 1;}
+	100% {opacity: 1; left: 0px;}
+}
+
+/* Enter score team2 */
+.team2Enter {
+	animation: enterT2 ease-in 0.75s both;
+	-webkit-animation: enterT2 ease-in 0.75s both;
+	-moz-animation: enterT2 ease-in 0.75s both;
+	-o-animation: enterT2 ease  0.75s both;
+}
+
+@-moz-keyframes enterT2 {
+	0%	{opacity: 1;}
+	100% {opacity: 1; right: 0px;}
+}
+
+@-webkit-keyframes enterT2 {
+	0%	{opacity: 1;}
+	100% {opacity: 1; right: 0px;}
+}
+
+@keyframes enterT2 {
+	0%	{opacity: 1;}
+	100% {opacity: 1; right: 0px;}
+}
+
+/* Enter score team2 */
+.toastyEnter {
+	animation: toast ease-in 2s both;
+	-webkit-animation: toast ease-in 2s both;
+	-moz-animation: toast ease-in 2s both;
+	-o-animation: toast ease  2 both;
+}
+
+@-moz-keyframes toast {
+	0%	{opacity: 1; bottom: -400px}
+	20%	{bottom: 0;}
+	80%	{bottom: 0;}
+	100% {opacity: 1; bottom: -400px}
+}
+
+@-webkit-keyframes toast {
+	0%	{opacity: 1; bottom: -400px}
+	20%	{bottom: 0;}
+	80%	{bottom: 0;}
+	100% {opacity: 1; bottom: -400px}
+}
+
+@keyframes toast {
+	0%	{opacity: 1; bottom: -400px}
+	20%	{bottom: 0;}
+	80%	{bottom: 0;}
+	100% {opacity: 1; bottom: -400px}
+}

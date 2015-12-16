@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Marcador</title>
+    
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+    <script src="vendor/jquery-2.1.4.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/scoreboard-new.js"></script>
+</head>
+<body>
+    <div id="container">
+    <article class="init" id="cover">
+        <section>
+            <div class="content">
+                <h1 id="gameVoting">#Gamevoting</h1>
+                <h2 id="subtitle">Entra en <b>gamevoting.me</b> en el navegador de tu dispositivo para jugar</h2>
+            </div>
+            <br/>
+            <div id="instructions"><ul></ul></div>
+        </section>
+    </article>
+    
+    <article class="" id="scoreboard">
+        
+        <canvas id="courtCanvas">
+            YOUR BROWSER DOES NOT SUPPORT <B>CANVAS</B>!
+        </canvas>
+        <canvas id="charCanvas">
+        </canvas>
+        <canvas id="ballCanvas">
+        </canvas>
+        
+        <aside class="countdown">
+            <div class="time">
+                <div style="width: 100%;" class="progress">
+                </div>
+            </div>
+        </aside><!-- time -->
+
+        <aside id="team1" class="score">
+            <div id="team1Votes" class="teamVotes">00</div>
+            <div id="team1Name" class="teamName"></div>
+        </aside><!-- team1 Score-->
+
+        <aside id="team2" class="score">
+            <div id="team2Votes" class="teamVotes">00</div>
+            <div id="team2Name" class="teamName"></div>
+        </aside><!-- team2 Score-->        
+
+        <aside class="toasty">
+
+        </aside><!-- Toasty! -->
+        
+        <aside class="results">
+        </aside><!-- RESULTS -->
+
+    </article>   
+    </div> 
+</body>
+</html>

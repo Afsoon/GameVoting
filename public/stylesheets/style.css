@@ -1,8 +1,464 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+/* all css */
+/* reset */
+@import url(https://fonts.googleapis.com/css?family=Bangers);
+@import url(https://fonts.googleapis.com/css?family=Krona+One);
+section, article, figure, header {
+  display: block; }
 
-a {
-  color: #00B7FF;
-}
+body, h1, h2, h3, h4, h5, h6, ul {
+  margin: 0;
+  padding: 0; }
+
+/* general */
+html, body, article, section {
+  height: 100%; }
+
+body {
+  font-family: 'Roboto', sans-serif;
+  color: black;
+  background: white; }
+
+.t, article#scoreboard.scoreboard .countdown .time .progress, article#scoreboard.scoreboard .results {
+  -webkit-transition: 0.2s ease-in;
+  -moz-transition: 0.2s ease-in;
+  -o-transition: 0.2s ease-in;
+  transition: 0.2s ease-in; }
+
+/* variables */
+/* Animations */
+/* Voted! */
+.voted, article#scoreboard.scoreboard .score .teamVotes.vote {
+  animation: bump ease 0.5s both;
+  -webkit-animation: bump ease 0.5s both;
+  -moz-animation: bump ease 0.5s both;
+  -o-animation: bounce ease  0.5s both; }
+
+@-moz-keyframes bump {
+  0% {
+    opacity: 1;
+    transform: scale(1, 1); }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.5, 1.5); }
+  100% {
+    opacity: 1;
+    transform: scale(1, 1); } }
+@-webkit-keyframes bump {
+  0% {
+    opacity: 1;
+    transform: scale(1, 1); }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.5, 1.5); }
+  100% {
+    opacity: 1;
+    transform: scale(1, 1); } }
+@keyframes bump {
+  0% {
+    opacity: 1;
+    transform: scale(1, 1); }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.5, 1.5); }
+  100% {
+    opacity: 1;
+    transform: scale(1, 1); } }
+/* Cover bounce */
+.boing, article.init section .content, article.init section .instructions, article#scoreboard.scoreboard .results.show {
+  animation: bounce ease 2s both;
+  -webkit-animation: bounce ease 2s both;
+  -moz-animation: bounce ease 2s both;
+  -o-animation: bounce ease  2s both; }
+
+@-moz-keyframes bounce {
+  0% {
+    opacity: 0;
+    transform: translateX(500px); }
+  40% {
+    transform: translateX(-250px); }
+  60% {
+    transform: translateX(100px); }
+  80% {
+    transform: translateX(-30px); }
+  100% {
+    opacity: 1;
+    transform: translateX(0); } }
+@-webkit-keyframes bounce {
+  0% {
+    opacity: 0;
+    transform: translateX(500px); }
+  40% {
+    transform: translateX(-250px); }
+  60% {
+    transform: translateX(100px); }
+  80% {
+    transform: translateX(-30px); }
+  100% {
+    opacity: 1;
+    transform: translateX(0); } }
+@keyframes bounce {
+  0% {
+    opacity: 0;
+    transform: translateX(500px); }
+  40% {
+    transform: translateX(-250px); }
+  60% {
+    transform: translateX(100px); }
+  80% {
+    transform: translateX(-30px); }
+  100% {
+    opacity: 1;
+    transform: translateX(0); } }
+/* Title transform */
+.title, article.init section .content h1.instructions {
+  animation: moveTitle ease-in 1.2s both;
+  -webkit-animation: moveTitle ease-in 1.2s both;
+  -moz-animation: moveTitle ease-in 1.2s both;
+  -o-animation: moveTitle ease  1.2s both; }
+
+@-moz-keyframes moveTitle {
+  0% {
+    font-size: 15em;
+    opacity: 1; }
+  50% {
+    opacity: 0.5;
+    color: grey; }
+  100% {
+    font-size: 10em;
+    opacity: 1;
+    margin-top: 5%; } }
+@-webkit-keyframes moveTitle {
+  0% {
+    font-size: 15em;
+    opacity: 1; }
+  50% {
+    opacity: 0.5;
+    color: grey; }
+  100% {
+    font-size: 10em;
+    opacity: 1;
+    margin-top: 5%; } }
+@keyframes moveTitle {
+  0% {
+    font-size: 15em;
+    opacity: 1; }
+  50% {
+    opacity: 0.5;
+    color: grey; }
+  100% {
+    font-size: 10em;
+    opacity: 1;
+    margin-top: 5%; } }
+/* First article pushed away */
+.push, article.bye {
+  animation: pushArticle ease-in 1.2s both;
+  -webkit-animation: pushArticle ease-in 1.2s both;
+  -moz-animation: pushArticle ease-in 1.2s both;
+  -o-animation: pushArticle ease  1.2s both; }
+
+@-moz-keyframes pushArticle {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 0;
+    margin-left: -100%; } }
+@-webkit-keyframes pushArticle {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 0;
+    margin-left: -100%; } }
+@keyframes pushArticle {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 0;
+    margin-left: -100%; } }
+/* Second article enters */
+.push2, article#scoreboard.scoreboard {
+  animation: enterArticle ease-in 1.2s both;
+  -webkit-animation: enterArticle ease-in 1.2s both;
+  -moz-animation: enterArticle ease-in 1.2s both;
+  -o-animation: enterArticle ease  1.2s both; }
+
+@-moz-keyframes enterArticle {
+  0% {
+    opacity: 0.5; }
+  100% {
+    opacity: 1;
+    margin-left: 0%; } }
+@-webkit-keyframes enterArticle {
+  0% {
+    opacity: 0.5; }
+  100% {
+    opacity: 1;
+    margin-left: 0%; } }
+@keyframes enterArticle {
+  0% {
+    opacity: 0.5; }
+  100% {
+    opacity: 1;
+    margin-left: 0%; } }
+.pushTime, article#scoreboard.scoreboard .countdown.enterTime {
+  animation: enterTime ease-in 1.2s both;
+  -webkit-animation: enterTime ease-in 1.2s both;
+  -moz-animation: enterTime ease-in 1.2s both;
+  -o-animation: enterTime ease  1.2s both; }
+
+@-moz-keyframes enterTime {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1;
+    left: 10%;
+    top: 5%; } }
+@-webkit-keyframes enterTime {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1;
+    left: 10%;
+    top: 5%; } }
+@keyframes enterTime {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1;
+    left: 10%;
+    top: 5%; } }
+/* Enter score team1 */
+.team1Enter, article#scoreboard.scoreboard .score#team1.enterT1 {
+  animation: enterT1 ease-in 0.75s both;
+  -webkit-animation: enterT1 ease-in 0.75s both;
+  -moz-animation: enterT1 ease-in 0.75s both;
+  -o-animation: enterT1 ease  0.75s both; }
+
+@-moz-keyframes enterT1 {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 1;
+    left: 0px; } }
+@-webkit-keyframes enterT1 {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 1;
+    left: 0px; } }
+@keyframes enterT1 {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 1;
+    left: 0px; } }
+/* Enter score team2 */
+.team2Enter, article#scoreboard.scoreboard .score#team2.enterT2 {
+  animation: enterT2 ease-in 0.75s both;
+  -webkit-animation: enterT2 ease-in 0.75s both;
+  -moz-animation: enterT2 ease-in 0.75s both;
+  -o-animation: enterT2 ease  0.75s both; }
+
+@-moz-keyframes enterT2 {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 1;
+    right: 0px; } }
+@-webkit-keyframes enterT2 {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 1;
+    right: 0px; } }
+@keyframes enterT2 {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 1;
+    right: 0px; } }
+/* Enter score team2 */
+.toastyEnter, article#scoreboard.scoreboard .toasty.appear {
+  animation: toast ease-in 2s both;
+  -webkit-animation: toast ease-in 2s both;
+  -moz-animation: toast ease-in 2s both;
+  -o-animation: toast ease  2 both; }
+
+@-moz-keyframes toast {
+  0% {
+    opacity: 1;
+    bottom: -400px; }
+  20% {
+    bottom: 0; }
+  80% {
+    bottom: 0; }
+  100% {
+    opacity: 1;
+    bottom: -400px; } }
+@-webkit-keyframes toast {
+  0% {
+    opacity: 1;
+    bottom: -400px; }
+  20% {
+    bottom: 0; }
+  80% {
+    bottom: 0; }
+  100% {
+    opacity: 1;
+    bottom: -400px; } }
+@keyframes toast {
+  0% {
+    opacity: 1;
+    bottom: -400px; }
+  20% {
+    bottom: 0; }
+  80% {
+    bottom: 0; }
+  100% {
+    opacity: 1;
+    bottom: -400px; } }
+/* reset format */
+/* Front-end style */
+.container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden; }
+
+article {
+  width: 100%;
+  height: 100%;
+  position: absolute; }
+  article.init section {
+    width: 100%;
+    color: black;
+    display: table;
+    text-align: center; }
+    article.init section .content {
+      vertical-align: middle;
+      /*display: table-row;*/ }
+      article.init section .content h1 {
+        font-size: 13em;
+        font-weight: 400;
+        font-family: 'Bangers', cursive;
+        display: block;
+        width: 100%;
+        margin-top: 15%;
+        text-align: center; }
+      article.init section .content h2 {
+        font-size: 2em;
+        font-weight: 400;
+        font-family: 'Roboto', sans-serif; }
+      article.init section .content img {
+        z-index: -1;
+        position: absolute;
+        top: -7%;
+        background-color: transparent;
+        max-width: 600px;
+        max-height: 600px; }
+        article.init section .content img#tennisGirl {
+          left: 1%; }
+        article.init section .content img#tennisBoy {
+          right: 1%; }
+    article.init section .instructions {
+      vertical-align: middle;
+      font-size: 2em;
+      margin-top: 5%; }
+  article#scoreboard {
+    margin-left: 100%;
+    /* background: url('../images/background.jpg') left bottom no-repeat;
+    background-size: cover; */ }
+    article#scoreboard.scoreboard {
+      width: 100%;
+      height: 100%;
+      margin-left: 100%;
+      /*background-color: #053005;*/
+      color: white;
+      /* Scores */
+      /* Aside countdown */
+      /* Aside final results */
+      /* Toasty! */ }
+      article#scoreboard.scoreboard .score {
+        position: fixed;
+        width: 25%;
+        height: 10%;
+        top: 20%;
+        background-color: #004359;
+        text-align: center;
+        font-family: 'Roboto', sans-serif;
+        display: table;
+        opacity: 0;
+        padding: 10px; }
+        article#scoreboard.scoreboard .score .teamVotes {
+          font-size: 5em;
+          font-weight: 800;
+          line-height: 75%; }
+        article#scoreboard.scoreboard .score .teamName {
+          font-size: 2em;
+          font-weight: 200; }
+        article#scoreboard.scoreboard .score#team1 {
+          left: -500px;
+          -webkit-border-top-right-radius: 30px;
+          -webkit-border-bottom-right-radius: 30px;
+          -moz-border-radius-topright: 30px;
+          -moz-border-radius-bottomright: 30px;
+          border-top-right-radius: 30px;
+          border-bottom-right-radius: 30px;
+          box-shadow: -10px 10px 5px #888888; }
+        article#scoreboard.scoreboard .score#team2 {
+          right: -500px;
+          -webkit-border-top-left-radius: 30px;
+          -webkit-border-bottom-left-radius: 30px;
+          -moz-border-radius-topleft: 30px;
+          -moz-border-radius-bottomleft: 30px;
+          border-top-left-radius: 30px;
+          border-bottom-left-radius: 30px;
+          box-shadow: 10px 10px 5px #888888; }
+      article#scoreboard.scoreboard .countdown {
+        position: fixed;
+        top: 100%;
+        left: 100%;
+        width: 75%;
+        height: 10%; }
+        article#scoreboard.scoreboard .countdown .time {
+          width: 100%;
+          height: 40px;
+          position: relative;
+          background: #C41212;
+          -webkit-border-radius: 10px;
+          -moz-border-radius: 10px;
+          border-radius: 10px; }
+          article#scoreboard.scoreboard .countdown .time .progress {
+            height: 100%;
+            background: #FFEA00;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+            padding-left: 5px; }
+      article#scoreboard.scoreboard .results {
+        position: fixed;
+        top: 5%;
+        width: 100%;
+        height: 10%;
+        font-family: 'Krona One', sans-serif;
+        font-size: 4em;
+        text-shadow: 2px 2px 5px #222;
+        text-align: center;
+        opacity: 0; }
+      article#scoreboard.scoreboard .toasty {
+        z-index: 2;
+        left: 43%;
+        opacity: 0;
+        width: 250px;
+        height: 319px;
+        bottom: -400px;
+        position: fixed;
+        background: url("../images/toasty.png") left bottom no-repeat;
+        background-size: cover; }
+      article#scoreboard.scoreboard canvas {
+        position: fixed;
+        width: 100%;
+        height: 100%; }
+
+/* reset format */
+/* all fonts */
+
+/*# sourceMappingURL=style.css.map */
