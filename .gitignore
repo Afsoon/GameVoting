@@ -1,6 +1,4 @@
 /.idea/**/*
 /node_modules/**/*
 /GameVotingGit.iml
-/public/.sass-cache/**/*
-/public/stylesheets/clientAnimation/index.css.map
-/public/stylesheets/style.css.map
+.DS_Store
