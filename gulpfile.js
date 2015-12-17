@@ -11,7 +11,7 @@ var gulpsftp = require('gulp-sftp');
 
 var publics = ['public/**/*.html',
     'public/**/*.js',
-    'public/**/*.css'
+    'public/**/*.css',
     'public/**/*.json',
     'public/**/*.jpg',
     'public/**/*.png',
