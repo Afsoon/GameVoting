@@ -49,6 +49,11 @@ module.exports.handlerSocket = function(app){
             io.sockets.emit('startPlayer');
         });
 
+        socket.on('resetGame', function() {
+            console.log("send event");
+            io.sockets.emit('restart');
+        });
+
         socket.on('team1', function (data){
             addVote(data, 'team1');
             generateUpdateJSON();

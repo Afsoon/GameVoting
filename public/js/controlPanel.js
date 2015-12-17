@@ -25,5 +25,5 @@ function start() {
 }
 
 function reset() {
-	socket.emit('reset');
+	socket.emit('resetGame');
 }

@@ -13,6 +13,8 @@ var publics = ['public/**/*.html',
     'public/**/*.js',
     'public/**/*.css'];
 
+var server = ['server/*.js']; 
+
 var test = ['spec/**.js'];
 
 gulp.task('default', ['test', 'deploy']);
@@ -28,6 +30,8 @@ gulp.task('test', function(){
 gulp.task('deploy', function(){
     gulp.src(publics)
         .pipe(gulpsftp(generatePath('public')));
+    gulp.src(server)
+        .pipe(gulpsftp(generatePath('server')));
 
 });
 

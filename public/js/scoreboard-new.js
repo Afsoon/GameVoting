@@ -37,7 +37,7 @@ $(function(){
     }
 
     function resetListener(){
-        socket.on('reset', function(){
+        socket.on('restart', function(){
             location.reload();
         });
     }
@@ -435,7 +435,9 @@ $(function(){
                 results.team1Side,
                 results.team2Pct,
                 results.team2Side);
-        },1500);        
+        },1500);
+        
+        resetListener();        
     }
 
     function showCup() {
