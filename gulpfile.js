@@ -9,9 +9,9 @@ var args = minimist(process.argv.slice(2));
 var gulpsftp = require('gulp-sftp');
 
 
-var publics = ['public/**/index-new.html',
-    'public/**/index-new.js',
-    'public/**/index.css'];
+var publics = ['public/**/*.html',
+    'public/**/*.js',
+    'public/**/*.css'];
 
 var test = ['spec/**.js'];
 

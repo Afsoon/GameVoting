@@ -23,3 +23,7 @@ function start() {
 	console.log(json);
 	$("#startButton").prop("disabled",true);
 }
+
+function reset() {
+	socket.emit('reset');
+}

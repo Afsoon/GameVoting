@@ -36,6 +36,12 @@ $(function(){
         });
     }
 
+    function resetListener(){
+        socket.on('reset', function(){
+            location.reload();
+        });
+    }
+
     function setLanguage(lang) {
         var language = lang;
         if ( language !== "es" && language !== "en") {
