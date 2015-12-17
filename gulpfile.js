@@ -11,11 +11,19 @@ var gulpsftp = require('gulp-sftp');
 
 var publics = ['public/**/*.html',
     'public/**/*.js',
-    'public/**/*.css'];
+    'public/**/*.css'
+    'public/**/*.json',
+    'public/**/*.jpg',
+    'public/**/*.png',
+    'public/**/*.wav'];
 
 var server = ['server/*.js']; 
 
 var test = ['spec/**.js'];
+
+var root = ['app.js', 'ecosystem.json', 'package.json']
+
+var modules = ['modules/*.js'];
 
 gulp.task('default', ['test', 'deploy']);
 
@@ -32,6 +40,10 @@ gulp.task('deploy', function(){
         .pipe(gulpsftp(generatePath('public')));
     gulp.src(server)
         .pipe(gulpsftp(generatePath('server')));
+    gulp.src(root)
+        .pipe(gulpsftp(generatePath('')));
+    gulp.src(modules)
+        .pipe(gulpsftp(generatePath('modules')));
 
 });
 
