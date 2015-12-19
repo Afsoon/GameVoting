@@ -1,4 +1,8 @@
-# GameVoting
+GameVoting
+=========
+[![Build Status](https://travis-ci.org/Afsoon/GameVoting.svg?branch=master)](https://travis-ci.org/Afsoon/GameVoting)
+
+
 
 H4ckademy project out of the Creepy Coconuts edition.
 
