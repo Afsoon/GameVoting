@@ -1,7 +1,6 @@
 GameVoting
 =========
 [![Build Status](https://travis-ci.org/Afsoon/GameVoting.svg?branch=master)](https://travis-ci.org/Afsoon/GameVoting)
-[![Coverage Status](https://coveralls.io/repos/Afsoon/GameVoting/badge.svg?branch=master&service=github)](https://coveralls.io/github/Afsoon/GameVoting/?branch=master)
 
 
 H4ckademy project out of the Creepy Coconuts edition.
